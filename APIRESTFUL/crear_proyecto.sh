@@ -115,7 +115,7 @@ echo_color $VERDE "SE ACTIVO"
 desactivar_entorno(){
 deactivate
 echo_color $ROJO "SE DESACTIVO"
-}
+ }
 
 salir_menu() {
 	salir=1
