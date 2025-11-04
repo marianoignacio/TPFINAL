@@ -90,12 +90,14 @@ instala_venv(){
 
 #Crea entorno virtual en la carpeta .venv
 sudo apt install python3.12-venv
+mkdir .venv
+python3 -m venv .venv
 echo_color $VERDE "Se creó el entorno virtual"
 }
 
 instala_flask(){
 pipenv install Flask
-
+pip install requests
 echo_color $VERDE "Se intalo Flask"
 }
 
@@ -107,7 +109,7 @@ echo_color $VERDE "Se intalo Flask"
 }
 
 
-activa_entorno(){
+activar_entorno(){
 source .venv/bin/activate
 echo_color $VERDE "SE ACTIVO"
 }
