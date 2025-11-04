@@ -51,41 +51,41 @@ diccionario = { "muebles": ["camas", "roperos"]}
 
 @app.route('/formulario', methods =['GET', 'POST'])
 def formulario():
-    if request.method == 'POST':    
-        nombre = request.form['name']
+        # if request.method == 'POST':    
+        #     nombre = request.form['name']
 
-        email_usuario = request.form['email']
+        #     email_usuario = request.form['email']
 
-        mensajes= request.form['message']
+        #     mensajes= request.form['message']
 
-        asunto=request.form['subject']
+        #     asunto=request.form['subject']
 
 
-    
+        
 
-        msg = Message(
-            subject=f"Inscripcion de: {nombre}",
-            recipients=[email_usuario], 
-            body=f"""
-            REALIZASTE UNA RESERVA CON LOS DATOS:\n
+        #     msg = Message(
+        #         subject=f"Inscripcion de: {nombre}",
+        #         recipients=[email_usuario], 
+        #         body=f"""
+        #         REALIZASTE UNA RESERVA CON LOS DATOS:\n
 
-            Nombre: {nombre}\n
+        #         Nombre: {nombre}\n
 
-            Motivo: {asunto}\n
+        #         Motivo: {asunto}\n
 
-            Mensaje:\n
-            {mensajes}
+        #         Mensaje:\n
+        #         {mensajes}
 
-            COFIRMAR RECEPCIÓN Y CORROBORAR DATOS, GRACIAS!"""
-        )
-    try:
-        mail.send(msg)
+        #         COFIRMAR RECEPCIÓN Y CORROBORAR DATOS, GRACIAS!"""
+        #     )
+        # try:
+        #     mail.send(msg)
 
-    
-    except Exception as e:
-        print(f"Error enviando mail: {e}") 
-        flash("Hubo un error al enviar tu mensaje, intenta más tarde")
-    return render_template('contacto.html', info_hotel=diccionario)
+        
+        # except Exception as e:
+        #     print(f"Error enviando mail: {e}") 
+        #     flash("Hubo un error al enviar tu mensaje, intenta más tarde")
+        return render_template('contacto.html', info_hotel=diccionario)
 
 # *3
 @app.errorhandler(404)
@@ -94,23 +94,23 @@ def page_not_found(e):
        return render_template('error.html',info_hotel=diccionario, msj=mensaje),404
  # *4
 @app.route('/habitaciones')
-def home ():
+def habitaciones ():
     return render_template('habitaciones.html', info_hotel=diccionario)
 # *5
 @app.route('/login')
-def home ():
+def login ():
     return render_template('inicio_sesion.html', info_hotel=diccionario)
 # *6
 @app.route('/nosotros')
-def home ():
+def nosotros ():
     return render_template('nosotros.html', info_hotel=diccionario)
 # *7
 @app.route('/registro')
-def home ():
+def registro ():
     return render_template('registro.html', info_hotel=diccionario)
 # *8
 @app.route('/reserva')
-def home ():
+def reserva ():
     return render_template('reserva.html', info_hotel=diccionario)
 
 if __name__== '__main__':
