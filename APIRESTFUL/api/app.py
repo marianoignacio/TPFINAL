@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect, flash, url_for, jso
 
 
 app = Flask(__name__)
-
+"""
 @app.route('/users', methods = ['GET'])
 def users ():
     
@@ -19,8 +19,8 @@ def users ():
               data.append(entity)
 
     return jsonify(data),200
-
-@app.route('/user/<id>', methods = ['GET'])
+"""
+"""@app.route('/user/<id>', methods = ['GET'])
 def users (id):
     result = {"id": 1, "name": "Mariano", "email": "mampcpel@gmail.com", "active": True}
     for row in result:
@@ -32,8 +32,8 @@ def users (id):
               data.append(entity)
 
     return jsonify(data),200
-
+"""
 
 
 if __name__== '__main__':
-        app.run("127.0.0.1", port="5000", debug=True)
+        app.run("localhost", port=8088, debug=True)
