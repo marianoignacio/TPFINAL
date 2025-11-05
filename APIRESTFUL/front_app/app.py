@@ -9,4 +9,4 @@ def home ():
     return render_template('index.html')
 
 if __name__== '__main__':
-        app.run("localhost", port=8088, debug=True)
+        app.run("localhost", port=5000, debug=True)
