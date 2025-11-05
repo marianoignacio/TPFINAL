@@ -6,6 +6,15 @@ __pycache__/
 # C extensions
 *.so
 
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.env
+**.venv
+
 # Distribution / packaging
 .Python
 build/
