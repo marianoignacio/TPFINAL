@@ -5569,3 +5569,95 @@ textarea.form-control {
     .categories li.active a {
       color: #000000;
       font-style: italic; }
+
+.inicio-sesion,.registrarse {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    margin: 0;
+    background-color: #f8f8f8;
+}
+
+.contenedor-global {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 0;
+}
+
+@media (min-width: 576px) {
+    .contenedor-inicio-sesion, .contenedor-registrarse {
+        max-width: 540px; } }
+
+@media (min-width: 768px) {
+    .contenedor-inicio-sesion, .contenedor-registrarse {
+        max-width: 540px; } }
+
+@media (min-width: 992px) {
+    .contenedor-inicio-sesion, .contenedor-registrarse {
+        max-width: 625px; } }
+
+@media (min-width: 1200px) {
+    .contenedor-inicio-sesion, .contenedor-registrarse {
+        max-width: 625px; } }
+
+@media (min-width: 1400px) {
+    .contenedor-inicio-sesion, .contenedor-registrarse {
+        max-width: 625px; } }
+
+.contenedor-inicio-sesion, .contenedor-registrarse {
+    padding: 25px;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.1);
+    max-width: 625px;
+    width: 90%;
+}
+
+.formulario-inicio-sesion, .formulario-registrarse {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.formulario-doble-item {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}
+
+.formulario-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.formulario-item, .label {
+    width: 100%;
+}
+
+.formulario-item input {
+    width: 100%;
+    padding: 5px;
+    border-radius: 8px;
+    border: 1px solid #c5a880;
+}
+
+.formulario-item input::placeholder {
+    color: #c5a880;
+}
+
+.formulario-item input:focus {
+    color: #222222;
+    outline-color: #c5a880;
+}
