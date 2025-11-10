@@ -120,4 +120,4 @@ def reserva ():
     return render_template('reserva.html', info_hotel=diccionario)
 
 if __name__== '__main__':
-        app.run("localhost", port=8080, debug=True)
+        app.run("localhost", port=8088, debug=True)
