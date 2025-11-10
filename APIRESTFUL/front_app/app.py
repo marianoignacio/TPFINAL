@@ -20,7 +20,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home ():
-    return render_template('index.html', info_hotel=diccionario)
+    return render_template('pago.html', info_hotel=diccionario)
 
 
 
