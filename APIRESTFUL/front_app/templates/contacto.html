@@ -64,7 +64,6 @@
               <a class="nav-link active" href="contacto.html">Contact</a>
               </li>
             <li class="nav-item">
-             <!-- BOTÓN PERFIL -->
                 <a class="nav-link" onclick="abrirVistaPerfil()" ><img id="fotoPerfil" src="" alt="Foto del usuario"> </a>
 
             </li>
@@ -387,9 +386,9 @@
     <span class="close-button" onclick="closeModal()">×</span>
 
     <!-- SECCIÓN SUPERIOR -->
-    <div class="profile-top">
+    <div class="perfil-top">
 
-      <div class="profile-info">
+      <div class="perfil-info">
       
         <div>
             <h5 class="h5-perfil" >Nombre Completo:</h5>
@@ -410,7 +409,7 @@
         
       </div>
 
-      <div class="profile-photo">
+      <div class="perfil-photo">
         <img id="fotoPerfil" src="{{url_for('static', filename='images/perfil.jpg')}}" alt="Foto del usuario">
       </div>
     </div>
