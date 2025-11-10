@@ -96,6 +96,7 @@
         </div>
       </div>
     </section>
+
     <section class="ftco-section bg-light">
       <div class="container">
         <div class="row no-gutters justify-content-center">
@@ -108,8 +109,9 @@
                     <p class="mb-4">Si tuvo algún problema puede escribirnos</p>
 
                     
+                    
 <!-- FORMULARIO -->
-                    <form id="contactForm" name="contactForm" class="contactForm">
+                    <form id="contactForm" name="contactForm" class="contactForm" action="{{ url_for('formulario') }}" method="POST" data-sb-form-api-token="API_TOKEN">
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
@@ -133,8 +135,7 @@
                         </div>
                         <div class="col-md-12">
                           <div class="form-group">
-                            <input   type="submit"   value="Enviar"   class="btn btn-primary" />
-                            <div class="submitting"></div>
+                            <button   type="submit"  class="btn btn-primary" > Enviar </button>
                           </div>
                         </div>
                       </div>
@@ -393,52 +394,59 @@
         <div>
             <h5 class="h5-perfil" >Nombre Completo:</h5>
             <!-- <input type="text" id="name" placeholder="Tu nombre completo"> -->
-            <p>Nombre de la persona</p>
+            <p>{{info_usuario.usuario.0}}</p>
           </div>
         <div>
-           <h5 class="h5-perfil">Habitación:</h5>
+           <h5 class="h5-perfil">Mail:</h5>
             <!-- <input type="text" id="habitacion" placeholder="Ej. 202B"> -->
-       <p>Habitación de la persona</p>
+       <p>{{info_usuario.usuario.1}}</p>
           </div>
         <div>
             <h5 class="h5-perfil">Fecha de Inscripción:</h5>
-            <!-- <input type="date" id="fechaInscripcion"> -->
-             <p>fecha</p>
+            
+             <p>{{info_usuario.usuario.2}}</p>
+             
         </div>
         
       </div>
 
       <div class="profile-photo">
-        <img id="fotoPerfil" src="https://via.placeholder.com/160" alt="Foto del usuario">
+        <img id="fotoPerfil" src="{{url_for('static', filename='images/perfil.jpg')}}" alt="Foto del usuario">
       </div>
     </div>
 <br>
     <!-- SECCIÓN INFERIOR -->
     <div class="reserva-bottom">
+{% for i in range(info_usuario.reserva | length) %}
+<br>
+     <h3 style="text-align: center;"># {{i+1}}</h3>
 
       <div class="reserva-detalles">
 
         <div class="detalle-box">
           <h5>Inicio de Reserva:</h5>
           <hr>
-          <p id="inicioReserva">xx/xx/xxxx</p>
+          <p id="inicioReserva">{{ info_usuario.reserva[i][0] }}</p>
         </div>
         <div class="detalle-box">
-          <h5>Lugar de Reserva:</h5>
+          <h5> Habitacion :</h5>
           <hr>
-          <p id="lugarReserva">Ciudad, Argentina</p>
+          <p id="lugarReserva">{{ info_usuario.reserva[i][1]  }}</p>
         </div>
         <div class="detalle-box">
           <h5>Final de Reserva:</h5>
           <hr>
-          <p id="finReserva">xx/xx/xxxx</p>
+          <p id="finReserva">{{ info_usuario.reserva[i][2]  }}</p>
         </div>
         <div class="detalle-box">
-          <h5>Mi Reserva:</h5>
-          <a href="">Ir</a>
+          <h5>Monto:</h5>
+          <p id="finReserva">{{ info_usuario.reserva[i][3]  }}</p>
         </div>
       </div>
+
+{% endfor %}
     </div>
+    
   </div>
 </div>
 

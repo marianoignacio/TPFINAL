@@ -5670,7 +5670,7 @@ textarea.form-control {
   height: 160px;
   background-color: #d6d1cd;
   border: 1px solid #7d7d7d;
-  border-radius: 60% 60% 40% 40%;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -5686,18 +5686,19 @@ textarea.form-control {
 
 /* ==== SECCIÓN INFERIOR: DETALLES DE LA RESERVA ==== */
 
+
 .reserva-bottom {
-  text-align: center;
   padding: 2em 3em;
   background: rgba(255,255,255,0.85);
+  height: 400px; /* ajusta a tu gusto */
+  overflow-y: auto; /* scroll vertical */
 }
-
 
 .reserva-detalles {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1em;
+  gap: 1.5em;
+  justify-content: flex-start;
 }
 
 .detalle-box {
@@ -5737,6 +5738,7 @@ textarea.form-control {
     height: 100%;
     margin: 0;
     background-color: #f8f8f8;
+    background-image: url();
 }
 
 .contenedor-global {
