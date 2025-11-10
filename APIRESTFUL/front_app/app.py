@@ -2,11 +2,6 @@ from flask import Flask, render_template, request, redirect, flash, url_for, jso
 
 import json
 import requests
-
-
-# *Esto es un requerimiento para usar flask mail y el entrono virtual .env
-# ?NO LO DECIDIMOS TODAVÍA
-
 import os
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
@@ -14,16 +9,19 @@ load_dotenv()
 
 app = Flask(__name__)
 
-
-
 diccionario = { "usuario": ["nombre", "habitacion", "fecha"]
-                   ,"reserva":["XX/XX/XXXX",""]
+                   ,"reserva":["XX/XX/XXXX",""]              
                    }
 
+informacion = { "usuario": ["Nombre de la persona", "@gmail.com", "fecha"]
+                   ,"reserva":[["XX/XX/XXXX","Habitación de la persona","XX/XX/XXXX","$"], 
+                               ["XX/XX/XXXX","Habitación de la persona","XX/XX/XXXX","$"], 
+                               ["XX/XX/XXXX","Habitación de la persona","XX/XX/XXXX","$200"]]
+                   }
 
 @app.route('/')
 def home ():
-    return render_template('index.html', info_hotel=diccionario)
+    return render_template('index.html', info_hotel=diccionario,  info_usuario=informacion)
 
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev_secret_key')
@@ -50,35 +48,20 @@ else:
 
 @app.route('/formulario', methods =['GET', 'POST'])
 def formulario():
-        
-    informacion = { "usuario": ["Nombre de la persona", "@gmail.com", "fecha"]
-                   ,"reserva":[["XX/XX/XXXX","Habitación de la persona","XX/XX/XXXX","$"], 
-                               ["XX/XX/XXXX","Habitación de la persona","XX/XX/XXXX","$"], 
-                               ["XX/XX/XXXX","Habitación de la persona","XX/XX/XXXX","$200"]]
-                   }
-    
+            
     if request.method == 'POST':    
             nombre = request.form['nombre']
-
             email_usuario = request.form['mail']
-
             mensajes= request.form['message']
-
-            asunto=request.form['asunto']
-
-
-        
+            asunto=request.form['asunto']     
 
             msg = Message(
                 subject=f"Inscripcion de: {nombre}",
                 recipients=[email_usuario], 
                 body=f"""
                 REALIZASTE UNA RESERVA CON LOS DATOS:\n
-
                 Nombre: {nombre}\n
-
                 Motivo: {asunto}\n
-
                 Mensaje:\n
                 {mensajes}
 
@@ -118,9 +101,9 @@ def registro ():
 @app.route('/reserva')
 def reserva ():
     return render_template('reserva.html', info_hotel=diccionario)
-    # *9
+# *9
 @app.route('/pago')
-def reserva ():
+def pago ():
     return render_template('pago.html', info_hotel=diccionario)
 
 if __name__== '__main__':

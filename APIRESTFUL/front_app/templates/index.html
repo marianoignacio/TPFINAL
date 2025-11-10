@@ -32,17 +32,17 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" href="{{ url_for('home') }}">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="nosotros.html">NOSOTROS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="reserva.html">RESERVAR</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('nosotros') }}">NOSOTROS</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{url_for('formulario')}}">CONTACTO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="blog.html">PERFIL</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('registro')}}">REGISTRARSE</a></li>
+                    <li class="nav-item"><img class="nav-perfil" src="{{url_for('static', filename='images/perfil.jpg')}}" onclick="abrirVistaPerfil()" ></img></li>
                 </ul>
 
             </div>
         </div>
     </nav>
     <section class="hero-wrap"
-        style="background-image:url({{ url_for('static', filename='images/xbg_1.jpg.pagespeed.ic.oRcg33KJB5.jpg') }})">
+        style="background-image:url({{ url_for('static', filename='images/salon-1.jpg') }})">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -573,9 +573,74 @@
             </div>
         </div>
     </footer>
+
+
+
+<div id="infoPerfil" class="modal-overlay">
+  <div class="modal-container">
+    <span class="close-button" onclick="closeModal()">×</span>
+
+
+    <div class="perfil-top">
+      <div class="perfil-info">
+        <div>
+            <h5 class="h5-perfil" >Nombre Completo:</h5>
+
+            <p>{{info_usuario.usuario.0}}</p>
+          </div>
+        <div>
+           <h5 class="h5-perfil">Mail:</h5>
+
+       <p>{{info_usuario.usuario.1}}</p>
+          </div>
+        <div>
+            <h5 class="h5-perfil">Fecha de Inscripción:</h5>
+            
+             <p>{{info_usuario.usuario.2}}</p>
+             
+        </div>        
+      </div>
+    </div>
+
+    <!-- SECCIÓN INFERIOR -->
+    <div class="reserva-bottom">
+{% for i in range(info_usuario.reserva | length) %}
+<br>
+     <h3 style="text-align: center;"># {{i+1}}</h3>
+
+      <div class="reserva-detalles">
+
+        <div class="detalle-box">
+          <h5>Inicio de Reserva:</h5>
+          <hr>
+          <p id="inicioReserva">{{ info_usuario.reserva[i][0] }}</p>
+        </div>
+        <div class="detalle-box">
+          <h5> Habitacion :</h5>
+          <hr>
+          <p id="lugarReserva">{{ info_usuario.reserva[i][1]  }}</p>
+        </div>
+        <div class="detalle-box">
+          <h5>Final de Reserva:</h5>
+          <hr>
+          <p id="finReserva">{{ info_usuario.reserva[i][2]  }}</p>
+        </div>
+        <div class="detalle-box">
+          <h5>Monto:</h5>
+          <p id="finReserva">{{ info_usuario.reserva[i][3]  }}</p>
+        </div>
+      </div>
+
+{% endfor %}
+    </div>
+    
+  </div>
+</div>
+
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/tiny-slider.js') }}"></script>
     <script src="{{ url_for('static', filename='js/glightbox.min.js+aos.js.pagespeed.jc.gNemz1ctce.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script>eval(mod_pagespeed_HTRluDb_jS);</script>
     <script>eval(mod_pagespeed_4HfeNGdLlq);</script>
     <script
