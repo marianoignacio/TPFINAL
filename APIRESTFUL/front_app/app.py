@@ -118,6 +118,10 @@ def registro ():
 @app.route('/reserva')
 def reserva ():
     return render_template('reserva.html', info_hotel=diccionario)
+    # *9
+@app.route('/pago')
+def reserva ():
+    return render_template('pago.html', info_hotel=diccionario)
 
 if __name__== '__main__':
         app.run("localhost", port=8088, debug=True)
