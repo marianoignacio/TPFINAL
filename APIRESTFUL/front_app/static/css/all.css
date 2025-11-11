@@ -5598,58 +5598,6 @@ textarea.form-control {
 reserva*/
 
 
-.banner_de_imagen_del_hotel {
-  background-size: cover;
-  background-position: center;
-  height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-}
-
-
-#efectos_banner_imagen {
-  background: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 100%;
-  color:white;
-
-}
-
-#diseño_del_logo_footer {
-  color:white;
-  font-family: 'Nunito', sans-serif;
-  font-size: 2.5vw;
-  margin-left: 20px;
-}
-.menu_footer ul {
-  color:transparent;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  margin-right: 20px;
-}
-
-.item_de_menu_footer {
-  color:white;
-  font-family: 'Nunito', sans-serif;
-  margin-left: 70px;
-  font-size: 1.2vw;
-
-}
-
-.texto_sobre_los_banners {
-  color:white;
-  font-family: Old Standard TT, serif;
-  font-size: 3vw;
-  font-weight: bold;
-  width: 100%;
-  text-align: center;
-  padding-top: 3%;
-}
-
 
 
 #contenerdor_de_reserva_usuario {
@@ -5712,9 +5660,13 @@ reserva*/
 
 
 .opciones_de_metodo_de_pago_2:hover {
-  color: #C5A880 !important;
+  color:  #C5A880 !important;
+
 }
-  width: 30%;
+
+.opciones_de_metodo_de_pago:hover {
+  color: white;
+
 }
 
 /* MODAL */
