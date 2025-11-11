@@ -49,10 +49,10 @@
               <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="nosotros.html">Nosotros</a>
+              <a class="nav-link" href="{{url_for('nosotros')}}">Nosotros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="habitaciones.html">Habitaciones</a>
+              <a class="nav-link" href="{{url_for('habitaciones')}}">Habitaciones</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="resto-bar.html">Resto &amp; Bar</a>
@@ -62,6 +62,11 @@
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="contacto.html">Contact</a>
+              </li>
+            <li class="nav-item">
+             <!-- BOTÓN PERFIL -->
+                <a class="nav-link" onclick="abrirVistaPerfil()" ><img id="fotoPerfil" src="" alt="Foto del usuario"> </a>
+
             </li>
           </ul>
         </div>
@@ -91,6 +96,7 @@
         </div>
       </div>
     </section>
+
     <section class="ftco-section bg-light">
       <div class="container">
         <div class="row no-gutters justify-content-center">
@@ -103,8 +109,9 @@
                     <p class="mb-4">Si tuvo algún problema puede escribirnos</p>
 
                     
+                    
 <!-- FORMULARIO -->
-                    <form id="contactForm" name="contactForm" class="contactForm">
+                    <form id="contactForm" name="contactForm" class="contactForm" action="{{ url_for('formulario') }}" method="POST" data-sb-form-api-token="API_TOKEN">
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
@@ -128,8 +135,7 @@
                         </div>
                         <div class="col-md-12">
                           <div class="form-group">
-                            <input   type="submit"   value="Enviar"   class="btn btn-primary" />
-                            <div class="submitting"></div>
+                            <button   type="submit"  class="btn btn-primary" > Enviar </button>
                           </div>
                         </div>
                       </div>
@@ -150,35 +156,19 @@
                         <div class="dbox w-100 d-flex align-items-start">
                           <div class="text">
                             <p>
-                              <span>Dirección:</span> Ruta Panamericana ramal
-                              Pilar KM49.3 ( Hotel)
+                              <span>Dirección:</span> Av Paseo Colon, 850
+                              
                             </p>
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-4">
-                        <div class="dbox w-100 d-flex align-items-start">
-                          <div class="text">
-                            <p>
-                              <span>Mail:</span>
-                              <a
-                                href="https://preview.colorlib.com/cdn-cgi/l/email-protection#721b1c141d320b1d0700011b06175c111d1f"
-                                ><span
-                                  class="__cf_email__"
-                                  data-cfemail="563f383039162f392324253f22337835393b"
-                                  >[mail&#160;protejido]</span
-                                ></a
-                              >
-                            </p>
-                          </div>
-                        </div>
-                      </div>
+
                       <div class="col-md-4">
                         <div class="dbox w-100 d-flex align-items-start">
                           <div class="text">
                             <p>
                               <span>Número:</span>
-                              <a href="tel://1234567920">+ 1235 2355 98</a>
+                              <a href="tel://(54-11) 528 - 50559">+ (54-11) 528 - 50559</a>
                             </p>
                           </div>
                         </div>
@@ -186,6 +176,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="col-lg-6 d-flex align-items-stretch">
                   <div id="map" class="bg-white">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.342081953416!2d-58.36905255605055!3d-34.62079469311994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca98f0058631%3A0x98688c83fc192f2e!2sUBA%2C%20Facultad%20de%20Ingenier%C3%ADa%20-%20Sede%20Paseo%20Col%C3%B3n!5e0!3m2!1ses!2sar!4v1762238160626!5m2!1ses!2sar" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -388,16 +379,88 @@
         </div>
       </div>
     </footer>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/tiny-slider.js"></script>
-    <script src="js/glightbox.min.js%2baos.js.pagespeed.jc.gNemz1ctce.js"></script>
+
+
+<!-- MODAL PERFIL -->
+<div id="infoPerfil" class="modal-overlay">
+  <div class="modal-container">
+    <span class="close-button" onclick="closeModal()">×</span>
+
+    <!-- SECCIÓN SUPERIOR -->
+    <div class="profile-top">
+
+      <div class="profile-info">
+      
+        <div>
+            <h5 class="h5-perfil" >Nombre Completo:</h5>
+            <!-- <input type="text" id="name" placeholder="Tu nombre completo"> -->
+            <p>{{info_usuario.usuario.0}}</p>
+          </div>
+        <div>
+           <h5 class="h5-perfil">Mail:</h5>
+            <!-- <input type="text" id="habitacion" placeholder="Ej. 202B"> -->
+       <p>{{info_usuario.usuario.1}}</p>
+          </div>
+        <div>
+            <h5 class="h5-perfil">Fecha de Inscripción:</h5>
+            
+             <p>{{info_usuario.usuario.2}}</p>
+             
+        </div>
+        
+      </div>
+
+      <div class="profile-photo">
+        <img id="fotoPerfil" src="{{url_for('static', filename='images/perfil.jpg')}}" alt="Foto del usuario">
+      </div>
+    </div>
+<br>
+    <!-- SECCIÓN INFERIOR -->
+    <div class="reserva-bottom">
+{% for i in range(info_usuario.reserva | length) %}
+<br>
+     <h3 style="text-align: center;"># {{i+1}}</h3>
+
+      <div class="reserva-detalles">
+
+        <div class="detalle-box">
+          <h5>Inicio de Reserva:</h5>
+          <hr>
+          <p id="inicioReserva">{{ info_usuario.reserva[i][0] }}</p>
+        </div>
+        <div class="detalle-box">
+          <h5> Habitacion :</h5>
+          <hr>
+          <p id="lugarReserva">{{ info_usuario.reserva[i][1]  }}</p>
+        </div>
+        <div class="detalle-box">
+          <h5>Final de Reserva:</h5>
+          <hr>
+          <p id="finReserva">{{ info_usuario.reserva[i][2]  }}</p>
+        </div>
+        <div class="detalle-box">
+          <h5>Monto:</h5>
+          <p id="finReserva">{{ info_usuario.reserva[i][3]  }}</p>
+        </div>
+      </div>
+
+{% endfor %}
+    </div>
+    
+  </div>
+</div>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tiny-slider.js') }}"> </script>
+    <script src="{{ url_for('static', filename='js/glightbox.min.js+2baos.js.pagespeed.jc.gNemz1ctce.js') }}"></script>
+     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script>
       eval(mod_pagespeed_HTRluDb_jS);
     </script>
     <script>
       eval(mod_pagespeed_4HfeNGdLlq);
     </script>
-    <script src="js/datepicker.min.js%2bgoogle-map.js%2bmain.js.pagespeed.jc.XiV_3kbmz-.js"></script>
+    <script src="js/datepicker.min.js%2bgoogle-map.js+2bmain.js.pagespeed.jc.XiV_3kbmz-.js"></script>
     <script>
       eval(mod_pagespeed_k76nz7Okp_);
     </script>
