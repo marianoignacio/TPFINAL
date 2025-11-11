@@ -5707,7 +5707,6 @@ reserva*/
 
 #boton_de_confirmar_reserva:hover {
   background-color: #222222;
-<<<<<<< HEAD
   color: white;
 }
 
@@ -5715,7 +5714,6 @@ reserva*/
 .opciones_de_metodo_de_pago_2:hover {
   color: #C5A880 !important;
 }
-=======
   width: 30%;
 }
 
@@ -5969,7 +5967,5 @@ reserva*/
     color: #222222;
     outline-color: #c5a880;
 }
-<<<<<<< HEAD
->>>>>>> 535c512c4cd01605d955743e2a1bb18fc922b65b
 =======
->>>>>>> 535c512c4cd01605d955743e2a1bb18fc922b65b
+
