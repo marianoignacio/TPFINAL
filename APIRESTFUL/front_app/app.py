@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, flash, url_for
+from flask import Flask, render_template, request, redirect, flash, url_for, jsonify
 
 import json
 import requests
@@ -20,10 +20,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def home ():
-    return render_template('pago.html', info_hotel=diccionario)
+    return render_template('reserva.html', info_hotel=diccionario)
 
 
-
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY','dev_secret_key')
 # Ensure a secret key is present so `flash` and sessions work in development
 # app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev_secret_key')
 
