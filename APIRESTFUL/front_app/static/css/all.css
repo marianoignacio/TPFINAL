@@ -5608,13 +5608,6 @@ reserva*/
   
 }
 
-.contenido_footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  background-color: transparent;
-}
 
 #efectos_banner_imagen {
   background: rgba(0, 0, 0, 0.5);
@@ -5657,14 +5650,7 @@ reserva*/
   padding-top: 3%;
 }
 
-#contenedor_de_reserva {
-  padding-top: 6%;
-  padding-left: 6%;
-  padding-right: 6%;
-  width: 100%;
-  min-height: 600px;
-  display: flex;
-}
+
 
 #contenerdor_de_reserva_usuario {
   background-color:white;
@@ -5689,12 +5675,7 @@ reserva*/
   text-align: center;
 }
 
-.reserva_de_usuario {
-  list-style: none;
-  padding: 2%;
-  padding-bottom: 6%;
-  width: 100%;
-}
+
 
 .reserva_de_usuario li {
   display: flex;
@@ -5708,13 +5689,31 @@ reserva*/
 }
 
 .opciones_de_metodo_de_pago {
-  background-color: #C5A880;
-  width: 30%;
+  background-color: #C5A880 !important;
+  width: 30% !important;
 
 }
 
 .opciones_de_metodo_de_pago_2 {
+  background-color: #222222 !important;
+  width: 30% !important;
+}
+
+#boton_de_confirmar_reserva {
+  background-color: #C5A880;
+  border: none;
+
+}
+
+#boton_de_confirmar_reserva:hover {
   background-color: #222222;
+  color: white;
+}
+
+
+.opciones_de_metodo_de_pago_2:hover {
+  color: #C5A880 !important;
+}
   width: 30%;
 }
 
@@ -5968,3 +5967,5 @@ reserva*/
     color: #222222;
     outline-color: #c5a880;
 }
+=======
+

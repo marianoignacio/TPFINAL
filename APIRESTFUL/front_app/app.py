@@ -129,7 +129,7 @@ def reserva ():
   
     # *9
 @app.route('/pago')
-def reserva ():
+def pago ():
     return render_template('pago.html', info_hotel=diccionario)
 
 if __name__== '__main__':
