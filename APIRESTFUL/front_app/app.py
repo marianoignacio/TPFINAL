@@ -21,7 +21,7 @@ diccionario = { "usuario": ["nombre", "habitacion", "fecha"]
                    }
 
 
-@app.route('/')
+@app.route('/') 
 def home ():
     return render_template('index.html', info_hotel=diccionario)
 
@@ -117,7 +117,16 @@ def registro ():
 # *8
 @app.route('/reserva')
 def reserva ():
-    return render_template('reserva.html', info_hotel=diccionario)
+    detalles_de_reversa = {
+        "numero_de_reserva": "123456",
+        "fecha_checkin": "01/07/2026",
+        "fecha_checkout": "05/07/2026",
+        "tipo_habitacion": "Suite Deluxe",
+        "cantidad_huespedes": 2,
+        "total_pagado": "$500.00"
+    }
+    return render_template('reserva.html', info_reserva=detalles_de_reversa, info_hotel=diccionario)
+  
     # *9
 @app.route('/pago')
 def reserva ():

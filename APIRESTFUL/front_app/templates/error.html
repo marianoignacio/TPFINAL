@@ -4,8 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404</title>
-</head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&amp;family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+    <!-- usar url_for para cargar el CSS estático -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.css') }}" />
+    <!-- arreglar CDN (usar URL absoluta si quieres CDN) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
+    </head>
 <body>
+    <div class="text_error_404">
+        <div class="ERROR404">☹</div>
+        <div class="ERROR404">404</div>
+        <p>perdon, la pagina que esta buscando no existe</p>
+    </div>
+    
+
     
 </body>
 </html>
