@@ -23,8 +23,7 @@ diccionario = { "usuario": ["nombre", "habitacion", "fecha"]
 
 @app.route('/') 
 def home ():
-    return render_template('index.html', info_hotel=diccionario)
-
+    return render_template('reserva.html', info_hotel=diccionario)
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev_secret_key')
 _mail_server = os.getenv('MAIL_SERVER')
