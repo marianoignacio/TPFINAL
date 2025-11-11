@@ -1,11 +1,150 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends "base.html" %}
+{% block head %}
+    <title>Reserva</title>
+{% endblock %}
+    {% block navbar %}
+                    <li class="nav-item"><a class="nav-link " href="{{ url_for('home') }}">INICIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('nosotros') }}">NOSOTROS</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{url_for('reserva')}}">RESERVA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('formulario')}}">CONTACTO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('registro')}}">REGISTRARSE</a></li>
+{% endblock %}
+
+{%block body%}
+    <section class="hero-wrap"
+        style="background-image:url({{ url_for('static', filename='images/salon-1.jpg') }})">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="mb-4">Reserva</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <title>Reserva</title>
+    <style>
+.form-container {
+    background-color: #fff;
+    width: 80%;
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 30px 40px;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.form-container h3 {
+    text-align: center;
+    font-size: 1.5em;
+    color: #333;
+    border-bottom: 1px solid #c6a87d;
+    width: 60%;
+    margin: 0 auto 25px;
+    padding-bottom: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 6px 20px;
+}
+
+label {
+    color: #333;
+    font-weight: 500;
+    flex: -6;
+    font-size: 1.5em;
+}
+
+input[type="date"],
+select {
+    flex:-6;
+    text-align: right;
+    border: none;
+    background: none;
+    color: #555;
+    font-size: 1.5em;
+    padding: 5px;
+    outline: none;
+}
+
+button {
+    align-self: center;
+    background-color: #b68d58;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-weight: 5em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #a07848;
+} 
+    </style>
 </head>
 <body>
     
-</body>
-</html>
+    <!-- HERO -->
+    <section class="hero">
+    </section>
+
+    <!-- FORMULARIO -->
+<div class="form-container">
+    <h3>LOS DATOS DE TU RESERVA</h3>
+    <form>
+        <div class="form-row">
+            <label for="checkin">Check-in:</label>
+            <input type="date" id="checkin" name="checkin" placeholder="DD/MM/YYYY">
+        </div>
+
+        <div class="form-row">
+            <label for="checkout">Check-out:</label>
+            <input type="date" id="checkout" name="checkout" placeholder="DD/MM/YYYY">
+        </div>
+
+        <div class="form-row">
+            <label for="habitacion">Habitación:</label>
+            <select id="habitacion">
+                <option>Habitación clasica</option>
+                <option>Habitación Suite</option>
+                <option>Habitación familiar</option>
+                <option>Habitación de lujo</option>
+                <option>Habitación super de lujo</option>
+                <option>Habitación superior</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label for="huespedes">Cantidad de Huéspedes:</label>
+            <select id="huespedes">
+                <option>1</option>
+                <option selected>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+            </select>
+        </div>
+
+        <button type="submit">CONTINUAR</button>
+    </form>
+</div>
+{% endblock %}
