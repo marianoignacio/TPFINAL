@@ -9,28 +9,26 @@ import requests
 
 import os
 from flask_mail import Mail, Message
-# from dotenv import load_dotenv
-# load_dotenv()
+from dotenv import load_dotenv
+load_dotenv()
+
 app = Flask(__name__)
 
 
 
+diccionario = { "usuario": ["nombre", "habitacion", "fecha"]
+                   ,"reserva":["XX/XX/XXXX",""]
+                   }
 
 
-
-@app.route('/')
+@app.route('/') 
 def home ():
     return render_template('reserva.html', info_hotel=diccionario)
 
-
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY','dev_secret_key')
-# Ensure a secret key is present so `flash` and sessions work in development
-# app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev_secret_key')
-
-# Configure mail only if MAIL_SERVER is provided to avoid import/startup errors
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev_secret_key')
 _mail_server = os.getenv('MAIL_SERVER')
 if _mail_server:
-    # Use sensible defaults when env vars are missing to prevent crashes
+
     app.config['MAIL_SERVER'] = _mail_server
     try:
         app.config['MAIL_PORT'] = int(os.getenv('MAIL_PORT', 587))
@@ -44,48 +42,55 @@ if _mail_server:
 
     mail = Mail(app)
 else:
-    # Mail not configured — disable sending but keep the app usable
+
     mail = None
  
-diccionario = { "muebles": ["camas", "roperos"]}
+
 
 @app.route('/formulario', methods =['GET', 'POST'])
 def formulario():
-        # if request.method == 'POST':    
-        #     nombre = request.form['name']
+        
+    informacion = { "usuario": ["Nombre de la persona", "@gmail.com", "fecha"]
+                   ,"reserva":[["XX/XX/XXXX","Habitación de la persona","XX/XX/XXXX","$"], 
+                               ["XX/XX/XXXX","Habitación de la persona","XX/XX/XXXX","$"], 
+                               ["XX/XX/XXXX","Habitación de la persona","XX/XX/XXXX","$200"]]
+                   }
+    
+    if request.method == 'POST':    
+            nombre = request.form['nombre']
 
-        #     email_usuario = request.form['email']
+            email_usuario = request.form['mail']
 
-        #     mensajes= request.form['message']
+            mensajes= request.form['message']
 
-        #     asunto=request.form['subject']
+            asunto=request.form['asunto']
 
 
         
 
-        #     msg = Message(
-        #         subject=f"Inscripcion de: {nombre}",
-        #         recipients=[email_usuario], 
-        #         body=f"""
-        #         REALIZASTE UNA RESERVA CON LOS DATOS:\n
+            msg = Message(
+                subject=f"Inscripcion de: {nombre}",
+                recipients=[email_usuario], 
+                body=f"""
+                REALIZASTE UNA RESERVA CON LOS DATOS:\n
 
-        #         Nombre: {nombre}\n
+                Nombre: {nombre}\n
 
-        #         Motivo: {asunto}\n
+                Motivo: {asunto}\n
 
-        #         Mensaje:\n
-        #         {mensajes}
+                Mensaje:\n
+                {mensajes}
 
-        #         COFIRMAR RECEPCIÓN Y CORROBORAR DATOS, GRACIAS!"""
-        #     )
-        # try:
-        #     mail.send(msg)
+                COFIRMAR RECEPCIÓN Y CORROBORAR DATOS, GRACIAS!"""
+            )
+    try:
+            mail.send(msg)
 
         
-        # except Exception as e:
-        #     print(f"Error enviando mail: {e}") 
-        #     flash("Hubo un error al enviar tu mensaje, intenta más tarde")
-        return render_template('contacto.html', info_hotel=diccionario)
+    except Exception as e:
+            print(f"Error enviando mail: {e}") 
+            flash("Hubo un error al enviar tu mensaje, intenta más tarde")
+    return render_template('contacto.html', info_hotel=diccionario, info_usuario=informacion)
 
 # *3
 @app.errorhandler(404)
@@ -111,7 +116,20 @@ def registro ():
 # *8
 @app.route('/reserva')
 def reserva ():
-    return render_template('reserva.html', info_hotel=diccionario)
+    detalles_de_reversa = {
+        "numero_de_reserva": "123456",
+        "fecha_checkin": "01/07/2026",
+        "fecha_checkout": "05/07/2026",
+        "tipo_habitacion": "Suite Deluxe",
+        "cantidad_huespedes": 2,
+        "total_pagado": "$500.00"
+    }
+    return render_template('reserva.html', info_reserva=detalles_de_reversa, info_hotel=diccionario)
+  
+    # *9
+@app.route('/pago')
+def pago ():
+    return render_template('pago.html', info_hotel=diccionario)
 
 if __name__== '__main__':
         app.run("localhost", port=8088, debug=True)
