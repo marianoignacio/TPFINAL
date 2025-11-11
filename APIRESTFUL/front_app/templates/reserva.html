@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+{% extends "base.html" %}
+{% block head %}
+    <title>Reserva</title>
+{% endblock %}
+    {% block navbar %}
+                    <li class="nav-item"><a class="nav-link " href="{{ url_for('home') }}">INICIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('nosotros') }}">NOSOTROS</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{url_for('reserva')}}">RESERVA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('formulario')}}">CONTACTO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('registro')}}">REGISTRARSE</a></li>
+{% endblock %}
+
+{%block body%}
+    <section class="hero-wrap"
+        style="background-image:url({{ url_for('static', filename='images/salon-1.jpg') }})">
+=======
 <!DOCTYPE html>
 <html lang="es">
 
@@ -41,6 +58,7 @@
     </nav>
     <section class="hero-wrap"
         style="background-image:url({{ url_for('static', filename='images/image 1.png') }})">
+>>>>>>> 660fb33a3f2934c806eeee27f6fc8e773e9e0787
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -51,10 +69,17 @@
         </div>
     </section>
 
+<<<<<<< HEAD
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+=======
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+>>>>>>> 660fb33a3f2934c806eeee27f6fc8e773e9e0787
     <title>Reserva</title>
     <style>
 .form-container {
@@ -129,6 +154,10 @@ button:hover {
     </style>
 </head>
 <body>
+<<<<<<< HEAD
+    
+=======
+>>>>>>> 660fb33a3f2934c806eeee27f6fc8e773e9e0787
     <!-- HERO -->
     <section class="hero">
     </section>
@@ -174,6 +203,9 @@ button:hover {
         <button type="submit">CONTINUAR</button>
     </form>
 </div>
+<<<<<<< HEAD
+{% endblock %}
+=======
 
     <!-- FOOTER -->
        <footer class="ftco-footer">
@@ -280,3 +312,4 @@ button:hover {
 
 </body>
 </html>
+>>>>>>> 660fb33a3f2934c806eeee27f6fc8e773e9e0787

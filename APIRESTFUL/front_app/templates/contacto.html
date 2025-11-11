@@ -4,12 +4,13 @@
        <title>Contacto</title>
 {% endblock %}
     {% block navbar %}
-                    <li class="nav-item"><a class="nav-link active" href="{{ url_for('home') }}">INICIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">INICIO</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('nosotros') }}">NOSOTROS</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{url_for('reserva')}}">RESERVA</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{url_for('formulario')}}">CONTACTO</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{url_for('formulario')}}">CONTACTO</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{url_for('registro')}}">REGISTRARSE</a></li>
 {% endblock %}
+
 {%block body%}
     <section
       class="hero-wrap hero-wrap-2"
@@ -47,8 +48,6 @@
                     <p class="mb-4">Si tuvo algún problema puede escribirnos</p>
 
                     
-                    
-<!-- FORMULARIO -->
                     <form id="contactForm" name="contactForm" class="contactForm" action="{{ url_for('formulario') }}" method="POST" data-sb-form-api-token="API_TOKEN">
                       <div class="row">
                         <div class="col-md-12">
@@ -79,15 +78,6 @@
                       </div>
                     </form>
 
-                    <!-- <div class="w-100 social-media mt-5">
-                      <h3>SEGUINOS</h3>
-                      <p>
-                        <a href="#">Facebook</a>
-                        <a href="#">Twitter</a>
-                        <a href="#">Instagram</a>
-                        <a href="#">Dribbble</a>
-                      </p>
-                    </div> -->
                     <br>
               <div class="row mb-4">
                       <div class="col-md-4">
@@ -117,7 +107,8 @@
 
                 <div class="col-lg-6 d-flex align-items-stretch">
                   <div id="map" class="bg-white">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.4511221198973!2d-58.37123312362294!3d-34.61803847294914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a334d48829924f%3A0xbd27b187676c2491!2sAv.%20Paseo%20Col%C3%B3n%2C%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires!5e0!3m2!1sen!2sar!4v1762896090341!5m2!1sen!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                  </div>
+         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.4511221198973!2d-58.37123312362294!3d-34.61803847294914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a334d48829924f%3A0xbd27b187676c2491!2sAv.%20Paseo%20Col%C3%B3n%2C%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires!5e0!3m2!1sen!2sar!4v1762900628710!5m2!1sen!2sar" width="645" height="550" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+           </div>
                   
                 </div>
               </div>
