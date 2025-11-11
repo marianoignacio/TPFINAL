@@ -80,31 +80,31 @@ def formulario():
 @app.errorhandler(404)
 def page_not_found(e):
        mensaje="Error de página"
-       return render_template('error.html',info_hotel=diccionario, msj=mensaje),404
+       return render_template('error.html',info_hotel=diccionario, msj=mensaje,info_usuario=informacion),404
  # *4
 @app.route('/habitaciones')
 def habitaciones ():
-    return render_template('habitaciones.html', info_hotel=diccionario)
+    return render_template('habitaciones.html', info_hotel=diccionario,info_usuario=informacion)
 # *5
 @app.route('/login')
 def login ():
-    return render_template('inicio_sesion.html', info_hotel=diccionario)
+    return render_template('inicio_sesion.html', info_hotel=diccionario,info_usuario=informacion)
 # *6
 @app.route('/nosotros')
 def nosotros ():
-    return render_template('nosotros.html', info_hotel=diccionario)
+    return render_template('nosotros.html', info_hotel=diccionario,info_usuario=informacion)
 # *7
 @app.route('/registro')
 def registro ():
-    return render_template('registro.html', info_hotel=diccionario)
+    return render_template('registro.html', info_hotel=diccionario,info_usuario=informacion)
 # *8
 @app.route('/reserva')
 def reserva ():
-    return render_template('reserva.html', info_hotel=diccionario)
+    return render_template('reserva.html', info_hotel=diccionario,info_usuario=informacion)
 # *9
 @app.route('/pago')
 def pago ():
-    return render_template('pago.html', info_hotel=diccionario)
+    return render_template('pago.html', info_hotel=diccionario,info_usuario=informacion)
 
 if __name__== '__main__':
         app.run("localhost", port=8088, debug=True)

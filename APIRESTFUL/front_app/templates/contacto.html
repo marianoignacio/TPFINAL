@@ -64,6 +64,7 @@
               <a class="nav-link active" href="contacto.html">Contact</a>
               </li>
             <li class="nav-item">
+             <!-- BOTÓN PERFIL -->
                 <a class="nav-link" onclick="abrirVistaPerfil()" ><img id="fotoPerfil" src="" alt="Foto del usuario"> </a>
 
             </li>
@@ -177,10 +178,10 @@
                 </div>
 
                 <div class="col-lg-6 d-flex align-items-stretch">
-                      <div  id="map" class="bg-white" style="width: 100%">
-                        <iframe src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Av%20Paseo%20Colon,%20850+(IDS%20HOTEL)&amp;t=h&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" scrolling="yes" style="border-radius:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="800" height="600" frameborder="0" marginheight="0" marginwidth="0">
-                      </iframe>
-                      </div>
+                  <div id="map" class="bg-white">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.342081953416!2d-58.36905255605055!3d-34.62079469311994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca98f0058631%3A0x98688c83fc192f2e!2sUBA%2C%20Facultad%20de%20Ingenier%C3%ADa%20-%20Sede%20Paseo%20Col%C3%B3n!5e0!3m2!1ses!2sar!4v1762238160626!5m2!1ses!2sar" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -386,9 +387,9 @@
     <span class="close-button" onclick="closeModal()">×</span>
 
     <!-- SECCIÓN SUPERIOR -->
-    <div class="perfil-top">
+    <div class="profile-top">
 
-      <div class="perfil-info">
+      <div class="profile-info">
       
         <div>
             <h5 class="h5-perfil" >Nombre Completo:</h5>
@@ -409,7 +410,7 @@
         
       </div>
 
-      <div class="perfil-photo">
+      <div class="profile-photo">
         <img id="fotoPerfil" src="{{url_for('static', filename='images/perfil.jpg')}}" alt="Foto del usuario">
       </div>
     </div>

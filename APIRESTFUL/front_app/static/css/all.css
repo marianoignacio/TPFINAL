@@ -2834,13 +2834,21 @@ progress {
   height: auto; }
 
 .container,
-.container-fluid,
 .container-xl {
   width: 100%;
   padding-right: var(--bs-gutter-x, 0.75rem);
   padding-left: var(--bs-gutter-x, 0.75rem);
   margin-right: auto;
   margin-left: auto; }
+
+  .container-fluid{
+  width: 100%;
+  padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem);
+  margin-right: auto;
+  margin-left: auto;
+  padding: 4em 0;
+  }
 
 @media (min-width: 576px) {
   .container {
@@ -4912,6 +4920,7 @@ textarea.form-control {
     font-weight: 400; }
 
 .ftco-section {
+  padding: 6em 0;
   position: relative;
   width: 100%;
   overflow-x: hidden; }
