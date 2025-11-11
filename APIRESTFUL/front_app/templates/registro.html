@@ -1,11 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registrarse</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com/"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&amp;family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;display=swap"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.css', _external=True)}}"/>
 </head>
-<body>
-    
+<body class="registrarse">
+
+<main class="contenedor-global">
+    <!-- FORMULARIO -->
+    <div class="contenedor-registrarse">
+        <h3>Bienvenido</h3>
+
+        <form class="formulario-registrarse" action="">
+
+            <div class="formulario-doble-item">
+                <!-- ITEM 1 - NOMBRE -->
+                <div class="formulario-item">
+                    <label for="input-nombre">
+                        Nombre *
+                    </label>
+                    <input
+                            type="text"
+                            id="input-nombre"
+                            name="inputNombre"
+                            aria-describedby="Name"
+                            placeholder="Nombre completo"
+                            required
+                    />
+                </div>
+
+                <!-- ITEM 2 - APELLIDO -->
+                <div class="formulario-item">
+                    <label for="input-apellido">
+                        Apellido *
+                    </label>
+                    <input
+                            type="text"
+                            id="input-apellido"
+                            name="inputApellido"
+                            aria-describedby="Texto"
+                            placeholder="Apellido completo"
+                            required
+                    />
+                </div>
+            </div>
+
+            <!-- ITEM 3 - EMAIL -->
+            <div class="formulario-item">
+                <label for="input-email">
+                    Email *
+                </label>
+                <input
+                        type="email"
+                        id="input-email"
+                        name="inputEmail"
+                        aria-describedby="Email"
+                        placeholder="ejemplo@gmail.com"
+                        required
+                />
+            </div>
+
+            <!-- ITEM 4 - CONTRASEÑA -->
+            <div class="formulario-item">
+                <label for="input-contrasenia" class="formulario-etiqueta">
+                    Contraseña *
+                </label>
+                <input
+                        type="password"
+                        id="input-contrasenia"
+                        name="inputContrasenia"
+                        aria-describedby="password"
+                        placeholder="Contraseña"
+                        required
+                />
+            </div>
+
+            <!-- ITEM 5 - CONFIRMAR CONTRASEÑA -->
+            <div class="formulario-item">
+                <label for="input-confirmar-contrasenia" class="formulario-etiqueta">
+                    Confirmar contraseña *
+                </label>
+                <input
+                        type="password"
+                        id="input-confirmar-contrasenia"
+                        name="inputConfirmarContrasenia"
+                        aria-describedby="password"
+                        placeholder="Confirmar contraseña"
+                        required
+                />
+            </div>
+
+            <a href="#">¿Ya tenés una cuenta? Iniciá sesión</a>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                <div class="submitting"></div>
+            </div>
+        </form>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="ftco-footer">
+    <div class="container-xl">
+        <div class="row mb-5 pb-5 justify-content-between">
+            <div class="col-md-6 col-lg">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2 logo d-flex">
+                        <a class="navbar-brand align-items-center" href="#">
+                            <span class="">IDS <small>Hotel</small></span>
+                        </a>
+                    </h2>
+                    <p>Hotel moderno y acogedor, ideal para descansar y vivir una experiencia única.</p>
+                    <ul class="ftco-footer-social list-unstyled mt-2">
+                        <li><a href="https://x.com/ingenieriauba?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><span class="fa fa-twitter"></span></a></li>
+                        <li><a href="https://www.facebook.com/ingenieriauba/?locale=es_LA"><span class="fa fa-facebook"></span></a></li>
+                        <li><a href="https://www.instagram.com/ingenieriauba/"><span class="fa fa-instagram"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">Servicios</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="ftco-footer-widget mb-4">
+                            <ul class="list-unstyled">
+                                <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Wifi Gratis</a></li>
+                                <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Facil reserva</a></li>
+                                <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Restaurante</a></li>
+                                <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Pileta</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="ftco-footer-widget mb-4">
+                            <ul class="list-unstyled">
+                                <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Salon de spa</a></li>
+                                <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Sala de cine</a></li>
+                                <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Gimnasio</a></li>
+                                <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Mesa de atencion</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-2">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">Links rapidos</h2>
+                    <ul class="list-unstyled">
+                        <li><a href="#"><span class="fa fa-chevron-right me-2"></span>INICIO</a></li>
+                        <li><a href="nosotros.html"><span class="fa fa-chevron-right me-2"></span>NOSOTROS</a></li>
+                        <li><a href="reserva.html"><span class="fa fa-chevron-right me-2"></span>RESERVAR</a></li>
+                        <li><a href="contact.html"><span class="fa fa-chevron-right me-2"></span>CONTACTO</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">Nuestros datos</h2>
+                    <div class="block-23 mb-3">
+                        <ul>
+                            <li><span class="icon fa fa-map marker"></span><span class="text">Av. Paseo Colón 850, Buenos Aires, Argentina</span></li>
+                            <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+54 11  1234-5678</span></a></li>
+                            <li><a href="#"><span class="icon fa fa-paper-plane pr-4"></span><span class="text"><span class="__cf_email__" data-cfemail="244d4a424b645d4b5156404b49454d4a0a474b49">[email&#160;protected]</span></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid px-0 py-5 bg-darken">
+        <div class="container-xl">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="mb-0" style="color: rgba(255,255,255,.5); font-size: 13px;">Copyright &copy;<script data-cfasync="false" src="https://cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> | Todos los derechos reservados</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
+
 </html>
