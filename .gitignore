@@ -18,6 +18,7 @@ Pipfile
 Pipfile.lock
 .idea/
 
+
 # Distribution / packaging
 .Python
 build/
