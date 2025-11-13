@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+
+
+<head>
+    {% block head %}
+{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" hreSS="https://fonts.gstatic.com/">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&amp;family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/A.animate.css+flaticon.css+tiny-slider.css+glightbox.min.css+aos.css+datepicker.min.css+style.css,Mcc.nCQXu6LVyk.css.pagespeed.cf.rg4CHwA3tS.css') }}" />
+</head>
+
+
+
+<body>
+    <nav class="navbar navbar-expand-lg  ftco-navbar-light">
+        <div class="container-xl">
+            <a class="navbar-brand align-items-center" href="{{url_for('home')}}">
+                <span class="">IDS <small>Hotel</small></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {% block navbar %}
+ 
+                    {% endblock %}
+                    <li class="nav-item"><img class="nav-perfil" src="{{url_for('static', filename='images/perfil.jpg')}}" onclick="abrirVistaPerfil()" ></img></li>
+                
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    {% block body %}
+    
+    {% endblock %}
+
+
+
+        <footer class="ftco-footer">
+        <div class="container-xl">
+            <div class="row mb-5 pb-5 justify-content-between">
+                <div class="col-md-6 col-lg">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2 logo d-flex">
+                            <a class="navbar-brand align-items-center" href="#">
+                                <span class="">IDS <small>Hotel</small></span>
+                            </a>
+                        </h2>
+                        <p>Hotel moderno y acogedor, ideal para descansar y vivir una experiencia única.</p>
+                        <ul class="ftco-footer-social list-unstyled mt-2">
+                            <li><a
+                                    href="https://x.com/ingenieriauba?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><span
+                                        class="fa fa-twitter"></span></a></li>
+                            <li><a href="https://www.facebook.com/ingenieriauba/?locale=es_LA"><span
+                                        class="fa fa-facebook"></span></a></li>
+                            <li><a href="https://www.instagram.com/ingenieriauba/"><span
+                                        class="fa fa-instagram"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Servicios</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="ftco-footer-widget mb-4">
+                                <ul class="list-unstyled">
+                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Wifi
+                                            Gratis</a></li>
+                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Facil
+                                            reserva</a></li>
+                                    <li><a href="#servicios"><span
+                                                class="fa fa-chevron-right me-2"></span>Restaurante</a></li>
+                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Pileta</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="ftco-footer-widget mb-4">
+                                <ul class="list-unstyled">
+                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Salon de
+                                            spa</a></li>
+                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Sala de
+                                            cine</a></li>
+                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Gimnasio</a>
+                                    </li>
+                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Mesa de
+                                            atencion</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-2">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Links rapidos</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="#"><span class="fa fa-chevron-right me-2"></span>INICIO</a></li>
+                            <li><a href="nosotros.html"><span class="fa fa-chevron-right me-2"></span>NOSOTROS</a></li>
+                            <li><a href="reserva.html"><span class="fa fa-chevron-right me-2"></span>RESERVAR</a></li>
+                            <li><a href="contact.html"><span class="fa fa-chevron-right me-2"></span>CONTACTO</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Nuestros datos</h2>
+                        <div class="block-23 mb-3">
+                            <ul>
+                                <li><span class="icon fa fa-map marker"></span><span class="text">Av. Paseo Colón 850,
+                                        Buenos Aires, Argentina</span></li>
+                                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+54 11
+                                            1234-5678</span></a></li>
+                                <li><a href="#"><span class="icon fa fa-paper-plane pr-4"></span><span
+                                            class="text"><span class="__cf_email__"
+                                                data-cfemail="244d4a424b645d4b5156404b49454d4a0a474b49">[email&#160;protected]</span></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid px-0 py-5 bg-darken">
+            <div class="container-xl">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p class="mb-0" style="color: rgba(255,255,255,.5); font-size: 13px;">Copyright &copy;
+                            <script data-cfasync="false"
+                                src="https://cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+                            <script>document.write(new Date().getFullYear());</script> | Todos los derechos reservados
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+<div id="infoPerfil" class="modal-overlay">
+  <div class="modal-container">
+    <span class="close-button" onclick="closeModal()">×</span>
+
+
+    <div class="perfil-top">
+      <div class="perfil-info">
+        <div>
+            <h5 class="h5-perfil" >Nombre Completo:</h5>
+
+            <p>{{info_usuario.usuario.0}}</p>
+          </div>
+        <div>
+           <h5 class="h5-perfil">Mail:</h5>
+
+       <p>{{info_usuario.usuario.1}}</p>
+          </div>
+        <div>
+            <h5 class="h5-perfil">Fecha de Inscripción:</h5>
+            
+             <p>{{info_usuario.usuario.2}}</p>
+             
+        </div>        
+      </div>
+    </div>
+
+    <div class="reserva-bottom">
+{% for i in range(info_usuario.reserva | length) %}
+<br>
+     <h3 style="text-align: center;"># {{i+1}}</h3>
+
+      <div class="reserva-detalles">
+
+        <div class="detalle-box">
+          <h5>Inicio de Reserva:</h5>
+          <hr>
+          <p id="inicioReserva">{{ info_usuario.reserva[i][0] }}</p>
+        </div>
+        <div class="detalle-box">
+          <h5> Habitacion :</h5>
+          <hr>
+          <p id="lugarReserva">{{ info_usuario.reserva[i][1]  }}</p>
+        </div>
+        <div class="detalle-box">
+          <h5>Final de Reserva:</h5>
+          <hr>
+          <p id="finReserva">{{ info_usuario.reserva[i][2]  }}</p>
+        </div>
+        <div class="detalle-box">
+          <h5>Monto:</h5>
+          <p id="finReserva">{{ info_usuario.reserva[i][3]  }}</p>
+        </div>
+      </div>
+
+{% endfor %}
+    </div>
+    
+  </div>
+</div>
+
+      <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tiny-slider.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/glightbox.min.js+aos.js.pagespeed.jc.gNemz1ctce.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>eval(mod_pagespeed_HTRluDb_jS);</script>
+    <script>eval(mod_pagespeed_4HfeNGdLlq);</script>
+    <script src="{{ url_for('static', filename='js/datepicker.min.js+google-map.js+main.js.pagespeed.jc.XiV_3kbmz-.js') }}"></script>
+    <script>eval(mod_pagespeed_k76nz7Okp_);</script>
+    <script>eval(mod_pagespeed_mKCMGOt_Ci);</script>
+    <script>eval(mod_pagespeed_VA6WPbHwQJ);</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script> window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'UA-23581568-13'); </script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"rayId":"6985da4d9a9d0519","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.9.0","si":100}'></script>
+    <script defer src=“https://cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js” data-cf-beacon='{"rayId":"6985da4d9a9d0519","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.9.0","si":100}'></script>   
+    <script defer src="https://cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" data-cf-beacon='{"rayId":"6985da4d9a9d0519","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.9.0","si":100}'></script>
+</body>
+</html>

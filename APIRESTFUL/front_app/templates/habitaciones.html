@@ -1,56 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+ {% extends "base.html" %}
 
-<!-- Mirrored from preview.colorlib.com/theme/unwind/rooms.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 03 Oct 2021 11:39:05 GMT -->
-
-<head>
-  <title>unwind - Free Bootstrap 5 Template by Colorlib</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="preconnect" href="https://fonts.gstatic.com/">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&amp;family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/all.css')}}" />
-</head>
-
-<body>
-  <nav class="navbar navbar-expand-lg ftco-navbar-light">
-    <div class="container-xl">
-      <a class="navbar-brand align-items-center" href="index-2.html">
-        <span class=""> <small>Hotel</small></span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="fa fa-bars"></span> Menu
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{url_for('nosotros')}}">Nosotros</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{url_for('habitaciones')}}">Habitaciones</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="resto-bar.html">Resto &amp; Bar</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="blog.html">Blog</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="contacto.html">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+{% block head %}
+       <title>Habitaciones</title>
+{% endblock %}
+    {% block navbar %}
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">INICIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('nosotros') }}">NOSOTROS</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{url_for('reserva')}}">RESERVA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('formulario')}}">CONTACTO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('registro')}}">REGISTRARSE</a></li>
+{% endblock %}
+{%block body%}
   <section class="hero-wrap hero-wrap-2" style="background-image:url(../static/images/salon-1.jpg)">
     <div class="overlay"></div>
     <div class="container">
@@ -58,7 +18,7 @@
         <div class="col-md-9 pt-5 text-center">
           <p class="breadcrumbs"><span class="me-2"><a href="index-2.html">Home <i
                   class="fa fa-chevron-right"></i></a></span> <span class="me-2"><a href="blog.html">Blog <i
-                  class="fa fa-chevron-right"></i></a></span> <span>Room Single <i
+                  class="fa fa-chevron-right"></i></a></span> <span>Habitación <i
                 class="fa fa-chevron-right"></i></span></p>
           <h1 class="mb-0 bread">Detalles de Habitación</h1>
         </div>
@@ -122,17 +82,17 @@
           </div>
           
           <div class="sidebar-box">
-            <h3>Tag Cloud</h3>
+            <h3>Relacionados</h3>
             <div class="tagcloud">
               <a href="#" class="tag-cloud-link">hotel</a>
-              <a href="#" class="tag-cloud-link">pool</a>
+              <a href="#" class="tag-cloud-link">pileta</a>
               <a href="#" class="tag-cloud-link">tv</a>
-              <a href="#" class="tag-cloud-link">aircon</a>
-              <a href="#" class="tag-cloud-link">relax</a>
-              <a href="#" class="tag-cloud-link">cozzy</a>
-              <a href="#" class="tag-cloud-link">room</a>
-              <a href="#" class="tag-cloud-link">resto</a>
-              <a href="#" class="tag-cloud-link">bar</a>
+              <a href="#" class="tag-cloud-link">IDS</a>
+              <a href="#" class="tag-cloud-link">relajante</a>
+              <a href="#" class="tag-cloud-link">cómodo</a>
+              <a href="#" class="tag-cloud-link">habitación</a>
+              <a href="#" class="tag-cloud-link">restaurante</a>
+              <a href="#" class="tag-cloud-link">IES</a>
             </div>
           </div>
         </div>
@@ -140,7 +100,7 @@
     </div>
   </section>
 
-  <section class="ftco-section testimony-section bg-light" id="reseñas">
+  <section class="testimony-section bg-light" id="reseñas">
   <div class="container-xl">
     <div class="row justify-content-center pb-4">
       <div class="col-md-7 text-center heading-section" data-aos="fade-up" data-aos-duration="1000">
@@ -169,7 +129,7 @@
         <div class="carousel-item">
           <div class="room-wrap text-center">
             <a href="room-single.html" class="img img-room d-block mx-auto"
-              style="background-image:url('{{ url_for('static', filename='images/xroom-2.jpg.pagespeed.ic.RWk6y2cGAc.jpg') }}'); height:350px; background-size:cover; background-position:center;">
+              style="background-image:url('{{ url_for('static', filename='images/room-6.jpg') }}'); height:350px; background-size:cover; background-position:center;">
             </a>
             <div class="text p-4">
               <h3><a href="room-single.html">Habitación Familiar</a></h3>
@@ -186,7 +146,7 @@
         <div class="carousel-item">
           <div class="room-wrap text-center">
             <a href="room-single.html" class="img img-room d-block mx-auto"
-              style="background-image:url('{{ url_for('static', filename='images/xroom-3.jpg') }}'); height:350px; background-size:cover; background-position:center;">
+              style="background-image:url('{{ url_for('static', filename='images/room-4.jpg') }}'); height:350px; background-size:cover; background-position:center;">
             </a>
             <div class="text p-4">
               <h3><a href="room-single.html">Habitación Deluxe</a></h3>
@@ -210,121 +170,4 @@
     </div>
   </div>
 </section>
-  <footer class="ftco-footer">
-    <div class="container-xl">
-      <div class="row mb-5 pb-5 justify-content-between">
-        <div class="col-md-6 col-lg">
-          <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2 logo d-flex">
-              <a class="navbar-brand align-items-center" href="index-2.html">
-                <span class="">Unwind <small>Hotel Booking</small></span>
-              </a>
-            </h2>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-            <ul class="ftco-footer-social list-unstyled mt-2">
-              <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-              <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-              <li><a href="#"><span class="fa fa-instagram"></span></a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2">Services</h2>
-          </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="ftco-footer-widget mb-4">
-                <ul class="list-unstyled">
-                  <li><a href="#"><span class="fa fa-chevron-right me-2"></span>Free Wifi</a></li>
-                  <li><a href="#"><span class="fa fa-chevron-right me-2"></span>Easy Booking</a></li>
-                  <li><a href="#"><span class="fa fa-chevron-right me-2"></span>Restaurant</a></li>
-                  <li><a href="#"><span class="fa fa-chevron-right me-2"></span>Swimming Pool</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="ftco-footer-widget mb-4">
-                <ul class="list-unstyled">
-                  <li><a href="#"><span class="fa fa-chevron-right me-2"></span>Beauty &amp; Health</a></li>
-                  <li><a href="#"><span class="fa fa-chevron-right me-2"></span>60" Flatscreen TV</a></li>
-                  <li><a href="#"><span class="fa fa-chevron-right me-2"></span>Cold Aircondition</a></li>
-                  <li><a href="#"><span class="fa fa-chevron-right me-2"></span>Help &amp; Support</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-2">
-          <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2">Quick Links</h2>
-            <ul class="list-unstyled">
-              <li><a href="#"><span class="fa fa-chevron-right me-2"></span>Home</a></li>
-              <li><a href="#"><span class="fa fa-chevron-right me-2"></span>About</a></li>
-              <li><a href="#"><span class="fa fa-chevron-right me-2"></span>Rooms</a></li>
-              <li><a href="#"><span class="fa fa-chevron-right me-2"></span>Resto &amp; Bar</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg">
-          <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2">Have a Questions?</h2>
-            <div class="block-23 mb-3">
-              <ul>
-                <li><span class="icon fa fa-map marker"></span><span class="text">203 Fake St. Mountain View, San
-                    Francisco, California, USA</span></li>
-                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                <li><a href="#"><span class="icon fa fa-paper-plane pr-4"></span><span class="text"><span
-                        class="__cf_email__"
-                        data-cfemail="92fbfcf4fdd2ebfde7e0f6fdfff3fbfcbcf1fdff">[email&#160;protected]</span></span></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid px-0 py-5 bg-darken">
-      <div class="container-xl">
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <p class="mb-0" style="color: rgba(255,255,255,.5); font-size: 13px;">Copyright &copy;
-              <script data-cfasync="false"
-                src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-              <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
-              with <i class="fa fa-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com/"
-                target="_blank" rel="nofollow noopener">Colorlib</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
- </footer>
-  <script src="../static/js/bootstrap.bundle.min.js"></script>
-  <script src="../static/js/tiny-slider.js"></script>
-  <script src="../static/js/glightbox.min.js+aos.js.pagespeed.jc.gNemz1ctce.js"></script>
-  <script>eval(mod_pagespeed_HTRluDb_jS);</script>
-  <script>eval(mod_pagespeed_4HfeNGdLlq);</script>
-  <script src="../static/js/datepicker.min.js+google-map.js+main.js.pagespeed.jc.XiV_3kbmz-.js"></script>
-  <script>eval(mod_pagespeed_k76nz7Okp_);</script>
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&amp;sensor=false"></script>
-  <script>eval(mod_pagespeed_mKCMGOt_Ci);</script>
-  <script>eval(mod_pagespeed_VA6WPbHwQJ);</script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-23581568-13');
-  </script>
-  <script defer src="../../../static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"rayId":"6985da747ba04f87","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.9.0","si":100}'></script>
-</body>
-
-<!-- Mirrored from preview.colorlib.com/theme/unwind/rooms.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 03 Oct 2021 11:39:29 GMT -->
-
-</html>
+{%endblock%}
