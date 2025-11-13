@@ -5431,162 +5431,6 @@ textarea.form-control {
       color: gray;
       color: #c5a880; }
 
-/* Blog*/
-
-.tagcloud a {
-  text-transform: uppercase;
-  display: inline-block;
-  padding: 4px 10px;
-  margin-bottom: 7px;
-  margin-right: 4px;
-  border-radius: 4px;
-  color: #222222;
-  font-size: 11px;
-  background: #fff; }
-
-.comment-form-wrap {
-  clear: both; }
-  .comment-form-wrap .comment-form {
-    background: #fff; }
-  .comment-form-wrap .form-group label {
-    font-size: 13px;
-    text-transform: uppercase;
-    color: #000000;
-    font-weight: 700; }
-  .comment-form-wrap .form-control {
-    height: 45px;
-    background: transparent;
-    color: rgba(0, 0, 0, 0.8);
-    font-size: 14px;
-    border-radius: 2px;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    border: 1px solid rgba(0, 0, 0, 0.1); }
-    .comment-form-wrap .form-control::-webkit-input-placeholder {
-      /* Chrome/Opera/Safari */
-      color: rgba(0, 0, 0, 0.3) !important; }
-    .comment-form-wrap .form-control::-moz-placeholder {
-      /* Firefox 19+ */
-      color: rgba(0, 0, 0, 0.3) !important; }
-    .comment-form-wrap .form-control:-ms-input-placeholder {
-      /* IE 0+ */
-      color: rgba(0, 0, 0, 0.3) !important; }
-    .comment-form-wrap .form-control:-moz-placeholder {
-      /* Firefox 18- */
-      color: rgba(0, 0, 0, 0.3) !important; }
-    .comment-form-wrap .form-control:focus, .comment-form-wrap .form-control:active {
-      border-color: #c5a880 !important; }
-  .comment-form-wrap textarea.form-control {
-    height: inherit !important; }
-
-.comment-list {
-  padding: 0;
-  margin: 0; }
-  .comment-list .children {
-    padding: 50px 0 0 40px;
-    margin: 0;
-    float: left;
-    width: 100%; }
-  .comment-list li {
-    padding: 0;
-    margin: 0 0 30px 0;
-    float: left;
-    width: 100%;
-    clear: both;
-    list-style: none; }
-    .comment-list li .vcard {
-      width: 80px;
-      float: left; }
-      .comment-list li .vcard img {
-        width: 50px;
-        border-radius: 50%; }
-    .comment-list li .comment-body {
-      float: right;
-      width: calc(100% - 80px); }
-      .comment-list li .comment-body h3, .comment-list li .comment-body .h3 {
-        font-size: 20px;
-        font-weight: 600;
-        font-family: "Nunito", Arial, sans-serif; }
-      .comment-list li .comment-body .meta {
-        text-transform: uppercase;
-        font-size: 13px;
-        letter-spacing: .1em;
-        color: #ccc;
-        font-weight: 600;
-        color: #c5a880;
-        display: block;
-        margin-bottom: 10px; }
-      .comment-list li .comment-body .reply {
-        padding: 5px 10px;
-        background: #e6e6e6;
-        color: #fff;
-        text-transform: uppercase;
-        font-size: 11px;
-        letter-spacing: .1em;
-        font-weight: 600;
-        border-radius: 4px;
-        background: #c5a880; }
-        .comment-list li .comment-body .reply:hover {
-          color: #fff;
-          background: black; }
-
-.search-form .form-group {
-  position: relative; }
-  .search-form .form-group input {
-    padding-right: 50px;
-    font-size: 14px;
-    border: none; }
-
-.search-form .icon {
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  color: #c5a880; }
-
-.sidebar-box {
-  margin-bottom: 30px;
-  padding: 10px;
-  font-size: 15px;
-  width: 100%; }
-  .sidebar-box *:last-child {
-    margin-bottom: 0; }
-  .sidebar-box h3, .sidebar-box .h3 {
-    font-size: 20px;
-    margin-bottom: 20px;
-    font-weight: 700;
-    font-family: "Nunito", Arial, sans-serif; }
-
-.categories {
-  padding: 0; }
-  .categories li {
-    position: relative;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    list-style: none;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase; }
-    .categories li:last-child {
-      margin-bottom: 0;
-      border-bottom: none;
-      padding-bottom: 0; }
-    .categories li a {
-      display: block;
-      color: #1a1a1a; }
-      .categories li a span {
-        position: absolute;
-        right: 0;
-        top: 0;
-        color: #ccc; }
-    .categories li.active a {
-      color: #000000;
-      font-style: italic; }
-
-
 /*error 404 pagina*/
 
 .text_error_404 {
@@ -6026,6 +5870,30 @@ reserva*/
 
 .button-reserva button:hover {
     background-color: #a07848;
+}
+
+/* CSS PARA LA VISTA DE RESERVA - PASO 3 */
+
+.contenedor-confirmacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenido-confirmacion {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 40px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.1);
+    width: fit-content;
+}
+
+.navegacion-confirmacion a {
+    margin: 10px;
 }
 
 /* PROGRESO RESERVA */

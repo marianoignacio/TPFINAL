@@ -108,12 +108,12 @@ def reserva ():
         "cantidad_huespedes": 2,
         "total_pagado": "$500.00"
     }
-    return render_template('reserva.html', info_reserva=detalles_de_reversa, info_hotel=diccionario)
+    return render_template('reserva.html', info_reserva=detalles_de_reversa, info_hotel=diccionario, info_usuario=informacion)
 
     # *9
 @app.route('/pago')
 def pago ():
-    return render_template('pago.html', info_hotel=diccionario)
+    return render_template('confirmacion.html', info_hotel=diccionario, info_usuario=informacion)
 
 if __name__== '__main__':
         app.run("localhost", port=8088, debug=True)
