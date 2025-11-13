@@ -113,6 +113,19 @@ def reserva ():
     # *9
 @app.route('/pago')
 def pago ():
+    detalles_de_reversa = {
+        "numero_de_reserva": "123456",
+        "fecha_checkin": "01/07/2026",
+        "fecha_checkout": "05/07/2026",
+        "tipo_habitacion": "Suite Deluxe",
+        "cantidad_huespedes": 2,
+        "total_pagado": "$500.00"
+    }
+    return render_template('pago.html', info_reserva=detalles_de_reversa, info_hotel=diccionario, info_usuario=informacion)
+
+    # *10
+@app.route('/confirmacion')
+def confirmacion ():
     return render_template('confirmacion.html', info_hotel=diccionario, info_usuario=informacion)
 
 if __name__== '__main__':

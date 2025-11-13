@@ -5535,7 +5535,10 @@ reserva*/
   text-align: center;
 }
 
-
+#contenedor_de_metodo_de_pago img {
+    width: 20%;
+    margin: 15px;
+}
 
 .reserva_de_usuario li {
   display: flex;
@@ -5572,7 +5575,13 @@ reserva*/
 
 
 .opciones_de_metodo_de_pago_2:hover {
-  color: #C5A880 !important;
+  color:  #C5A880 !important;
+
+}
+
+.opciones_de_metodo_de_pago:hover {
+  color: white;
+
 }
 
 /* MODAL */
