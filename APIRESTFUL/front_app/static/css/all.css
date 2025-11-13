@@ -2160,7 +2160,7 @@ Copyright (c) 2015 Daniel Eden
   to {
     opacity: 0;
     -webkit-transform: scale3d(.1, .1, .1) translate3d(0, 2000px, 0);
-    transform: scale3d(.1, .1, .1) translate3d(0, 2000px, 0);
+    transform: scale3d(.1, .1, .1) translate3d(0,  2000px, 0);
     -webkit-transform-origin: center bottom;
     transform-origin: center bottom;
     -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
@@ -2504,11 +2504,11 @@ Copyright (c) 2015 Daniel Eden
 }
 @font-face {
   font-family: "Flaticon";
-  src: url("../fonts/flaticon/font/Flaticon.eot");
-  src: url("../fonts/flaticon/font/Flaticon.eot?#iefix") format("embedded-opentype"),
-       url("../fonts/flaticon/font/Flaticon.woff") format("woff"),
-       url("../fonts/flaticon/font/Flaticon.ttf") format("truetype"),
-       url("../fonts/flaticon/font/Flaticon.svg#Flaticon") format("svg");
+    src: url("../fonts/Flaticon.eot");
+    src: url("../fonts/Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/Flaticon.woff") format("woff"),
+       url("../fonts/Flaticon.ttf") format("truetype"),
+       url("../fonts/Flaticon.svg#Flaticon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -2516,7 +2516,7 @@ Copyright (c) 2015 Daniel Eden
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: "Flaticon";
-    src: url("../fonts/flaticon/font/Flaticon.svg#Flaticon") format("svg");
+    src: url("../fonts/Flaticon.svg#Flaticon") format("svg");
   }
 }
 
@@ -2834,13 +2834,21 @@ progress {
   height: auto; }
 
 .container,
-.container-fluid,
 .container-xl {
   width: 100%;
   padding-right: var(--bs-gutter-x, 0.75rem);
   padding-left: var(--bs-gutter-x, 0.75rem);
   margin-right: auto;
   margin-left: auto; }
+
+  .container-fluid{
+  width: 100%;
+  padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem);
+  margin-right: auto;
+  margin-left: auto;
+  padding: 4em 0;
+  }
 
 @media (min-width: 576px) {
   .container {
@@ -3470,8 +3478,15 @@ textarea.form-control {
   -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
   -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out; }
+
+  .nav-perfil {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .nav-link {
+  .nav-link {
       -webkit-transition: none;
       -o-transition: none;
       transition: none; } }
@@ -4282,7 +4297,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5,
         padding-top: 0;
         color: #fff; } }
     .ftco-navbar-light .navbar-nav > .nav-item > .nav-link.active {
-      color: #fff !important; }
+      color: #fff !important; 
+    background-color: rgba(185, 185, 185, 0.11);}
   @media (max-width: 767.98px) {
     .ftco-navbar-light .navbar-nav > .nav-item.active > a {
       color: #fff;
@@ -4904,7 +4920,7 @@ textarea.form-control {
     font-weight: 400; }
 
 .ftco-section {
-  padding: 8em 0;
+  padding: 6em 0;
   position: relative;
   width: 100%;
   overflow-x: hidden; }
@@ -5298,7 +5314,7 @@ textarea.form-control {
       font-weight: 400; }
       .blog-entry .text .heading a {
         color: #000000; }
-        .blog-entry .text .heading a:hover, .blog-entry .text .heading a:focus, .blog-entry .text .heading a:active {
+        .blog-entry .text .heading a:hover, .blog-entry .text .heading a:active, .blog-entry .text .heading a:focus {
           color: #c5a880; }
   .blog-entry .meta {
     text-transform: uppercase;
@@ -5569,3 +5585,556 @@ textarea.form-control {
     .categories li.active a {
       color: #000000;
       font-style: italic; }
+
+
+/*error 404 pagina*/
+
+.text_error_404 {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  text-align: center;
+  gap: 0.25rem;
+  padding: 0 1rem;
+}
+.ERROR404 {
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-size: 100px;
+  font-weight: 700;
+  color: #b7b5b2;
+  line-height: 1;
+  font-family: norico, sans-serif;
+}
+
+/*pagina de 
+reserva*/
+
+
+.banner_de_imagen_del_hotel {
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+
+#efectos_banner_imagen {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  color:white;
+
+}
+
+#diseño_del_logo_footer {
+  color:white;
+  font-family: 'Nunito', sans-serif;
+  font-size: 2.5vw;
+  margin-left: 20px;
+}
+.menu_footer ul {
+  color:transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.item_de_menu_footer {
+  color:white;
+  font-family: 'Nunito', sans-serif;
+  margin-left: 70px;
+  font-size: 1.2vw;
+
+}
+
+.texto_sobre_los_banners {
+  color:white;
+  font-family: Old Standard TT, serif;
+  font-size: 3vw;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  padding-top: 3%;
+}
+
+
+
+#contenerdor_de_reserva_usuario {
+  background-color:white;
+  width: 30%;
+  height: 70%;
+  margin-right: 3%;
+  border-radius: 5%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  padding: 2%;
+  text-align: center;
+  color :black;
+  flex-direction: row;
+}
+
+#contenedor_de_metodo_de_pago {
+  background-color: white;
+  width: 65%;
+  height: 70%;
+  border-radius: 5%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 2%;
+  text-align: center;
+}
+
+
+
+.reserva_de_usuario li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding: 6px 0;
+  font-size: 16px;
+  margin: 4%;
+  margin-top: 6%;
+
+}
+
+.opciones_de_metodo_de_pago {
+  background-color: #C5A880 !important;
+  width: 30% !important;
+
+}
+
+.opciones_de_metodo_de_pago_2 {
+  background-color: #222222 !important;
+  width: 30% !important;
+}
+
+#boton_de_confirmar_reserva {
+  background-color: #C5A880;
+  border: none;
+
+}
+
+#boton_de_confirmar_reserva:hover {
+  background-color: #222222;
+  color: white;
+}
+
+
+.opciones_de_metodo_de_pago_2:hover {
+  color: #C5A880 !important;
+}
+
+/* MODAL */
+
+/* ======== MODAL PERFIL HOTEL ======== */
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-family: "Outfit", sans-serif;
+}
+
+.modal-overlay.show {
+  display: block;
+  opacity: 1;
+}
+
+.modal-container {
+  position: relative;
+  background: transparent;
+  border-radius: 12px;
+  width: 75%;
+  max-width: 950px;
+  margin: 4% auto;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+  overflow: hidden;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Cerrar botón */
+.close-button {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  color: #a37e74;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close-button:hover {
+  color: #7b5b54;
+}
+
+/* ==== SECCIÓN SUPERIOR: DATOS PERSONALES ==== */
+.perfil-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em 3em;
+  background-color: #f4f3f2f0;
+  padding-right: 5em;
+
+}
+
+.perfil-info {
+  flex: 1;
+  color: #7b5b54;
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil-info p {
+  font-weight: 200;
+  color: #4e403d;
+  margin-top: 10px;
+}
+
+
+.perfil-info div{
+  display: flex;
+  justify-content: space-between;
+} 
+.perfil-info h5 {
+  display: table-caption;
+  margin-top: 0.5em;
+  color: rgba(197, 168, 128, 1);
+}
+
+
+
+/* ==== SECCIÓN INFERIOR: DETALLES DE LA RESERVA ==== */
+
+.reserva-bottom {
+  padding: 2em 3em;
+  background: rgba(255,255,255,0.85);
+  height: 400px; /* ajusta a tu gusto */
+  overflow-y: auto; /* scroll vertical */
+  margin-top: 40px;
+}
+
+.reserva-detalles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5em;
+  justify-content: flex-start;
+}
+
+.detalle-box {
+  flex: 1;
+  min-width: 180px;
+  background-color: rgb(217, 217, 217);
+  border-radius: 10px;
+  padding: 1.5em;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+.detalle-box hr{
+  color: white;
+  height: 2px;
+}
+
+.detalle-box h5 {
+  margin-top: 0.5em;
+  color: rgba(197, 168, 128, 1);
+}
+
+.detalle-box p {
+  font-weight: 600;
+  color: #4e403d;
+}
+
+/* ==== Animación ==== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+/* CSS PARA LAS VISTAS DE INICIO DE SESIÓN Y REGISTRO */
+.inicio-sesion,.registrarse {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    margin: 0;
+    background-color: #f8f8f8;
+}
+
+.contenedor-global {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 0;
+}
+
+@media (min-width: 576px) {
+    .contenedor-inicio-sesion, .contenedor-registrarse {
+        max-width: 540px; } }
+
+@media (min-width: 768px) {
+    .contenedor-inicio-sesion, .contenedor-registrarse {
+        max-width: 540px; } }
+
+@media (min-width: 992px) {
+    .contenedor-inicio-sesion, .contenedor-registrarse {
+        max-width: 625px; } }
+
+@media (min-width: 1200px) {
+    .contenedor-inicio-sesion, .contenedor-registrarse {
+        max-width: 625px; } }
+
+@media (min-width: 1400px) {
+    .contenedor-inicio-sesion, .contenedor-registrarse {
+        max-width: 625px; } }
+
+.contenedor-inicio-sesion, .contenedor-registrarse {
+    padding: 25px;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.1);
+    max-width: 625px;
+    width: 90%;
+}
+
+.formulario-inicio-sesion, .formulario-registrarse {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.formulario-doble-item {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}
+
+.formulario-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.formulario-item, .label {
+    width: 100%;
+}
+
+.formulario-item input {
+    width: 100%;
+    padding: 5px;
+    border-radius: 8px;
+    border: 1px solid #c5a880;
+}
+
+.formulario-item input::placeholder {
+    color: #c5a880;
+}
+
+.formulario-item input:focus {
+    color: #222222;
+    outline-color: #c5a880;
+}
+
+/* CSS PARA LA VISTA DE RESERVA - PASO 1 */
+
+.form-container-reserva {
+    background-color: #fff;
+    width: 80%;
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 30px 40px;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.form-container-reserva h3 {
+    text-align: center;
+    font-size: 1.5em;
+    color: #333;
+    border-bottom: 1px solid #c6a87d;
+    width: 60%;
+    margin: 0 auto 25px;
+    padding-bottom: 5px;
+}
+
+.form-reserva {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-row-reserva {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 6px 20px;
+}
+
+.label-reserva {
+    color: #333;
+    font-weight: 500;
+    font-size: 1.5em;
+}
+
+.input-reserva[type="date"],
+.select-reserva {
+    text-align: right;
+    border: none;
+    background: none;
+    color: #555;
+    font-size: 1.5em;
+    padding: 5px;
+    outline: none;
+}
+
+.button-reserva {
+    align-self: center;
+    background-color: #b68d58;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+.button-reserva button:hover {
+    background-color: #a07848;
+}
+
+/* PROGRESO RESERVA */
+
+.progreso-reserva {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.stepper-box {
+    background-color: white;
+    border-radius: 12px;
+    padding: 32px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.stepper-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+
+.stepper-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    right: -50%;
+    width: 100%;
+    height: 2px;
+    background-color: #e2e8f0;
+    z-index: 1;
+}
+
+.stepper-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    background-color: white;
+}
+
+.stepper-completed .stepper-circle {
+    background-color: #0f172a;
+    color: white;
+}
+
+.stepper-active .stepper-circle {
+    border: 2px solid #0f172a;
+    color: #0f172a;
+}
+
+.stepper-pending .stepper-circle {
+    border: 2px solid #e2e8f0;
+    color: #94a3b8;
+}
+
+.stepper-content {
+    margin-top: 12px;
+}
+
+.stepper-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.stepper-completed .stepper-title {
+    color: #0f172a;
+}
+
+.stepper-active .stepper-title {
+    color: #0f172a;
+}
+
+.stepper-pending .stepper-title {
+    color: #94a3b8;
+}
+
+.stepper-status {
+    font-size: 13px;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-top: 4px;
+}
+
+.stepper-completed .stepper-status {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.stepper-active .stepper-status {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+.stepper-pending .stepper-status {
+    background-color: #f1f5f9;
+    color: #64748b;
+}
