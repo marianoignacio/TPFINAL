@@ -5714,8 +5714,6 @@ reserva*/
 .opciones_de_metodo_de_pago_2:hover {
   color: #C5A880 !important;
 }
-  width: 30%;
-}
 
 /* MODAL */
 
@@ -5830,7 +5828,6 @@ reserva*/
 
 /* ==== SECCIÓN INFERIOR: DETALLES DE LA RESERVA ==== */
 
-
 .reserva-bottom {
   padding: 2em 3em;
   background: rgba(255,255,255,0.85);
@@ -5875,6 +5872,9 @@ reserva*/
   from { opacity: 0; transform: scale(0.97); }
   to { opacity: 1; transform: scale(1); }
 }
+
+
+/* CSS PARA LAS VISTAS DE INICIO DE SESIÓN Y REGISTRO */
 .inicio-sesion,.registrarse {
     display: flex;
     flex-direction: column;
@@ -5882,7 +5882,6 @@ reserva*/
     height: 100%;
     margin: 0;
     background-color: #f8f8f8;
-    background-image: url();
 }
 
 .contenedor-global {
@@ -5967,5 +5966,183 @@ reserva*/
     color: #222222;
     outline-color: #c5a880;
 }
-=======
 
+/* CSS PARA LA VISTA DE RESERVA - PASO 1 */
+
+.form-container-reserva {
+    background-color: #fff;
+    width: 80%;
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 30px 40px;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.form-container-reserva h3 {
+    text-align: center;
+    font-size: 1.5em;
+    color: #333;
+    border-bottom: 1px solid #c6a87d;
+    width: 60%;
+    margin: 0 auto 25px;
+    padding-bottom: 5px;
+}
+
+.form-reserva {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-row-reserva {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 6px 20px;
+}
+
+.label-reserva {
+    color: #333;
+    font-weight: 500;
+    font-size: 1.5em;
+}
+
+.input-reserva[type="date"],
+.select-reserva {
+    text-align: right;
+    border: none;
+    background: none;
+    color: #555;
+    font-size: 1.5em;
+    padding: 5px;
+    outline: none;
+}
+
+.button-reserva {
+    align-self: center;
+    background-color: #b68d58;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+.button-reserva button:hover {
+    background-color: #a07848;
+}
+
+/* PROGRESO RESERVA */
+
+.progreso-reserva {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.stepper-box {
+    background-color: white;
+    border-radius: 12px;
+    padding: 32px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.stepper-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+
+.stepper-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    right: -50%;
+    width: 100%;
+    height: 2px;
+    background-color: #e2e8f0;
+    z-index: 1;
+}
+
+.stepper-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    background-color: white;
+}
+
+.stepper-completed .stepper-circle {
+    background-color: #0f172a;
+    color: white;
+}
+
+.stepper-active .stepper-circle {
+    border: 2px solid #0f172a;
+    color: #0f172a;
+}
+
+.stepper-pending .stepper-circle {
+    border: 2px solid #e2e8f0;
+    color: #94a3b8;
+}
+
+.stepper-content {
+    margin-top: 12px;
+}
+
+.stepper-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.stepper-completed .stepper-title {
+    color: #0f172a;
+}
+
+.stepper-active .stepper-title {
+    color: #0f172a;
+}
+
+.stepper-pending .stepper-title {
+    color: #94a3b8;
+}
+
+.stepper-status {
+    font-size: 13px;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-top: 4px;
+}
+
+.stepper-completed .stepper-status {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.stepper-active .stepper-status {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+.stepper-pending .stepper-status {
+    background-color: #f1f5f9;
+    color: #64748b;
+}
