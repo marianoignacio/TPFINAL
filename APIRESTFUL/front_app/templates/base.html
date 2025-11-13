@@ -1,42 +1,26 @@
-<<<<<<< HEAD
-{% extends "base.html" %}
-{% block head %}
-    <title>Reserva</title>
-{% endblock %}
-    {% block navbar %}
-                    <li class="nav-item"><a class="nav-link " href="{{ url_for('home') }}">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('nosotros') }}">NOSOTROS</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="{{url_for('reserva')}}">RESERVA</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{url_for('formulario')}}">CONTACTO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{url_for('registro')}}">REGISTRARSE</a></li>
-{% endblock %}
-
-{%block body%}
-    <section class="hero-wrap"
-        style="background-image:url({{ url_for('static', filename='images/salon-1.jpg') }})">
-=======
 <!DOCTYPE html>
 <html lang="es">
 
+
 <head>
-    <title>IDS - Hotel</title>
+    {% block head %}
+{% endblock %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" hreSS="https://fonts.gstatic.com/">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&amp;family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&amp;family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/all.css') }}" />
-    <link rel="stylesheet"
-        href="{{ url_for('static', filename='css/A.animate.css+flaticon.css+tiny-slider.css+glightbox.min.css+aos.css+datepicker.min.css+style.css,Mcc.nCQXu6LVyk.css.pagespeed.cf.rg4CHwA3tS.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/A.animate.css+flaticon.css+tiny-slider.css+glightbox.min.css+aos.css+datepicker.min.css+style.css,Mcc.nCQXu6LVyk.css.pagespeed.cf.rg4CHwA3tS.css') }}" />
 </head>
+
+
 
 <body>
     <nav class="navbar navbar-expand-lg  ftco-navbar-light">
         <div class="container-xl">
-            <a class="navbar-brand align-items-center" href="#">
+            <a class="navbar-brand align-items-center" href="{{url_for('home')}}">
                 <span class="">IDS <small>Hotel</small></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -46,169 +30,24 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="{{ url_for('home') }}">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="nosotros.html">NOSOTROS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="reserva.html">RESERVAR</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{url_for('formulario')}}">CONTACTO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="blog.html">PERFIL</a></li>
+                    {% block navbar %}
+ 
+                    {% endblock %}
+                    <li class="nav-item"><img class="nav-perfil" src="{{url_for('static', filename='images/perfil.jpg')}}" onclick="abrirVistaPerfil()" ></img></li>
+                
                 </ul>
 
             </div>
         </div>
     </nav>
-    <section class="hero-wrap"
-        style="background-image:url({{ url_for('static', filename='images/image 1.png') }})">
->>>>>>> 660fb33a3f2934c806eeee27f6fc8e773e9e0787
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row no-gutters slider-text align-items-center justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <h1 class="mb-4">Reserva</h1>
-                </div>
-            </div>
-        </div>
-    </section>
 
-<<<<<<< HEAD
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-=======
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
->>>>>>> 660fb33a3f2934c806eeee27f6fc8e773e9e0787
-    <title>Reserva</title>
-    <style>
-.form-container {
-    background-color: #fff;
-    width: 80%;
-    max-width: 700px;
-    margin: 50px auto;
-    padding: 30px 40px;
-    border-radius: 30px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.form-container h3 {
-    text-align: center;
-    font-size: 1.5em;
-    color: #333;
-    border-bottom: 1px solid #c6a87d;
-    width: 60%;
-    margin: 0 auto 25px;
-    padding-bottom: 5px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.form-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #eee;
-    padding: 6px 20px;
-}
-
-label {
-    color: #333;
-    font-weight: 500;
-    flex: -6;
-    font-size: 1.5em;
-}
-
-input[type="date"],
-select {
-    flex:-6;
-    text-align: right;
-    border: none;
-    background: none;
-    color: #555;
-    font-size: 1.5em;
-    padding: 5px;
-    outline: none;
-}
-
-button {
-    align-self: center;
-    background-color: #b68d58;
-    color: white;
-    border: none;
-    padding: 10px 30px;
-    border-radius: 5px;
-    font-weight: 5em;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 15px;
-}
-
-button:hover {
-    background-color: #a07848;
-} 
-    </style>
-</head>
-<body>
-<<<<<<< HEAD
+    {% block body %}
     
-=======
->>>>>>> 660fb33a3f2934c806eeee27f6fc8e773e9e0787
-    <!-- HERO -->
-    <section class="hero">
-    </section>
+    {% endblock %}
 
-    <!-- FORMULARIO -->
-<div class="form-container">
-    <h3>LOS DATOS DE TU RESERVA</h3>
-    <form>
-        <div class="form-row">
-            <label for="checkin">Check-in:</label>
-            <input type="date" id="checkin" name="checkin" placeholder="DD/MM/YYYY">
-        </div>
 
-        <div class="form-row">
-            <label for="checkout">Check-out:</label>
-            <input type="date" id="checkout" name="checkout" placeholder="DD/MM/YYYY">
-        </div>
 
-        <div class="form-row">
-            <label for="habitacion">Habitación:</label>
-            <select id="habitacion">
-                <option>Habitación clasica</option>
-                <option>Habitación Suite</option>
-                <option>Habitación familiar</option>
-                <option>Habitación de lujo</option>
-                <option>Habitación super de lujo</option>
-                <option>Habitación superior</option>
-            </select>
-        </div>
-
-        <div class="form-row">
-            <label for="huespedes">Cantidad de Huéspedes:</label>
-            <select id="huespedes">
-                <option>1</option>
-                <option selected>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-            </select>
-        </div>
-
-        <button type="submit">CONTINUAR</button>
-    </form>
-</div>
-<<<<<<< HEAD
-{% endblock %}
-=======
-
-    <!-- FOOTER -->
-       <footer class="ftco-footer">
+        <footer class="ftco-footer">
         <div class="container-xl">
             <div class="row mb-5 pb-5 justify-content-between">
                 <div class="col-md-6 col-lg">
@@ -310,6 +149,81 @@ button:hover {
         </div>
     </footer>
 
+
+<div id="infoPerfil" class="modal-overlay">
+  <div class="modal-container">
+    <span class="close-button" onclick="closeModal()">×</span>
+
+
+    <div class="perfil-top">
+      <div class="perfil-info">
+        <div>
+            <h5 class="h5-perfil" >Nombre Completo:</h5>
+
+            <p>{{info_usuario.usuario.0}}</p>
+          </div>
+        <div>
+           <h5 class="h5-perfil">Mail:</h5>
+
+       <p>{{info_usuario.usuario.1}}</p>
+          </div>
+        <div>
+            <h5 class="h5-perfil">Fecha de Inscripción:</h5>
+            
+             <p>{{info_usuario.usuario.2}}</p>
+             
+        </div>        
+      </div>
+    </div>
+
+    <div class="reserva-bottom">
+{% for i in range(info_usuario.reserva | length) %}
+<br>
+     <h3 style="text-align: center;"># {{i+1}}</h3>
+
+      <div class="reserva-detalles">
+
+        <div class="detalle-box">
+          <h5>Inicio de Reserva:</h5>
+          <hr>
+          <p id="inicioReserva">{{ info_usuario.reserva[i][0] }}</p>
+        </div>
+        <div class="detalle-box">
+          <h5> Habitacion :</h5>
+          <hr>
+          <p id="lugarReserva">{{ info_usuario.reserva[i][1]  }}</p>
+        </div>
+        <div class="detalle-box">
+          <h5>Final de Reserva:</h5>
+          <hr>
+          <p id="finReserva">{{ info_usuario.reserva[i][2]  }}</p>
+        </div>
+        <div class="detalle-box">
+          <h5>Monto:</h5>
+          <p id="finReserva">{{ info_usuario.reserva[i][3]  }}</p>
+        </div>
+      </div>
+
+{% endfor %}
+    </div>
+    
+  </div>
+</div>
+
+      <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tiny-slider.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/glightbox.min.js+aos.js.pagespeed.jc.gNemz1ctce.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>eval(mod_pagespeed_HTRluDb_jS);</script>
+    <script>eval(mod_pagespeed_4HfeNGdLlq);</script>
+    <script src="{{ url_for('static', filename='js/datepicker.min.js+google-map.js+main.js.pagespeed.jc.XiV_3kbmz-.js') }}"></script>
+    <script>eval(mod_pagespeed_k76nz7Okp_);</script>
+    <script>eval(mod_pagespeed_mKCMGOt_Ci);</script>
+    <script>eval(mod_pagespeed_VA6WPbHwQJ);</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script> window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'UA-23581568-13'); </script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"rayId":"6985da4d9a9d0519","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.9.0","si":100}'></script>
+    <script defer src=“https://cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js” data-cf-beacon='{"rayId":"6985da4d9a9d0519","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.9.0","si":100}'></script>   
+    <script defer src="https://cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" data-cf-beacon='{"rayId":"6985da4d9a9d0519","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.9.0","si":100}'></script>
 </body>
 </html>
->>>>>>> 660fb33a3f2934c806eeee27f6fc8e773e9e0787
