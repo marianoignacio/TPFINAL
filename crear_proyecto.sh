@@ -105,10 +105,13 @@ echo_color $VERDE "Se intalo Flask"
 instala_flaskMail(){
 pip install Flask-Mail
 
-echo_color $VERDE "Se intalo Flask"
+echo_color $VERDE "Se intalo Flask MAIL"
 }
 
-
+instala_dotenv(){
+pip3 install python-dotenv
+echo_color $VERDE "Se intalo dotenv"
+}
 activar_entorno(){
 source .venv/bin/activate
 echo_color $VERDE "SE ACTIVO"
@@ -124,6 +127,13 @@ salir_menu() {
 	echo_color $ROJO "Saliendo del programa"
 }
 
+crear_archivo_env(){
+cd
+cd TPFINAL
+touch .env
+echo -e "MAIL_SERVER=smtp.gmail.com \nMAIL_PORT=587 \nMAIL_USE_TLS=True \nMAIL_USE_SSL=False \nMAIL_USERNAME=mtbrally51@gmail.com \nMAIL_PASSWORD=wwij bazm genv jlve \nMAIL_DEFAULT_SENDER=mtbrally51@gmail.com" > "$HOME/TPFINAL/.env"
+}
+
 while [[ $salir == 0 ]];
 do
 echo " "
@@ -131,18 +141,21 @@ echo_color $FONDO_AZUL "Ingrese una opción para hacer con el trabajo"
 
 echo_color $VIOLETA  "^^^^^^^^^^ < MENU > ^^^^^^^^^^\n"
 
+echo "Porfavor ejecutá los comandos en orden(si ya tenés armado el repositorio pasá al segundo)"
+
 echo " 1) Crea el entorno local"
 echo " 2) Instaladores (Pip, Python)"
 echo " 3) Intalar complementos del entrono virtual"
-echo " 4) Activar el entorno "
-
+echo_color $AZUL ' Para estos siguientes pasos, salí del programa "8)" y volvé a ejecutar el programa con "-op" al final'
+echo ' 4) Activar el entorno '
 
 	if [ "$1" == "-op" ]; then
 	echo " 5) Instala dependencias "
-	echo " 6) Desactivar el entorno"
+	echo " 6) Crear archivo para mail"
+	echo " 7) Desactivar el entorno"
 	fi
 
-echo " 7) Salir"
+echo " 8) Salir"
 
 
 echo_color $VIOLETA  "==============================="
@@ -172,11 +185,15 @@ case $opcion in
 5)
 	instala_flask
 	instala_flaskMail
+	instala_dotenv
 ;;
 6)
-	desactivar_entorno
+	crear_archivo_env
 ;;
 7)
+	desactivar_entorno
+;;
+8)
 	salir_menu
 ;;
 esac
