@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255),
     apellido VARCHAR(255),
-    contraseña VARCHAR(255),
+    contrasena VARCHAR(255),
     email VARCHAR(255) UNIQUE,
     fecha_creacion DATE
 );
@@ -38,7 +38,7 @@ INSERT INTO habitaciones (nombre, capacidad, descripcion, servicios, precio_noch
 ('Habitacion superior', '3', 'Más espacio y confort con detalles modernos que elevan la experiencia.', 'SERVICIOS', '140'),
 ('Habitacion de lujo', '4', 'Diseño elegante, confort superior y detalles premium para una estadía especial.', 'SERVICIOS', '180');
 
-INSERT INTO usuarios (nombre, apellido, contraseña, email, fecha_creacion)VALUES 
+INSERT INTO usuarios (nombre, apellido, contrasena, email, fecha_creacion)VALUES 
 ('Dylan', 'Ruiz', 'pepito123', 'druiz@fi.uba.ar', '2025-8-13'),
 ('Cerbero', 'Diaz','holamundoi', 'cerbero@gmail.com', '2025-8-12');
 

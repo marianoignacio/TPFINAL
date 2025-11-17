@@ -42,10 +42,10 @@ def agregar_reserva(id_usuario, id_habitacion, check_in, check_out, huespedes, m
         return True
     return None
 
-def crear_cuenta(email, nombre, apellido, contraseña):
+def crear_cuenta(email, nombre, apellido, contrasena):
     response = requests.post(
         f"{API_BASE}/usuarios/{email}",
-        json={"nombre": nombre, "apellido": apellido, "contraseña": contraseña},
+        json={"nombre": nombre, "apellido": apellido, "contrasena": contrasena},
     )
     if response.status_code == 201:
         return True
@@ -126,8 +126,20 @@ def login ():
 def nosotros ():
     return render_template('nosotros.html', info_hotel=hotel,info_usuario=informacion)
 # *7
-@app.route('/registro')
+@app.route('/registro', methods=["GET", "POST"])
 def registro ():
+    if request.method == "POST":
+        nombre = request.form["inputNombre"]
+        apellido = request.form["inputApellido"]
+        contrasena = request.form["inputContrasenia"]
+        email=request.form["inputEmail"]
+        ok = crear_cuenta(email, nombre, apellido, contrasena)
+        if not ok:
+            flash("Error al crear la cuenta", "error")
+            return redirect(url_for("registro"))
+        else:
+            flash("Cuenta creada con éxito", "success")
+            return redirect(url_for("login"))
     return render_template('registro.html', info_hotel=hotel,info_usuario=informacion)
 # *8
 @app.route('/reserva')
