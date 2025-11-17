@@ -6,7 +6,7 @@ import os
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 load_dotenv()
-
+API_BASE = "http://localhost:5000"
 app = Flask(__name__)
 
 diccionario = { "usuario": ["nombre", "habitacion", "fecha"]
@@ -19,6 +19,36 @@ informacion = { "usuario": ["Nombre de la persona", "@gmail.com", "fecha"]
                                ["XX/XX/XXXX","Habitación de la persona","XX/XX/XXXX","$200"]]
                    }
 
+def obtener_usuario(id_usuario):
+    response = requests.get(f"{API_BASE}/usuarios/{id_usuario}")
+    if response.status_code == 200:
+        return response.json()
+    return None
+
+def obtener_reservas_usuario(id_usuario):
+    response = requests.get(f"{API_BASE}/usuarios/{id_usuario}/reservas")
+    if response.status_code == 200:
+        return response.json()
+    return []
+
+def agregar_reserva(id_usuario, id_habitacion, check_in, check_out, huespedes, monto_noche):
+    response = requests.post(
+        f"{API_BASE}/usuarios/{id_usuario}/reservas",
+        json={"id_habitacion": id_habitacion, "check_in": check_in, "check_out": check_out, "huespedes": huespedes, "monto_noche":monto_noche},
+    )
+    if response.status_code == 201:
+        return True
+    return None
+
+def crear_cuenta(email, nombre, apellido, contraseña):
+    response = requests.post(
+        f"{API_BASE}/usuarios/{email}",
+        json={"nombre": nombre, "apellido": apellido, "contraseña": contraseña},
+    )
+    if response.status_code == 201:
+        return True
+    return None
+     
 @app.route('/')
 def home ():
     return render_template('index.html', info_hotel=diccionario,  info_usuario=informacion)
