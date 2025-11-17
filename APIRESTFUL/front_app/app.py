@@ -9,7 +9,7 @@ load_dotenv()
 API_BASE = "http://localhost:5000"
 app = Flask(__name__)
 
-hotel = { "dirección": ["Av Paseo Colon", "850"]
+hotel = { "dirección": ["Av Paseo Colon", "850", "Buenos Aires", "Argentina"]
                     ,"telefono": ["+ (54-11) 528 - 50559"]
                    }
 
