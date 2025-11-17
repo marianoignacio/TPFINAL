@@ -79,13 +79,13 @@
                         <div class="col-lg-6">
                             <div class="ftco-footer-widget mb-4">
                                 <ul class="list-unstyled">
-                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Wifi
+                                    <li><a href="{{url_for('nosotros')}}"><span class="fa fa-chevron-right me-2"></span>Wifi
                                             Gratis</a></li>
-                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Facil
+                                    <li><a href="{{url_for('nosotros')}}"><span class="fa fa-chevron-right me-2"></span>Facil
                                             reserva</a></li>
-                                    <li><a href="#servicios"><span
+                                    <li><a href="{{url_for('nosotros')}}"><span
                                                 class="fa fa-chevron-right me-2"></span>Restaurante</a></li>
-                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Pileta</a>
+                                    <li><a href="{{url_for('nosotros')}}"><span class="fa fa-chevron-right me-2"></span>Pileta</a>
                                     </li>
                                 </ul>
                             </div>
@@ -93,13 +93,13 @@
                         <div class="col-lg-6">
                             <div class="ftco-footer-widget mb-4">
                                 <ul class="list-unstyled">
-                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Salon de
+                                    <li><a href="{{url_for('nosotros')}}"><span class="fa fa-chevron-right me-2"></span>Salon de
                                             spa</a></li>
-                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Sala de
+                                    <li><a href="{{url_for('nosotros')}}"><span class="fa fa-chevron-right me-2"></span>Sala de
                                             cine</a></li>
-                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Gimnasio</a>
+                                    <li><a href="{{url_for('nosotros')}}"><span class="fa fa-chevron-right me-2"></span>Gimnasio</a>
                                     </li>
-                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Mesa de
+                                    <li><a href="{{url_for('nosotros')}}"><span class="fa fa-chevron-right me-2"></span>Mesa de
                                             atencion</a></li>
                                 </ul>
                             </div>
@@ -110,10 +110,10 @@
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">Links rapidos</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#"><span class="fa fa-chevron-right me-2"></span>INICIO</a></li>
-                            <li><a href="nosotros.html"><span class="fa fa-chevron-right me-2"></span>NOSOTROS</a></li>
-                            <li><a href="reserva.html"><span class="fa fa-chevron-right me-2"></span>RESERVAR</a></li>
-                            <li><a href="contact.html"><span class="fa fa-chevron-right me-2"></span>CONTACTO</a></li>
+                            <li><a href="{{url_for('home')}}"><span class="fa fa-chevron-right me-2"></span>INICIO</a></li>
+                            <li><a href="{{url_for('nosotros')}}"><span class="fa fa-chevron-right me-2"></span>NOSOTROS</a></li>
+                            <li><a href="{{url_for('reserva')}}"><span class="fa fa-chevron-right me-2"></span>RESERVAR</a></li>
+                            <li><a href="{{url_for('formulario')}}"><span class="fa fa-chevron-right me-2"></span>CONTACTO</a></li>
                         </ul>
                     </div>
                 </div>
@@ -122,10 +122,9 @@
                         <h2 class="ftco-heading-2">Nuestros datos</h2>
                         <div class="block-23 mb-3">
                             <ul>
-                                <li><span class="icon fa fa-map marker"></span><span class="text">Av. Paseo Colón 850,
-                                        Buenos Aires, Argentina</span></li>
-                                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+54 11
-                                            1234-5678</span></a></li>
+                                <li><span class="icon fa fa-map marker"></span><span class="text">{{info_hotel.dirección.0}}, {{info_hotel.dirección.1}}
+                                       {{info_hotel.dirección.2}}, {{info_hotel.dirección.3}}</span></li>
+                                <li><a href="{{url_for('formulario')}}"><span class="icon fa fa-phone"></span><span class="text">{{info_hotel.telefono.0}}</span></a></li>
                             </ul>
                         </div>
                     </div>
