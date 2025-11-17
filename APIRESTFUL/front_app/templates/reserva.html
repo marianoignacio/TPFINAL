@@ -1,11 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+{%extends "base.html"%}
+
+{% block head %}
+<title>Reservar | Confirmación</title>
+{% endblock %}
+   {% block navbar %}
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">INICIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('nosotros') }}">NOSOTROS</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{url_for('reserva')}}">RESERVA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('formulario')}}">CONTACTO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('registro')}}">REGISTRARSE</a></li>
+{% endblock %}
+{% block body %}
+<section class="hero-wrap hero-wrap-2" style="background-image:url({{ url_for('static', filename='images/salon-1.jpg') }})">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 pt-5 text-center">
+                <h1 class="mb-0 bread">Reservar</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <div class="progreso-reserva">
+        <div class="stepper-box">
+            <div class="stepper-step stepper-active">
+                <div class="stepper-circle">1</div>
+                <div class="stepper-line"></div>
+                <div class="stepper-content">
+                    <div class="stepper-title">Reserva</div>
+                    <div class="stepper-status">En proceso</div>
+                </div>
+            </div>
+
+            <div class="stepper-step stepper-pending">
+                <div class="stepper-circle">2</div>
+                <div class="stepper-line"></div>
+                <div class="stepper-content">
+                    <div class="stepper-title">Pago</div>
+                    <div class="stepper-status">Pendiente</div>
+                </div>
+            </div>
+
+            <div class="stepper-step stepper-pending">
+                <div class="stepper-circle">3</div>
+                <div class="stepper-content">
+                    <div class="stepper-title">Confirmación</div>
+                    <div class="stepper-status">Pendiente</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORMULARIO -->
+    <div class="form-container-reserva">
+        <h3>LOS DATOS DE TU RESERVA</h3>
+        <form class="form-reserva">
+            <div class="form-row-reserva">
+                <label class="label-reserva" for="checkin">Check-in:</label>
+                <input class="input-reserva" type="date" id="checkin" name="checkin" placeholder="DD/MM/YYYY">
+            </div>
+
+            <div class="form-row-reserva">
+                <label class="label-reserva" for="checkout">Check-out:</label>
+                <input class="input-reserva" type="date" id="checkout" name="checkout" placeholder="DD/MM/YYYY">
+            </div>
+
+            <div class="form-row-reserva">
+                <label class="label-reserva" for="habitacion">Habitación:</label>
+                <select class="select-reserva" id="habitacion">
+                    <option>Habitación clasica</option>
+                    <option>Habitación Suite</option>
+                    <option>Habitación familiar</option>
+                    <option>Habitación de lujo</option>
+                    <option>Habitación super de lujo</option>
+                    <option>Habitación superior</option>
+                </select>
+            </div>
+
+            <div class="form-row-reserva">
+                <label class="label-reserva" for="huespedes">Cantidad de Huéspedes:</label>
+                <select class="select-reserva" id="huespedes">
+                    <option>1</option>
+                    <option selected>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                </select>
+            </div>
+
+            <a href="{{ url_for('pago') }}" class="button-reserva" type="submit">CONTINUAR</a>
+        </form>
+    </div>
+
+{%endblock%}
