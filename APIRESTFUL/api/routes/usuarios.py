@@ -60,20 +60,19 @@ def traer_reservas_usuario(id_usuario):
     return jsonify(alumnos)
 
 
-@usuarios_bp.route("/<str:email>", methods=["POST"])
-def crear_usuario(id_usuario):
+@usuarios_bp.route("/<email>", methods=["POST"])
+def crear_usuario(email):
     conn = conectarse_db()
     cursor = conn.cursor(dictionary=True)
     data = request.json
     nombre = data.get("nombre")
-    apelllido = data.get("apelllido")
-    email = data.get("cheemailck_out")
-    contraseña=data.get("contraseña")
+    apellido = data.get("apellido")
+    contrasena=data.get("contrasena")
    
     cursor.execute("""
-                   INSERT INTO usuario (nombre, appellido, contraseña, email, fecha_creacion)
-                   VALUES (%s, %s, %s, %s, DATE())
-                   """, (nombre, apelllido, email, contraseña,))
+    INSERT INTO usuarios (nombre, apellido, contrasena, email, fecha_creacion)
+    VALUES (%s, %s, %s, %s, CURRENT_DATE())
+    """, (nombre, apellido, contrasena, email))
     
     conn.commit()
     cursor.close()
