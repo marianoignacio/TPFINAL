@@ -14,10 +14,6 @@ __pycache__/
 *.sln.docstates
 *.env
 **.venv
-Pipfile
-Pipfile.lock
-.idea/
-
 
 # Distribution / packaging
 .Python
