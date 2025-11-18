@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS reservas (
     check_out DATE,
     huespedes TINYINT,
     monto_total FLOAT,
+    confirmado TINYINT,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
     FOREIGN KEY (id_habitacion) REFERENCES habitaciones(id_habitacion) ON DELETE CASCADE
 );
@@ -46,8 +47,8 @@ INSERT INTO usuarios (nombre, apellido, contrasena, email, fecha_creacion)VALUES
 ('Cerbero', 'Diaz','holamundoi', 'cerbero@gmail.com', '2025-8-12');
 
 INSERT INTO reservas (id_usuario, id_habitacion, check_in, check_out, huespedes, monto_total)VALUES
-('1', '4', '2025-10-12', '2025-10-15', '1', '270'),
-('2', '1', '2025-10-13', '2025-10-17', '1', '1800');
+('1', '4', '2025-10-12', '2025-10-15', '1', '270', '1'),
+('2', '1', '2025-10-13', '2025-10-17', '1', '1800', '0');
 
 
 
