@@ -89,17 +89,24 @@ pwd #Compruebo
 instala_venv(){
 
 #Crea entorno virtual en la carpeta .venv
-sudo apt install python3.12-venv
-mkdir .venv
+sudo apt install python3-venv
 python3 -m venv .venv
 echo_color $VERDE "Se creó el entorno virtual"
 }
 
 instala_flask(){
-pipenv install Flask
+pip install Flask
 pip install requests
 echo_color $VERDE "Se intalo Flask"
 }
+
+
+instala_flaskcors(){
+pip install flask_cors
+
+echo_color $VERDE "Se intalo Flask cors"
+}
+
 
 
 instala_flaskMail(){
@@ -112,6 +119,7 @@ instala_dotenv(){
 pip3 install python-dotenv
 echo_color $VERDE "Se intalo dotenv"
 }
+
 activar_entorno(){
 source .venv/bin/activate
 echo_color $VERDE "SE ACTIVO"
@@ -129,9 +137,19 @@ salir_menu() {
 
 crear_archivo_env(){
 cd
-cd TPFINAL
+cd TPFINAL/APIRESTFUL
+cd front_app
 touch .env
-echo -e "MAIL_SERVER=smtp.gmail.com \nMAIL_PORT=587 \nMAIL_USE_TLS=True \nMAIL_USE_SSL=False \nMAIL_USERNAME=mtbrally51@gmail.com \nMAIL_PASSWORD=wwij bazm genv jlve \nMAIL_DEFAULT_SENDER=mtbrally51@gmail.com" > "$HOME/TPFINAL/.env"
+echo -e "MAIL_SERVER=smtp.gmail.com \nMAIL_PORT=587 \nMAIL_USE_TLS=True \nMAIL_USE_SSL=False \nMAIL_USERNAME=mtbrally51@gmail.com \nMAIL_PASSWORD=wwij bazm genv jlve \nMAIL_DEFAULT_SENDER=mtbrally51@gmail.com" > "$HOME/TPFINAL/APIRESTFUL/front_app/.env"
+echo_color $VERDE "SE CREÓ EL ARCHIVO .env (Front)"
+
+cd
+cd TPFINAL/APIRESTFUL
+cd front_app
+touch .env
+echo -e "DB_HOST=localhost \nDB_USER=root \nDB_PASSWORD= \nDB_NAME=hotel\n#Chicos pongan en DB_PASSWORD la contraseña que tienen para entrar a mysql (sudo mysql -u root -p)" > "$HOME/TPFINAL/APIRESTFUL/api/.env"
+echo_color $VERDE "SE CREÓ EL ARCHIVO .env (Back)"
+
 }
 
 while [[ $salir == 0 ]];
@@ -186,6 +204,7 @@ case $opcion in
 	instala_flask
 	instala_flaskMail
 	instala_dotenv
+	instala_flaskcors
 ;;
 6)
 	crear_archivo_env

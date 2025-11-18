@@ -25,7 +25,7 @@
           <div class="col-md-9 pt-5 text-center">
             <p class="breadcrumbs">
               <span class="me-2"
-                ><a href="index-2.html"
+                ><a href="{{url_for('home')}}"
                   >Inicio<i class="fa fa-chevron-right"></i></a
               ></span>
               <span>Contacto <i class="fa fa-chevron-right"></i></span>
@@ -84,7 +84,7 @@
                         <div class="dbox w-100 d-flex align-items-start">
                           <div class="text">
                             <p>
-                              <span>Dirección:</span> Av Paseo Colon, 850
+                              <span>{{lista_hotel[0]}}:</span> {{info_hotel.dirección.0}}, {{info_hotel.dirección.1}}
                               
                             </p>
                           </div>
@@ -95,8 +95,8 @@
                         <div class="dbox w-100 d-flex align-items-start">
                           <div class="text">
                             <p>
-                              <span>Número:</span>
-                              <a href="tel://(54-11) 528 - 50559">+ (54-11) 528 - 50559</a>
+                              <span>{{lista_hotel[1]}}:</span>
+                              <a href="https://fi.uba.ar/ingresantes/contacto">{{info_hotel.telefono.0}}</a>
                             </p>
                           </div>
                         </div>

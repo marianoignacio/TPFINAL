@@ -5139,7 +5139,8 @@ textarea.form-control {
 
 .testimony-section {
   position: relative;
-  z-index: 0; }
+  z-index: 0; 
+  padding-bottom: 534px;}
   .testimony-section .tns-outer {
     position: relative;
     padding-bottom: 3em !important; }
@@ -6014,4 +6015,17 @@ reserva*/
 .stepper-pending .stepper-status {
     background-color: #f1f5f9;
     color: #64748b;
+}
+#habitacionesCarousel{
+  padding-bottom:50px;
+}
+
+.carousel-control-next{
+  width: 50px;
+  height: 30px;
+}
+
+.carousel-control-prev{
+   width: 50px;
+  height: 30px;
 }

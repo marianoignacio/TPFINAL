@@ -9,9 +9,11 @@ load_dotenv()
 API_BASE = "http://localhost:5000"
 app = Flask(__name__)
 
-diccionario = { "usuario": ["nombre", "habitacion", "fecha"]
-                   ,"reserva":["XX/XX/XXXX",""]
+hotel = { "dirección": ["Av Paseo Colon", "850", "Buenos Aires", "Argentina"]
+                    ,"telefono": ["+ (54-11) 528 - 50559"]
                    }
+
+hotel_lista = list(hotel.keys())
 
 informacion = { "usuario": ["Nombre de la persona", "@gmail.com", "fecha"]
                    ,"reserva":[["XX/XX/XXXX","Habitación de la persona","XX/XX/XXXX","$"],
@@ -40,10 +42,10 @@ def agregar_reserva(id_usuario, id_habitacion, check_in, check_out, huespedes, m
         return True
     return None
 
-def crear_cuenta(email, nombre, apellido, contraseña):
+def crear_cuenta(email, nombre, apellido, contrasena):
     response = requests.post(
         f"{API_BASE}/usuarios/{email}",
-        json={"nombre": nombre, "apellido": apellido, "contraseña": contraseña},
+        json={"nombre": nombre, "apellido": apellido, "contrasena": contrasena},
     )
     if response.status_code == 201:
         return True
@@ -51,7 +53,7 @@ def crear_cuenta(email, nombre, apellido, contraseña):
      
 @app.route('/')
 def home ():
-    return render_template('index.html', info_hotel=diccionario,  info_usuario=informacion)
+    return render_template('index.html', info_hotel=hotel,  info_usuario=informacion)
 
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev_secret_key')
@@ -104,29 +106,41 @@ def formulario():
     except Exception as e:
             print(f"Error enviando mail: {e}")
             flash("Hubo un error al enviar tu mensaje, intenta más tarde")
-    return render_template('contacto.html', info_hotel=diccionario, info_usuario=informacion)
+    return render_template('contacto.html', info_hotel=hotel, info_usuario=informacion, lista_hotel=hotel_lista )
 
 # *3
 @app.errorhandler(404)
 def page_not_found(e):
        mensaje="Error de página"
-       return render_template('error.html',info_hotel=diccionario, msj=mensaje,info_usuario=informacion),404
+       return render_template('error.html',info_hotel=hotel, msj=mensaje,info_usuario=informacion),404
  # *4
 @app.route('/habitaciones')
 def habitaciones ():
-    return render_template('habitaciones.html', info_hotel=diccionario,info_usuario=informacion)
+    return render_template('habitaciones.html', info_hotel=hotel,info_usuario=informacion)
 # *5
 @app.route('/login')
 def login ():
-    return render_template('inicio_sesion.html', info_hotel=diccionario,info_usuario=informacion)
+    return render_template('inicio_sesion.html', info_hotel=hotel,info_usuario=informacion)
 # *6
 @app.route('/nosotros')
 def nosotros ():
-    return render_template('nosotros.html', info_hotel=diccionario,info_usuario=informacion)
+    return render_template('nosotros.html', info_hotel=hotel,info_usuario=informacion)
 # *7
-@app.route('/registro')
+@app.route('/registro', methods=["GET", "POST"])
 def registro ():
-    return render_template('registro.html', info_hotel=diccionario,info_usuario=informacion)
+    if request.method == "POST":
+        nombre = request.form["inputNombre"]
+        apellido = request.form["inputApellido"]
+        contrasena = request.form["inputContrasenia"]
+        email=request.form["inputEmail"]
+        ok = crear_cuenta(email, nombre, apellido, contrasena)
+        if not ok:
+            flash("Error al crear la cuenta", "error")
+            return redirect(url_for("registro"))
+        else:
+            flash("Cuenta creada con éxito", "success")
+            return redirect(url_for("login"))
+    return render_template('registro.html', info_hotel=hotel,info_usuario=informacion)
 # *8
 @app.route('/reserva')
 def reserva ():
@@ -138,7 +152,7 @@ def reserva ():
         "cantidad_huespedes": 2,
         "total_pagado": "$500.00"
     }
-    return render_template('reserva.html', info_reserva=detalles_de_reversa, info_hotel=diccionario, info_usuario=informacion)
+    return render_template('reserva.html', info_reserva=detalles_de_reversa, info_hotel=hotel, info_usuario=informacion)
 
     # *9
 @app.route('/pago')
@@ -151,12 +165,12 @@ def pago ():
         "cantidad_huespedes": 2,
         "total_pagado": "$500.00"
     }
-    return render_template('pago.html', info_reserva=detalles_de_reversa, info_hotel=diccionario, info_usuario=informacion)
+    return render_template('pago.html', info_reserva=detalles_de_reversa, info_hotel=hotel, info_usuario=informacion)
 
     # *10
 @app.route('/confirmacion')
 def confirmacion ():
-    return render_template('confirmacion.html', info_hotel=diccionario, info_usuario=informacion)
+    return render_template('confirmacion.html', info_hotel=hotel, info_usuario=informacion)
 
 if __name__== '__main__':
         app.run("localhost", port=8088, debug=True)
