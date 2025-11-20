@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS reservas (
     FOREIGN KEY (id_habitacion) REFERENCES habitaciones(id_habitacion) ON DELETE CASCADE
 );
 
-INSERT INTO habitaciones (nombre, capacidad, descripcion, servicios, precio_noche)VALUES
+INSERT INTO habitaciones (nombre, capacidad, descripcion, servicios, precio_noche, camas, tamaño, vistas)VALUES
 ('Habitacion Suite', '10', 'Amplios ambientes separados con estilo y privacidad para experiencias únicas', '["Wi-Fi", "Restaurante", "Piscina", "Spa", "Aire Acondicionado", "Toallas"]', '450', '5', '70','mar'),
 ('Habitacion familiar', '5', 'Espacio amplio y cómodo para familias que buscan descanso y diversión', '["Wi-Fi", "Toallas"]', '120','3', '30','ciudad'),
 ('Habitacion super de lujo', '7', 'Máximo confort con vistas exclusivas y servicios de categoría internacional.', '["Wi-Fi", "Restaurante", "Piscina", "Aire Acondicionado", "Toallas"]', '260','4','60','mar'),
@@ -46,7 +46,7 @@ INSERT INTO usuarios (nombre, apellido, contrasena, email, fecha_creacion)VALUES
 ('Dylan', 'Ruiz', 'pepito123', 'druiz@fi.uba.ar', '2025-8-13'),
 ('Cerbero', 'Diaz','holamundoi', 'cerbero@gmail.com', '2025-8-12');
 
-INSERT INTO reservas (id_usuario, id_habitacion, check_in, check_out, huespedes, monto_total)VALUES
+INSERT INTO reservas (id_usuario, id_habitacion, check_in, check_out, huespedes, monto_total, confirmado)VALUES
 ('1', '4', '2025-10-12', '2025-10-15', '1', '270', '1'),
 ('2', '1', '2025-10-13', '2025-10-17', '1', '1800', '0');
 

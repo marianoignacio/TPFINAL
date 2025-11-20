@@ -38,7 +38,7 @@ def añadir_reserva_usuario(id_usuario):
     
     cursor.execute("""
                    INSERT INTO reservas (id_usuario, id_habitacion, check_in, check_out, huespedes, DATEDIFF(check_in, check_out)*monto_noche)
-                   VALUES (%s, %s, %s, %s, %s, %s,)
+                   VALUES (%s, %s, %s, %s, %s, %s,%s)
                    """, (id_usuario, id_habitacion, check_in, check_out, huespedes, monto_noche))
     
     conn.commit()
