@@ -67,18 +67,26 @@
         <div class="col-lg-4 sidebar ps-md-4">
           <div class="sidebar-box">
             <h3>Servicios de Habitación</h3>
-            <div class="d-md-flex">
-              <ul class="categories me-md-4">
-                <li><a href="#">Wifi</a></li>
-                <li><a href="#">Restaurante</a></li>
-                <li><a href="#">Aire Acondicionado</a></li>
-              </ul>
-              <ul class="categories ms-md-4">
-                <li><a href="#">SPA</a></li>
-                <li><a href="#">60" TV</a></li>
-                <li><a href="#">Pileta</a></li>
-              </ul>
-            </div>
+              {% set mitad = (habitacion.servicios|length // 2) %}
+
+              <div class="d-md-flex">
+
+                  <!-- Primera columna -->
+                  <ul class="categories me-md-4">
+                      {% for servicio in habitacion.servicios[:mitad] %}
+                          <li><a href="#">{{ servicio }}</a></li>
+                      {% endfor %}
+                  </ul>
+
+                  <!-- Segunda columna -->
+                  <ul class="categories ms-md-4">
+                      {% for servicio in habitacion.servicios[mitad:] %}
+                          <li><a href="#">{{ servicio }}</a></li>
+                      {% endfor %}
+                  </ul>
+
+              </div>
+
           </div>
           
           <div class="sidebar-box">

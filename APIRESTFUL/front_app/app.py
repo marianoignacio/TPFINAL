@@ -117,6 +117,18 @@ def page_not_found(e):
 @app.route('/habitaciones')
 def habitaciones ():
     return render_template('habitaciones.html', info_hotel=hotel,info_usuario=informacion)
+
+@app.route('/habitaciones/<int:id_habitacion>')
+def detalles_habitacion(id_habitacion):
+    response = requests.get(f"{API_BASE}/habitaciones/{id_habitacion}")
+    print(response.status_code)
+    print(response.text)  # <---- IMPORTANTE
+    if response.status_code == 404:
+        return render_template("habitaciones.html", error="Habitación no encontrada")
+    habitacion = response.json()
+    return render_template("habitaciones.html", habitacion=habitacion,info_hotel=hotel,info_usuario=informacion)
+
+
 # *5
 @app.route('/login')
 def login ():
