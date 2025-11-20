@@ -6,7 +6,7 @@ import os
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 load_dotenv()
-API_BASE = "http://localhost:5000"
+API_BASE = "http://localhost:5005"
 app = Flask(__name__)
 
 hotel = { "dirección": ["Av Paseo Colon", "850", "Buenos Aires", "Argentina"]
@@ -185,4 +185,4 @@ def confirmacion ():
     return render_template('confirmacion.html', info_hotel=hotel, info_usuario=informacion)
 
 if __name__== '__main__':
-        app.run("localhost", port=8088, debug=True)
+        app.run("localhost", port=8080, debug=True)

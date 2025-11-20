@@ -11,11 +11,13 @@ with open(sql_path, "r") as f:
 host = os.getenv("DB_HOST")
 user = os.getenv("DB_USER")
 password = os.getenv("DB_PASSWORD")
+port = os.getenv('DB_PORT')
 
 conn = mysql.connector.connect(
     host=host,
     user=user,
     password=password,
+    port=port,
 
 )
 
