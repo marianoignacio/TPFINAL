@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, flash, url_for, jsonify
+from flask import Flask, render_template, request, redirect, flash, url_for, jsonify, session
 
 import json
 import requests
@@ -8,21 +8,15 @@ from dotenv import load_dotenv
 load_dotenv()
 API_BASE = "http://localhost:5005"
 app = Flask(__name__)
+app.secret_key = "IngeneniandoElSoftware"
 
 hotel = { "dirección": ["Av Paseo Colon", "850", "Buenos Aires", "Argentina"]
                     ,"telefono": ["+ (54-11) 528 - 50559"]
                    }
 
 hotel_lista = list(hotel.keys())
-
-informacion = { "usuario": ["Nombre de la persona", "@gmail.com", "fecha"]
-                   ,"reserva":[["XX/XX/XXXX","Habitación de la persona","XX/XX/XXXX","$"],
-                               ["XX/XX/XXXX","Habitación de la persona","XX/XX/XXXX","$"],
-                               ["XX/XX/XXXX","Habitación de la persona","XX/XX/XXXX","$200"]]
-                   }
-
-def obtener_usuario(id_usuario):
-    response = requests.get(f"{API_BASE}/usuarios/{id_usuario}")
+def obtener_usuario(email):
+    response = requests.get(f"{API_BASE}/usuarios/{email}")
     if response.status_code == 200:
         return response.json()
     return None
@@ -51,9 +45,27 @@ def crear_cuenta(email, nombre, apellido, contrasena):
         return True
     return None
      
+def inicializar_sesion():
+    nombre=session["nombre"]
+    apellido =session["apellido"]
+    email=session["email"]
+    nombre_completo= nombre +" " +apellido
+    fecha=session["fecha_creacion"]
+    informacion={"usuario":[nombre_completo, email, fecha], "reserva":[]}
+    return informacion
+
+@app.route("/logout")
+def cerrar_sesion():
+    session.clear()
+    return redirect(url_for("home"))
+
 @app.route('/')
 def home ():
-    return render_template('index.html', info_hotel=hotel,  info_usuario=informacion)
+    if "nombre" in session:
+        informacion=inicializar_sesion()
+        return render_template('index.html', info_hotel=hotel,  info_usuario=informacion)
+    else:
+        return render_template('index.html', info_hotel=hotel, info_usuario=None)
 
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev_secret_key')
@@ -106,7 +118,10 @@ def formulario():
     except Exception as e:
             print(f"Error enviando mail: {e}")
             flash("Hubo un error al enviar tu mensaje, intenta más tarde")
-    return render_template('contacto.html', info_hotel=hotel, info_usuario=informacion, lista_hotel=hotel_lista )
+    if "nombre" in session:
+        informacion=inicializar_sesion()
+        return render_template('contacto.html', info_hotel=hotel, info_usuario=informacion, lista_hotel=hotel_lista )
+    return render_template('contacto.html', info_hotel=hotel, info_usuario=None, lista_hotel=hotel_lista )
 
 # *3
 @app.errorhandler(404)
@@ -116,7 +131,11 @@ def page_not_found(e):
  # *4
 @app.route('/habitaciones')
 def habitaciones ():
-    return render_template('habitaciones.html', info_hotel=hotel,info_usuario=informacion)
+    if "nombre" in session:
+        informacion=inicializar_sesion()
+        return render_template('habitaciones.html', info_hotel=hotel,info_usuario=informacion)
+
+    return render_template('habitaciones.html', info_hotel=hotel,info_usuario=None)
 
 @app.route('/habitaciones/<int:id_habitacion>')
 def detalles_habitacion(id_habitacion):
@@ -130,13 +149,36 @@ def detalles_habitacion(id_habitacion):
 
 
 # *5
-@app.route('/login')
+@app.route('/login', methods=["GET", "POST"])
 def login ():
-    return render_template('inicio_sesion.html', info_hotel=hotel,info_usuario=informacion)
+    if request.method == "POST":
+        contrasena = request.form["inputContrasenia"]
+        email=request.form["inputEmail"]
+        usuario = obtener_usuario(email)
+        if not usuario:
+            flash("No existe un usuario con ese mail")
+            return redirect(url_for("registro"))
+        else:
+             if contrasena != usuario["contrasena"]:
+                flash("No existe un usuario con esa contraseña")
+                return redirect(url_for("login"))
+             session["nombre"] = usuario["nombre"]
+             session["email"] = usuario["email"]
+             session["apellido"] = usuario["apellido"]
+             session["fecha_creacion"] = usuario["fecha_creacion"]
+             session["id_usuario"] = usuario["id_usuario"]
+             return redirect(url_for("home"))
+    if "nombre" in session:
+        informacion=inicializar_sesion()
+        return render_template('inicio_sesion.html', info_hotel=hotel,info_usuario=informacion)
+    return render_template('inicio_sesion.html', info_hotel=hotel,info_usuario=None)
 # *6
 @app.route('/nosotros')
 def nosotros ():
-    return render_template('nosotros.html', info_hotel=hotel,info_usuario=informacion)
+    if "nombre" in session:
+        informacion=inicializar_sesion()
+        return render_template('nosotros.html', info_hotel=hotel, info_usuario=informacion)
+    return render_template('nosotros.html', info_hotel=hotel, info_usuario=None)
 # *7
 @app.route('/registro', methods=["GET", "POST"])
 def registro ():
@@ -145,14 +187,17 @@ def registro ():
         apellido = request.form["inputApellido"]
         contrasena = request.form["inputContrasenia"]
         email=request.form["inputEmail"]
-        ok = crear_cuenta(email, nombre, apellido, contrasena)
-        if not ok:
+        cuenta = crear_cuenta(email, nombre, apellido, contrasena)
+        if not cuenta:
             flash("Error al crear la cuenta", "error")
             return redirect(url_for("registro"))
         else:
             flash("Cuenta creada con éxito", "success")
             return redirect(url_for("login"))
-    return render_template('registro.html', info_hotel=hotel,info_usuario=informacion)
+    if "nombre" in session:
+        informacion=inicializar_sesion()
+        return render_template('registro.html', info_hotel=hotel,info_usuario=informacion)       
+    return render_template('registro.html', info_hotel=hotel,info_usuario=None)
 # *8
 @app.route('/reserva')
 def reserva ():
@@ -164,7 +209,10 @@ def reserva ():
         "cantidad_huespedes": 2,
         "total_pagado": "$500.00"
     }
-    return render_template('reserva.html', info_reserva=detalles_de_reversa, info_hotel=hotel, info_usuario=informacion)
+    if "nombre" in session:
+        informacion=inicializar_sesion()
+        return render_template('reserva.html', info_hotel=hotel,info_usuario=informacion)       
+    return render_template('reserva.html', info_reserva=detalles_de_reversa, info_hotel=hotel, info_usuario=None)
 
     # *9
 @app.route('/pago')
@@ -177,12 +225,19 @@ def pago ():
         "cantidad_huespedes": 2,
         "total_pagado": "$500.00"
     }
-    return render_template('pago.html', info_reserva=detalles_de_reversa, info_hotel=hotel, info_usuario=informacion)
+    if "nombre" in session:
+        informacion=inicializar_sesion()
+        return render_template('pago.html', info_reserva=detalles_de_reversa, info_hotel=hotel, info_usuario=informacion)
+
+    return render_template('pago.html', info_reserva=detalles_de_reversa, info_hotel=hotel, info_usuario=None)
 
     # *10
 @app.route('/confirmacion')
 def confirmacion ():
-    return render_template('confirmacion.html', info_hotel=hotel, info_usuario=informacion)
+    if "nombre" in session:
+        informacion=inicializar_sesion()
+        return render_template('confirmacion.html', info_hotel=hotel, info_usuario=informacion)
+    return render_template('confirmacion.html', info_hotel=hotel, info_usuario=None)
 
 if __name__== '__main__':
         app.run("localhost", port=8080, debug=True)

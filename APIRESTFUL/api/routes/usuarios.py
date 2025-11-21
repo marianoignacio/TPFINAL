@@ -13,11 +13,11 @@ def traer_usuarios():
     conn.close()
     return jsonify(usuarios)
 
-@usuarios_bp.route("/<int:id_usuario>")
-def traer_usuario(id_usuario):
+@usuarios_bp.route("/<email>")
+def traer_usuario(email):
     conn = conectarse_db()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM usuarios WHERE id_usuario = %s", (id_usuario,))
+    cursor.execute("SELECT * FROM usuarios WHERE email = %s", (email,))
     usuario = cursor.fetchone()
     cursor.close()
     conn.close()

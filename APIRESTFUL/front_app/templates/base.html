@@ -156,24 +156,28 @@
       <div class="perfil-info">
         <div>
             <h5 class="h5-perfil" >Nombre Completo:</h5>
-
+  {% if info_usuario %}
             <p>{{info_usuario.usuario.0}}</p>
+        {% endif %}
           </div>
         <div>
            <h5 class="h5-perfil">Mail:</h5>
-
+  {% if info_usuario %}
        <p>{{info_usuario.usuario.1}}</p>
+    {% endif %}
           </div>
         <div>
             <h5 class="h5-perfil">Fecha de Inscripción:</h5>
-            
+  {% if info_usuario %}
              <p>{{info_usuario.usuario.2}}</p>
+    {% endif %}
              
         </div>        
       </div>
     </div>
 
     <div class="reserva-bottom">
+{% if info_usuario %}
 {% for i in range(info_usuario.reserva | length) %}
 <br>
      <h3 style="text-align: center;"># {{i+1}}</h3>
@@ -200,8 +204,9 @@
           <p id="finReserva">{{ info_usuario.reserva[i][3]  }}</p>
         </div>
       </div>
-
+          
 {% endfor %}
+{% endif %}
     </div>
     
   </div>
