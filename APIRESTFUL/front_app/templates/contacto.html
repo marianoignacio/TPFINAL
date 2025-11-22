@@ -1,21 +1,77 @@
- {% extends "base.html" %}
-
-{% block head %}
-       <title>Contacto</title>
-{% endblock %}
-    {% block navbar %}
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('nosotros') }}">NOSOTROS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{url_for('reserva')}}">RESERVA</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="{{url_for('formulario')}}">CONTACTO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{url_for('registro')}}">REGISTRARSE</a></li>
-{% endblock %}
-
-{%block body%}
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Mirrored from preview.colorlib.com/theme/unwind/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 03 Oct 2021 11:40:08 GMT -->
+  <head>
+    <title>Contacto</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&amp;family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/all.css')}}"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg ftco-navbar-light">
+      <div class="container-xl">
+        <a class="navbar-brand align-items-center" href="index-2.html">
+          <span class=""> <small>Hotel</small></span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="fa fa-bars"></span> Menu
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="nosotros.html">Nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="habitaciones.html">Habitaciones</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="resto-bar.html">Resto &amp; Bar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="contacto.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <section
       class="hero-wrap hero-wrap-2"
       style="
-        background-image: url({{url_for('static', filename='images/salon-1.jpg')}})";
+        background-image: url(../static/images/xbg_3.jpg.pagespeed.ic.0AiuSxYrJD.jpg);
+      "
     >
       <div class="overlay"></div>
       <div class="container">
@@ -25,7 +81,7 @@
           <div class="col-md-9 pt-5 text-center">
             <p class="breadcrumbs">
               <span class="me-2"
-                ><a href="{{url_for('home')}}"
+                ><a href="index-2.html"
                   >Inicio<i class="fa fa-chevron-right"></i></a
               ></span>
               <span>Contacto <i class="fa fa-chevron-right"></i></span>
@@ -35,7 +91,6 @@
         </div>
       </div>
     </section>
-
     <section class="ftco-section bg-light">
       <div class="container">
         <div class="row no-gutters justify-content-center">
@@ -48,7 +103,8 @@
                     <p class="mb-4">Si tuvo algún problema puede escribirnos</p>
 
                     
-                    <form id="contactForm" name="contactForm" class="contactForm" action="{{ url_for('formulario') }}" method="POST" data-sb-form-api-token="API_TOKEN">
+<!-- FORMULARIO -->
+                    <form id="contactForm" name="contactForm" class="contactForm">
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
@@ -72,31 +128,57 @@
                         </div>
                         <div class="col-md-12">
                           <div class="form-group">
-                            <button   type="submit"  class="btn btn-primary" > Enviar </button>
+                            <input   type="submit"   value="Enviar"   class="btn btn-primary" />
+                            <div class="submitting"></div>
                           </div>
                         </div>
                       </div>
                     </form>
 
+                    <!-- <div class="w-100 social-media mt-5">
+                      <h3>SEGUINOS</h3>
+                      <p>
+                        <a href="#">Facebook</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">Dribbble</a>
+                      </p>
+                    </div> -->
                     <br>
               <div class="row mb-4">
                       <div class="col-md-4">
                         <div class="dbox w-100 d-flex align-items-start">
                           <div class="text">
                             <p>
-                              <span>{{lista_hotel[0]}}:</span> {{info_hotel.dirección.0}}, {{info_hotel.dirección.1}}
-                              
+                              <span>Dirección:</span> Ruta Panamericana ramal
+                              Pilar KM49.3 ( Hotel)
                             </p>
                           </div>
                         </div>
                       </div>
-
                       <div class="col-md-4">
                         <div class="dbox w-100 d-flex align-items-start">
                           <div class="text">
                             <p>
-                              <span>{{lista_hotel[1]}}:</span>
-                              <a href="https://fi.uba.ar/ingresantes/contacto">{{info_hotel.telefono.0}}</a>
+                              <span>Mail:</span>
+                              <a
+                                href="https://preview.colorlib.com/cdn-cgi/l/email-protection#721b1c141d320b1d0700011b06175c111d1f"
+                                ><span
+                                  class="__cf_email__"
+                                  data-cfemail="563f383039162f392324253f22337835393b"
+                                  >[mail&#160;protejido]</span
+                                ></a
+                              >
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="dbox w-100 d-flex align-items-start">
+                          <div class="text">
+                            <p>
+                              <span>Número:</span>
+                              <a href="tel://1234567920">+ 1235 2355 98</a>
                             </p>
                           </div>
                         </div>
@@ -104,11 +186,10 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="col-lg-6 d-flex align-items-stretch">
                   <div id="map" class="bg-white">
-         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.4511221198973!2d-58.37123312362294!3d-34.61803847294914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a334d48829924f%3A0xbd27b187676c2491!2sAv.%20Paseo%20Col%C3%B3n%2C%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires!5e0!3m2!1sen!2sar!4v1762900628710!5m2!1sen!2sar" width="645" height="550" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-           </div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.342081953416!2d-58.36905255605055!3d-34.62079469311994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca98f0058631%3A0x98688c83fc192f2e!2sUBA%2C%20Facultad%20de%20Ingenier%C3%ADa%20-%20Sede%20Paseo%20Col%C3%B3n!5e0!3m2!1ses!2sar!4v1762238160626!5m2!1ses!2sar" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  </div>
                   
                 </div>
               </div>
@@ -118,4 +199,235 @@
       </div>
     </section>
 
-{% endblock %}
+    <!-- FOOTER -->
+    <footer class="ftco-footer">
+      <div class="container-xl">
+        <div class="row mb-5 pb-5 justify-content-between">
+          <div class="col-md-6 col-lg">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2 logo d-flex">
+                <a class="navbar-brand align-items-center" href="index-2.html">
+                  <span class="">Unwind <small>Hotel Booking</small></span>
+                </a>
+              </h2>
+              <p>
+                A small river named Duden flows by their place and supplies it
+                with the necessary regelialia.
+              </p>
+              <ul class="ftco-footer-social list-unstyled mt-2">
+                <li>
+                  <a href="#"><span class="fa fa-twitter"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="fa fa-facebook"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="fa fa-instagram"></span></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Services</h2>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="ftco-footer-widget mb-4">
+                  <ul class="list-unstyled">
+                    <li>
+                      <a href="#"
+                        ><span class="fa fa-chevron-right me-2"></span>Free
+                        Wifi</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><span class="fa fa-chevron-right me-2"></span>Easy
+                        Booking</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><span class="fa fa-chevron-right me-2"></span
+                        >Restaurant</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><span class="fa fa-chevron-right me-2"></span>Swimming
+                        Pool</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="ftco-footer-widget mb-4">
+                  <ul class="list-unstyled">
+                    <li>
+                      <a href="#"
+                        ><span class="fa fa-chevron-right me-2"></span>Beauty
+                        &amp; Health</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><span class="fa fa-chevron-right me-2"></span>60"
+                        Flatscreen TV</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><span class="fa fa-chevron-right me-2"></span>Cold
+                        Aircondition</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><span class="fa fa-chevron-right me-2"></span>Help
+                        &amp; Support</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-2">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Quick Links</h2>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#"
+                    ><span class="fa fa-chevron-right me-2"></span>Home</a
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    ><span class="fa fa-chevron-right me-2"></span>About</a
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    ><span class="fa fa-chevron-right me-2"></span>Rooms</a
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    ><span class="fa fa-chevron-right me-2"></span>Resto &amp;
+                    Bar</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Have a Questions?</h2>
+              <div class="block-23 mb-3">
+                <ul>
+                  <li>
+                    <span class="icon fa fa-map marker"></span
+                    ><span class="text"
+                      >203 Fake St. Mountain View, San Francisco, California,
+                      USA</span
+                    >
+                  </li>
+                  <li>
+                    <a href="#"
+                      ><span class="icon fa fa-phone"></span
+                      ><span class="text">+2 392 3929 210</span></a
+                    >
+                  </li>
+                  <li>
+                    <a href="#"
+                      ><span class="icon fa fa-paper-plane pr-4"></span
+                      ><span class="text"
+                        ><span
+                          class="__cf_email__"
+                          data-cfemail="1e777078715e67716b6c7a71737f7770307d7173"
+                          >[email&#160;protected]</span
+                        ></span
+                      ></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid px-0 py-5 bg-darken">
+        <div class="container-xl">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <p
+                class="mb-0"
+                style="color: rgba(255, 255, 255, 0.5); font-size: 13px"
+              >
+                Copyright &copy;
+                <script
+                  data-cfasync="false"
+                  src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+                ></script>
+                <script>
+                  document.write(new Date().getFullYear());
+                </script>
+                All rights reserved | This template is made with
+                <i class="fa fa-heart color-danger" aria-hidden="true"></i> by
+                <a
+                  href="https://colorlib.com/"
+                  target="_blank"
+                  rel="nofollow noopener"
+                  >Colorlib</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/tiny-slider.js"></script>
+    <script src="js/glightbox.min.js%2baos.js.pagespeed.jc.gNemz1ctce.js"></script>
+    <script>
+      eval(mod_pagespeed_HTRluDb_jS);
+    </script>
+    <script>
+      eval(mod_pagespeed_4HfeNGdLlq);
+    </script>
+    <script src="js/datepicker.min.js%2bgoogle-map.js%2bmain.js.pagespeed.jc.XiV_3kbmz-.js"></script>
+    <script>
+      eval(mod_pagespeed_k76nz7Okp_);
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&amp;sensor=false"></script>
+    <script>
+      eval(mod_pagespeed_mKCMGOt_Ci);
+    </script>
+    <script>
+      eval(mod_pagespeed_VA6WPbHwQJ);
+    </script>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-23581568-13");
+    </script>
+    <script
+      defer
+      src="../../../static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"rayId":"6985da7e5d154f87","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.9.0","si":100}'
+    ></script>
+  </body>
+
+  <!-- Mirrored from preview.colorlib.com/theme/unwind/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 03 Oct 2021 11:40:08 GMT -->
+</html>
