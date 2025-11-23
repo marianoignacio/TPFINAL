@@ -187,7 +187,7 @@ def login ():
         informacion=inicializar_sesion()
         return render_template('inicio_sesion.html', info_hotel=hotel,info_usuario=informacion)
     return render_template('inicio_sesion.html', info_hotel=hotel,info_usuario=None)
-# *6i
+# *6
 @app.route('/nosotros')
 def nosotros ():
     if "nombre" in session:
