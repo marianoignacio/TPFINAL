@@ -17,7 +17,6 @@ __pycache__/
 Pipfile
 Pipfile.lock
 .idea/
-db_diagrama_er.jpeg
 
 
 # Distribución / empaquetado

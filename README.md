@@ -81,39 +81,39 @@ A continuación se listan específicamente los avances realizados en cada sprint
 Tabla: **reservas**
 
 | Campo         | Tipo    | Not Null | AI | Key | Descripción                       |
-|---------------|---------|---------:|:--:|:---:|-----------------------------------|
-| id_reserva    | int     |       Sí | Sí | PK  | Identificador único de la reserva |
-| id_usuario    | int     |       Sí | No | FK  | FK → usuarios.id_usuario          |
-| id_habitacion | int     |       Sí | No | FK  | FK → habitaciones.id_habitacion   |
-| check_in      | date    |       Sí | No |     | Fecha de inicio (YYYY/MM/DD)      |
-| check_out     | date    |       Sí | No |     | Fecha de fin (YYYY/MM/DD)         |
-| huespedes     | tinyint |       Sí | No |     | Cantidad de huéspedes             |
-| monto_total   | float   |       Sí | No |     | Monto calculado de la reserva     |
+|---------------|---------|:--------:|:--:|:---:|-----------------------------------|
+| id_reserva    | int     |    Sí    | Sí | PK  | Identificador único de la reserva |
+| id_usuario    | int     |    Sí    | No | FK  | FK → usuarios.id_usuario          |
+| id_habitacion | int     |    Sí    | No | FK  | FK → habitaciones.id_habitacion   |
+| check_in      | date    |    Sí    | No |     | Fecha de inicio (YYYY/MM/DD)      |
+| check_out     | date    |    Sí    | No |     | Fecha de fin (YYYY/MM/DD)         |
+| huespedes     | tinyint |    Sí    | No |     | Cantidad de huéspedes             |
+| monto_total   | float   |    Sí    | No |     | Monto calculado de la reserva     |
 
 Tabla: **usuarios**
 
 | Campo          | Tipo         | Not Null | AI | Key | Descripción                                  |
-|----------------|--------------|---------:|:--:|:---:|----------------------------------------------|
-| id_usuario     | int          |       Sí | Sí | PK  | Identificador único                          |
-| nombre         | varchar(255) |       Sí | No |     | Nombre del usuario                           |
-| apellido       | varchar(255) |       Sí | No |     | Apellido                                     |
-| contrasenia    | varchar(255) |       Sí | No |     | Contraseña hasheada (SHA-256)                |
-| email          | varchar(255) |       Sí | No | UNI | Email único                                  |
-| fecha_creacion | timestamp    |       Sí | No |     | Fecha/hora de creación (YYYY/MM/DD HH:MM:SS) |
+|----------------|--------------|:--------:|:--:|:---:|----------------------------------------------|
+| id_usuario     | int          |    Sí    | Sí | PK  | Identificador único                          |
+| nombre         | varchar(255) |    Sí    | No |     | Nombre del usuario                           |
+| apellido       | varchar(255) |    Sí    | No |     | Apellido                                     |
+| contrasenia    | varchar(255) |    Sí    | No |     | Contraseña hasheada (SHA-256)                |
+| email          | varchar(255) |    Sí    | No | UNI | Email único                                  |
+| fecha_creacion | timestamp    |    Sí    | No |     | Fecha/hora de creación (YYYY/MM/DD HH:MM:SS) |
 
 Tabla: **habitaciones**
 
 | Campo         | Tipo         | Not Null | AI | Key | Descripción                          |
-|---------------|--------------|---------:|:--:|:---:|--------------------------------------|
-| id_habitacion | int          |       Sí | Sí | PK  | Identificador de habitación          |
-| nombre        | varchar(255) |       Sí | No | UNI | Nombre único (family, classic, etc.) |
-| capacidad     | tinyint      |       Sí | No |     | Capacidad máxima (≤10)               |
-| descripcion   | varchar(255) |       Sí | No |     | Descripción y amenities              |
-| servicios     | varchar(255) |       Sí | No |     | Lista/JSON de servicios              |
-| tamanio       | tinyint      |       Sí | No |     | M² de la habitación                  |
-| camas         | tinyint      |       Sí | No |     | Cantidad de camas                    |
-| vista         | varchar(50)  |       Sí | No |     | Descripción de la vista              |
-| precio_noche  | float        |       Sí | No |     | Precio por noche                     |
+|---------------|--------------|:--------:|:--:|:---:|--------------------------------------|
+| id_habitacion | int          |    Sí    | Sí | PK  | Identificador de habitación          |
+| nombre        | varchar(255) |    Sí    | No | UNI | Nombre único (family, classic, etc.) |
+| capacidad     | tinyint      |    Sí    | No |     | Capacidad máxima (≤10)               |
+| descripcion   | varchar(255) |    Sí    | No |     | Descripción y amenities              |
+| servicios     | varchar(255) |    Sí    | No |     | Lista/JSON de servicios              |
+| tamanio       | tinyint      |    Sí    | No |     | M² de la habitación                  |
+| camas         | tinyint      |    Sí    | No |     | Cantidad de camas                    |
+| vista         | varchar(50)  |    Sí    | No |     | Descripción de la vista              |
+| precio_noche  | float        |    Sí    | No |     | Precio por noche                     |
 
 * Endpoints definidos:
 
@@ -134,7 +134,7 @@ Tabla: **habitaciones**
 | DELETE | `/habitaciones/<id_habitacion>`   | Elimina habitación          |      ❌       |
 | GET    | `/reservas`                       | Trae todas las reservas     |      ❌       |
 | GET    | `/reservas/<id_reserva>`          | Trae reserva por id         |      ✅       |
-| PUT    | `/reservas/<id_reserva>`          | Actualiza reserva           |      ❌       |
+| PUT    | `/reservas/<id_reserva>`          | Actualiza reserva           |      ✅       |
 | DELETE | `/reservas/<id_reserva>`          | Elimina reserva             |      ❌       |
 
 
@@ -142,16 +142,18 @@ Tabla: **habitaciones**
 * Organización de presentaciones para el orden de oratoria para reuniones de presentación y reparto equitativo de temas.
 * Completar el desarrollo de endpoints restantes para permitir la integración real con el frontend.
 * Se decidió integrar Flask-Session para que el inicio de sesión del usuario persista entre vistas.
-* CAmbios decididos:
-  * Modularizar vistas con base.html y Jinja para unificar navbar y footer. 
+* Cambios decididos:
+  * Modularizar vistas con `base.html` y Jinja para unificar navbar y footer. 
   * Implementar llamadas desde las vistas a los endpoints del backend para requerimientos de inicio de sesión, registro, consulta de habitaciones y creación de reservas. 
   * Implementar Flask-Mail para envío de confirmación/recibos de reserva al usuario.
 * Tareas de pulido:
   * Revisión de enlaces y rutas en las vistas. 
   * Finalizar endpoints en Python y pruebas de integración. 
-  * Reparar carousel en habitacion.html, indicadores de vista activa en navbar, y dinamización de elementos.
+  * Reparar carousel en `habitacion.html`, indicadores de vista activa en navbar, y dinamización de elementos.
 
-Tecnología Utilizada
+___
+
+#### Tecnología utilizada
 * HTML, CSS, JavaScript (desarrollo y diseño de las vistas)
 * Flask (frontend y backend)
 * Jinja (modularización del código)
@@ -163,25 +165,8 @@ Tecnología Utilizada
 * GitHub Projects (tablero Kanban y gestión del Backlog)
 * Discord (comunicación interna del equipo)
 
-
-## Tecnología utilizada
-
-* **Python**
-* **Flask** (servidor backend, ruteo, controladores)
-* **Flask-Session** (persistencia de sesión)
-* **Flask-Mail** (envío de correos en flujos de confirmación)
-* **Jinja2** (motor de plantillas para vistas HTML)
-* **HTML5 / CSS3 / JavaScript** (estructura, estilos y comportamiento del frontend)
-* **Figma** (diseño de mockups y prototipos visuales)
-* **Canva** (bocetos iniciales de la interfaz)
-* **MySQL / MariaDB** (base de datos relacional)
-* **GitHub** (gestión de repositorio, issues, ramas y versionado)
-* **GitHub Projects** (tablero Kanban y gestión del backlog)
-* **Swagger / OpenAPI** (documentación de endpoints)
-* **Discord** (comunicación interna del equipo)
-
 ---
 
-## Conclusiones
+#### Conclusiones
 
 Se logró desarrollar una aplicación web de hotelería con backend, base de datos y vistas. El trabajo por sprints permitió organizar las tareas y a los integrantes de forma semanal, teniendo siempre como enfoque la entrega-valor. A pesar de algunas dificultades con GitHub (principalmente en el manejo de ramas y resolución de conflictos) el equipo logró establecer un flujo de trabajo ordenado y colaborativo. La metodología adoptada favoreció el orden y permitió resolver problemas de forma ágil, pudiendo abarcar a tiempo los cambios sugeridos por el tutor o por los propios integrantes.
