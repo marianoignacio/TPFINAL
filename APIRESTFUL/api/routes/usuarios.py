@@ -34,30 +34,30 @@ def añadir_reserva_usuario(id_usuario):
     check_in = data.get("check_in")
     check_out = data.get("check_out")
     huespedes=data.get("huespedes")
-    monto_noche= data.get("monto_noche")
-    
+    cursor.execute("SELECT precio_noche FROM habitaciones WHERE id_habitacion = %s", (id_habitacion,))
+    monto_noche = cursor.fetchone()["precio_noche"]
     cursor.execute("""
-                   INSERT INTO reservas (id_usuario, id_habitacion, check_in, check_out, huespedes, DATEDIFF(check_in, check_out)*monto_noche)
-                   VALUES (%s, %s, %s, %s, %s, %s,%s)
-                   """, (id_usuario, id_habitacion, check_in, check_out, huespedes, monto_noche))
-    
+                   INSERT INTO reservas (id_usuario, id_habitacion, check_in, check_out, huespedes, monto_total, confirmado)
+                   VALUES (%s, %s, %s, %s, %s, DATEDIFF(%s, %s)*%s, 0)
+                   """, (id_usuario, id_habitacion, check_in, check_out, huespedes,check_out,check_in, monto_noche))
+    nuevo_id = cursor.lastrowid
     conn.commit()
     cursor.close()
     conn.close()
-    return ("Reserva agregada correctamente", 201)
+    return {"mensaje": "Reserva creada", "id_reserva": nuevo_id}, 201
 
 @usuarios_bp.route("/<int:id_usuario>/reservas")
 def traer_reservas_usuario(id_usuario):
     conn = conectarse_db()
     cursor = conn.cursor(dictionary=True)
     cursor.execute(
-        """SELECT id, id_habitacion, check_in, check_out, monto_total FROM reservas WHERE id_usuario=%s
+        """SELECT * FROM reservas WHERE id_usuario=%s
         """, (id_usuario, )
     )
-    alumnos = cursor.fetchall()
+    reservas = cursor.fetchall()
     cursor.close()
     conn.close()
-    return jsonify(alumnos)
+    return jsonify(reservas)
 
 
 @usuarios_bp.route("/<email>", methods=["POST"])

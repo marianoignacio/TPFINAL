@@ -8,7 +8,6 @@
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('nosotros') }}">NOSOTROS</a></li>
                     <li class="nav-item"><a class="nav-link active" href="{{url_for('reserva')}}">RESERVA</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{url_for('formulario')}}">CONTACTO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{url_for('registro')}}">REGISTRARSE</a></li>
 {% endblock %}
 {% block body %}
 <section class="hero-wrap hero-wrap-2" style="background-image:url({{ url_for('static', filename='images/salon-1.jpg') }})">
@@ -21,7 +20,15 @@
         </div>
     </div>
 </section>
-
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="alert alert-info">
+            {% for msg in messages %}
+                <p>{{ msg }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
     <div class="progreso-reserva">
         <div class="stepper-box">
             <div class="stepper-step stepper-active">
@@ -55,7 +62,7 @@
     <!-- FORMULARIO -->
     <div class="form-container-reserva">
         <h3>LOS DATOS DE TU RESERVA</h3>
-        <form class="form-reserva">
+        <form class="form-reserva" action="{{url_for('reserva')}}" method="POST">
             <div class="form-row-reserva">
                 <label class="label-reserva" for="checkin">Check-in:</label>
                 <input class="input-reserva" type="date" id="checkin" name="checkin" placeholder="DD/MM/YYYY">
@@ -68,19 +75,19 @@
 
             <div class="form-row-reserva">
                 <label class="label-reserva" for="habitacion">Habitación:</label>
-                <select class="select-reserva" id="habitacion">
-                    <option>Habitación clasica</option>
-                    <option>Habitación Suite</option>
-                    <option>Habitación familiar</option>
-                    <option>Habitación de lujo</option>
-                    <option>Habitación super de lujo</option>
-                    <option>Habitación superior</option>
+                <select class="select-reserva" id="habitacion" name="habitacion">
+                    <option value=4>Habitación clasica</option>
+                    <option value=1>Habitación Suite</option>
+                    <option value=2>Habitación familiar</option>
+                    <option value=6>Habitación de lujo</option>
+                    <option value=3>Habitación super de lujo</option>
+                    <option value=5>Habitación superior</option>
                 </select>
             </div>
 
             <div class="form-row-reserva">
                 <label class="label-reserva" for="huespedes">Cantidad de Huéspedes:</label>
-                <select class="select-reserva" id="huespedes">
+                <select class="select-reserva" id="huespedes" name="huespedes">
                     <option>1</option>
                     <option selected>2</option>
                     <option>3</option>
@@ -90,7 +97,7 @@
                 </select>
             </div>
 
-            <a href="{{ url_for('pago') }}" class="button-reserva" type="submit">CONTINUAR</a>
+            <button class="button-reserva" type="submit"><a >CONTINUAR</a></button>
         </form>
     </div>
 
