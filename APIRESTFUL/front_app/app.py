@@ -250,20 +250,20 @@ def pago (id_reserva):
         "cantidad_huespedes": 2,
         "total_pagado": "$500.00"
     }
-    permitido = session.get("permitir_pago")
+    # permitido = session.get("permitir_pago")
 
-    if permitido != id_reserva:
-        flash("No tenés permiso para acceder a este pago.")
-        return redirect(url_for("reserva"))
+    # if permitido != id_reserva:
+    #     flash("No tenés permiso para acceder a este pago.")
+    #     return redirect(url_for("reserva"))
 
-    informacion = inicializar_sesion()
-    session.pop("permitir_pago", None)
+    # informacion = inicializar_sesion()
+    # session.pop("permitir_pago", None)
 
     return render_template(
         "pago.html",
         info_reserva=detalles_de_reversa,
         info_hotel=hotel,
-        info_usuario=informacion
+        info_usuario=None
     )
 
     
