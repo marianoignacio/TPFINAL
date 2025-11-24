@@ -3,7 +3,13 @@
 {% block head %}
 <title>Reservar | Confirmación</title>
 {% endblock %}
-
+   {% block navbar %}
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">INICIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('nosotros') }}">NOSOTROS</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{url_for('reserva')}}">RESERVA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('formulario')}}">CONTACTO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('registro')}}">REGISTRARSE</a></li>
+{% endblock %}
 {% block body %}
 <section class="hero-wrap hero-wrap-2" style="background-image:url({{ url_for('static', filename='images/salon-1.jpg') }})">
     <div class="overlay"></div>
@@ -84,8 +90,36 @@
                 </select>
             </div>
 
-            <button class="button-reserva" type="submit">CONTINUAR</button>
+            <a href="{{ url_for('pago') }}" class="button-reserva" type="submit">CONTINUAR</a>
         </form>
     </div>
+
+    <script>
+    // Obtener fecha actual en formato YYYY-MM-DD
+    const hoy = new Date().toISOString().split("T")[0];
+
+    // Asignar como mínimo al check-in y check-out
+    document.getElementById("checkin").setAttribute("min", hoy);
+    document.getElementById("checkout").setAttribute("min", hoy);
+</script>
+
+
+<!-- Asegurar que el check-out sea mayor al check-in  -->
+<script>
+    const checkinInput = document.getElementById("checkin");
+    const checkoutInput = document.getElementById("checkout");
+
+    const hoy = new Date().toISOString().split("T")[0];
+    checkinInput.min = hoy;
+    checkoutInput.min = hoy;
+
+    checkinInput.addEventListener("change", () => {
+        checkoutInput.min = checkinInput.value;
+        if (checkoutInput.value < checkinInput.value) {
+            checkoutInput.value = checkinInput.value;
+        }
+    });
+</script>
+
 
 {%endblock%}
