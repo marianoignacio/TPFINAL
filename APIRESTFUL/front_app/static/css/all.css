@@ -5623,7 +5623,7 @@ reserva*/
 }
 
 /* Cerrar botón */
-.close-button {
+.boton-cerrar {
   position: absolute;
   top: 12px;
   right: 20px;
@@ -5632,7 +5632,7 @@ reserva*/
   font-weight: bold;
   cursor: pointer;
 }
-.close-button:hover {
+.boton-cerrar:hover {
   color: #7b5b54;
 }
 
