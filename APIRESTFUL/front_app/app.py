@@ -72,11 +72,19 @@ def cerrar_sesion():
 
 @app.route('/')
 def home ():
+
+    resp_todas = requests.get(f"{API_BASE}/habitaciones/")
+    todas = resp_todas.json()
+    otras_habitaciones = []
+    for h in todas:
+        if str(h["id_habitacion"]) != str(id):
+            otras_habitaciones.append(h)
+
     if "nombre" in session:
         informacion=inicializar_sesion()
-        return render_template('index.html', info_hotel=hotel,  info_usuario=informacion)
+        return render_template('index.html', info_hotel=hotel,  info_usuario=informacion,otras_habitaciones=otras_habitaciones)
     else:
-        return render_template('index.html', info_hotel=hotel, info_usuario=None)
+        return render_template('index.html', info_hotel=hotel, info_usuario=None,otras_habitaciones=otras_habitaciones )
 
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev_secret_key')
@@ -141,13 +149,8 @@ def page_not_found(e):
        mensaje="Error de página"
        return render_template('error.html',info_hotel=hotel, msj=mensaje,info_usuario=None),404
  # *4
-@app.route('/habitaciones')
-def habitaciones ():
-    if "nombre" in session:
-        informacion=inicializar_sesion()
-        return render_template('habitaciones.html', info_hotel=hotel,info_usuario=informacion)
 
-    return render_template('habitaciones.html', info_hotel=hotel,info_usuario=None)
+
 
 @app.route('/habitaciones/<id>')
 def detalles_habitacion(id):
