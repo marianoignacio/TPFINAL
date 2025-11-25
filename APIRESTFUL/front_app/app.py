@@ -184,10 +184,10 @@ def login():
             session["id_usuario"] = usuario.get("id_usuario")
             return redirect(url_for("home"))
         elif response.status_code == 404:
-            flash("No existe un usuario con ese mail")
+            flash("No se encontró el usuario especificado")
             return redirect(url_for("registro"))
         else:
-            flash("Credenciales inválidas")
+            flash("La contraseña ingresada es incorrecta")
             return redirect(url_for("login"))
 
     if "nombre" in session:
