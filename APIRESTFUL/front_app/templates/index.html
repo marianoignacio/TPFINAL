@@ -210,7 +210,7 @@
                         data-aos-duration="1000">
                         <div class="room-wrap {% if loop.index is odd %} d-md-flex flex-md-column-reverse {% endif %}">
                             <a href="{{url_for('detalles_habitacion',id=h.id_habitacion)}}" class="img img-room"
-                                style="background-image:url({{ url_for('static', filename='images/habitacion-1.jpg') }})">
+                                style="background-image:url({{ url_for('static', filename='images/habitacion-' ~ h.id_habitacion ~ '.jpg') }})">
                             </a>
                             <div class="text p-5 text-center">
                                 <h3><a href="{{url_for('detalles_habitacion', id=h.id_habitacion)}}"> {{ h.nombre }} </a></h3>

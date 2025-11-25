@@ -77,8 +77,7 @@ def home ():
     todas = resp_todas.json()
     otras_habitaciones = []
     for h in todas:
-        if str(h["id_habitacion"]) != str(id):
-            otras_habitaciones.append(h)
+        otras_habitaciones.append(h)
 
     if "nombre" in session:
         informacion=inicializar_sesion()

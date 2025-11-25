@@ -31,7 +31,7 @@
         <div class="col-lg-8 blog-single">
           <div class="carousel-room">
             <div class="item">
-              <div class="room-detail img" style="background-image: url(../static/images/habitacion-3.jpg)">
+              <div class="room-detail img" style="background-image:url('{{ url_for('static', filename='images/habitacion-' ~ habitacion.id_habitacion ~ '.jpg') }}')"">
               </div>
             </div>
             <div class="item">
@@ -116,7 +116,7 @@
               <p>{{ h.descripcion }}</p>
               <p class="mb-0 mt-2">
                 <span class="me-3 price">${{ h.precio_noche }} <small>/ noche</small></span>
-                <a href="/habitaciones/{{ h.id_habitacion }}" class="btn btn-outline-dark btn-sm">Ver</a>
+                <a href="{{ url_for('detalles_habitacion', id=h.id_habitacion) }}" class="btn-custom">Ver</a>
               </p>
             </div>
           </div>
