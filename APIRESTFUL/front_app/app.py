@@ -140,6 +140,7 @@ def formulario():
 def page_not_found(e):
        mensaje="Error de página"
        return render_template('error.html',info_hotel=hotel, msj=mensaje,info_usuario=None),404
+
  # *4
 @app.route('/habitaciones')
 def habitaciones ():
@@ -162,31 +163,38 @@ def detalles_habitacion(id):
         return render_template("habitaciones.html", habitacion=habitacion, info_hotel=hotel,info_usuario=informacion)
     return render_template("habitaciones.html", habitacion=habitacion,info_hotel=hotel,info_usuario=None)
 
-
 # *5
 @app.route('/login', methods=["GET", "POST"])
-def login ():
+def login():
     if request.method == "POST":
         contrasena = request.form["inputContrasenia"]
-        email=request.form["inputEmail"]
-        usuario = obtener_usuario(email)
-        if not usuario:
-            flash("No existe un usuario con ese mail")
+        email = request.form["inputEmail"]
+
+        response = requests.post(
+            f"{API_BASE}/usuarios/{email}/login",
+            json={"contrasena": contrasena}
+        )
+
+        if response.status_code == 200:
+            usuario = response.json()
+            session["nombre"] = usuario.get("nombre")
+            session["email"] = usuario.get("email")
+            session["apellido"] = usuario.get("apellido")
+            session["fecha_creacion"] = usuario.get("fecha_creacion")
+            session["id_usuario"] = usuario.get("id_usuario")
+            return redirect(url_for("home"))
+        elif response.status_code == 404:
+            flash("No se encontró el usuario especificado")
             return redirect(url_for("registro"))
         else:
-             if contrasena != usuario["contrasena"]:
-                flash("No existe un usuario con esa contraseña")
-                return redirect(url_for("login"))
-             session["nombre"] = usuario["nombre"]
-             session["email"] = usuario["email"]
-             session["apellido"] = usuario["apellido"]
-             session["fecha_creacion"] = usuario["fecha_creacion"]
-             session["id_usuario"] = usuario["id_usuario"]
-             return redirect(url_for("home"))
+            flash("La contraseña ingresada es incorrecta")
+            return redirect(url_for("login"))
+
     if "nombre" in session:
-        informacion=inicializar_sesion()
-        return render_template('inicio_sesion.html', info_hotel=hotel,info_usuario=informacion)
-    return render_template('inicio_sesion.html', info_hotel=hotel,info_usuario=None)
+        informacion = inicializar_sesion()
+        return render_template('inicio_sesion.html', info_hotel=hotel, info_usuario=informacion)
+    return render_template('inicio_sesion.html', info_hotel=hotel, info_usuario=None)
+
 # *6
 @app.route('/nosotros')
 def nosotros ():
@@ -194,6 +202,7 @@ def nosotros ():
         informacion=inicializar_sesion()
         return render_template('nosotros.html', info_hotel=hotel, info_usuario=informacion)
     return render_template('nosotros.html', info_hotel=hotel, info_usuario=None)
+
 # *7
 @app.route('/registro', methods=["GET", "POST"])
 def registro ():
@@ -216,6 +225,7 @@ def registro ():
         informacion=inicializar_sesion()
         return render_template('registro.html', info_hotel=hotel,info_usuario=informacion)       
     return render_template('registro.html', info_hotel=hotel,info_usuario=None)
+
 # *8
 @app.route('/reserva', methods=["GET", "POST"])
 def reserva ():
@@ -239,7 +249,7 @@ def reserva ():
         return render_template('reserva.html', info_hotel=hotel,info_usuario=informacion)       
     return render_template('reserva.html', info_hotel=hotel, info_usuario=None)
 
-    # *9
+# *9
 @app.route('/pago/<int:id_reserva>')
 def pago (id_reserva):
     detalles_de_reversa = {
@@ -266,9 +276,7 @@ def pago (id_reserva):
         info_usuario=informacion
     )
 
-    
-
-    # *10
+# *10
 @app.route('/confirmacion')
 def confirmacion ():
     if "nombre" in session:
