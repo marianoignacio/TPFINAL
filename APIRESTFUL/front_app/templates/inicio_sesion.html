@@ -5,13 +5,21 @@
 {% endblock %}
 
   {% block body %}
-
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="alert alert-info">
+            {% for msg in messages %}
+                <p>{{ msg }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
         <main class="contenedor-global">
             <!-- FORMULARIO -->
             <div class="contenedor-inicio-sesion">
                 <h3>Bienvenido</h3>
 
-                <form class="formulario-inicio-sesion" action="">
+                <form class="formulario-inicio-sesion" action="{{url_for('login')}}" method="POST">
 
                     <!-- ITEM 1 - EMAIL -->
                     <div class="formulario-item">

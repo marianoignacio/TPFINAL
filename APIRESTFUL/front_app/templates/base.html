@@ -8,6 +8,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" hreSS="https://fonts.gstatic.com/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3/dist/css/glightbox.min.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&amp;family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
@@ -33,6 +35,11 @@
                     {% block navbar %}
  
                     {% endblock %}
+                    {% if info_usuario %}
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('cerrar_sesion')}}">CERRAR</a></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('registro')}}">REGISTRARSE</a></li>                  
+                    {% endif %}
                     <li class="nav-item"><img class="nav-perfil" src="{{url_for('static', filename='images/perfil.jpg')}}" onclick="abrirVistaPerfil()" ></img></li>
                 
                 </ul>
@@ -77,13 +84,13 @@
                         <div class="col-lg-6">
                             <div class="ftco-footer-widget mb-4">
                                 <ul class="list-unstyled">
-                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Wifi
+                                    <li><a href="{{url_for('nosotros')}}"><span class="fa fa-chevron-right me-2"></span>Wifi
                                             Gratis</a></li>
-                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Facil
+                                    <li><a href="{{url_for('nosotros')}}"><span class="fa fa-chevron-right me-2"></span>Facil
                                             reserva</a></li>
-                                    <li><a href="#servicios"><span
+                                    <li><a href="{{url_for('nosotros')}}"><span
                                                 class="fa fa-chevron-right me-2"></span>Restaurante</a></li>
-                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Pileta</a>
+                                    <li><a href="{{url_for('nosotros')}}"><span class="fa fa-chevron-right me-2"></span>Pileta</a>
                                     </li>
                                 </ul>
                             </div>
@@ -91,13 +98,13 @@
                         <div class="col-lg-6">
                             <div class="ftco-footer-widget mb-4">
                                 <ul class="list-unstyled">
-                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Salon de
+                                    <li><a href="{{url_for('nosotros')}}"><span class="fa fa-chevron-right me-2"></span>Salon de
                                             spa</a></li>
-                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Sala de
+                                    <li><a href="{{url_for('nosotros')}}"><span class="fa fa-chevron-right me-2"></span>Sala de
                                             cine</a></li>
-                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Gimnasio</a>
+                                    <li><a href="{{url_for('nosotros')}}"><span class="fa fa-chevron-right me-2"></span>Gimnasio</a>
                                     </li>
-                                    <li><a href="#servicios"><span class="fa fa-chevron-right me-2"></span>Mesa de
+                                    <li><a href="{{url_for('nosotros')}}"><span class="fa fa-chevron-right me-2"></span>Mesa de
                                             atencion</a></li>
                                 </ul>
                             </div>
@@ -108,10 +115,10 @@
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">Links rapidos</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#"><span class="fa fa-chevron-right me-2"></span>INICIO</a></li>
-                            <li><a href="nosotros.html"><span class="fa fa-chevron-right me-2"></span>NOSOTROS</a></li>
-                            <li><a href="reserva.html"><span class="fa fa-chevron-right me-2"></span>RESERVAR</a></li>
-                            <li><a href="contact.html"><span class="fa fa-chevron-right me-2"></span>CONTACTO</a></li>
+                            <li><a href="{{url_for('home')}}"><span class="fa fa-chevron-right me-2"></span>INICIO</a></li>
+                            <li><a href="{{url_for('nosotros')}}"><span class="fa fa-chevron-right me-2"></span>NOSOTROS</a></li>
+                            <li><a href="{{url_for('reserva')}}"><span class="fa fa-chevron-right me-2"></span>RESERVAR</a></li>
+                            <li><a href="{{url_for('formulario')}}"><span class="fa fa-chevron-right me-2"></span>CONTACTO</a></li>
                         </ul>
                     </div>
                 </div>
@@ -120,10 +127,9 @@
                         <h2 class="ftco-heading-2">Nuestros datos</h2>
                         <div class="block-23 mb-3">
                             <ul>
-                                <li><span class="icon fa fa-map marker"></span><span class="text">Av. Paseo Colón 850,
-                                        Buenos Aires, Argentina</span></li>
-                                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+54 11
-                                            1234-5678</span></a></li>
+                                <li><span class="icon fa fa-map marker"></span><span class="text">{{info_hotel.dirección.0}}, {{info_hotel.dirección.1}}
+                                       {{info_hotel.dirección.2}}, {{info_hotel.dirección.3}}</span></li>
+                                <li><a href="{{url_for('formulario')}}"><span class="icon fa fa-phone"></span><span class="text">{{info_hotel.telefono.0}}</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -148,65 +154,75 @@
 
 <div id="infoPerfil" class="modal-overlay">
   <div class="modal-container">
-    <span class="close-button" onclick="closeModal()">×</span>
+    <span class="boton-cerrar" onclick="cerrarPerfil()">×</span>
 
 
     <div class="perfil-top">
       <div class="perfil-info">
         <div>
             <h5 class="h5-perfil" >Nombre Completo:</h5>
-
+  {% if info_usuario %}
             <p>{{info_usuario.usuario.0}}</p>
+        {% endif %}
           </div>
         <div>
            <h5 class="h5-perfil">Mail:</h5>
-
+  {% if info_usuario %}
        <p>{{info_usuario.usuario.1}}</p>
+    {% endif %}
           </div>
         <div>
             <h5 class="h5-perfil">Fecha de Inscripción:</h5>
-            
+  {% if info_usuario %}
              <p>{{info_usuario.usuario.2}}</p>
+    {% endif %}
              
         </div>        
       </div>
     </div>
 
     <div class="reserva-bottom">
-{% for i in range(info_usuario.reserva | length) %}
+{% if info_usuario.reserva %}
+{% for reserva in info_usuario.reserva%}
 <br>
-     <h3 style="text-align: center;"># {{i+1}}</h3>
+     <h3 style="text-align: center;"># {{reserva.id}}</h3>
 
       <div class="reserva-detalles">
 
         <div class="detalle-box">
           <h5>Inicio de Reserva:</h5>
           <hr>
-          <p id="inicioReserva">{{ info_usuario.reserva[i][0] }}</p>
+          <p id="inicioReserva">{{ reserva.check_in}}</p>
         </div>
         <div class="detalle-box">
           <h5> Habitacion :</h5>
           <hr>
-          <p id="lugarReserva">{{ info_usuario.reserva[i][1]  }}</p>
+          <p id="lugarReserva">{{ reserva.id_habitacion  }}</p>
         </div>
         <div class="detalle-box">
           <h5>Final de Reserva:</h5>
           <hr>
-          <p id="finReserva">{{ info_usuario.reserva[i][2]  }}</p>
+          <p id="finReserva">{{ reserva.check_out }}</p>
         </div>
         <div class="detalle-box">
           <h5>Monto:</h5>
-          <p id="finReserva">{{ info_usuario.reserva[i][3]  }}</p>
+          <p id="finReserva">{{ reserva.monto_total  }}</p>
         </div>
       </div>
-
+          
 {% endfor %}
+{% else %}
+<h2>NO HAY RESERVAS CONFIRMADAS AUN</h2>
+{% endif %}
     </div>
     
   </div>
-</div>
-
-      <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</div> 
+    <script src="https://cdn.jsdelivr.net/npm/glightbox@3/dist/js/glightbox.min.js"></script>
+    <script>
+    const lightbox = GLightbox({ selector: '.glightbox' });
+    </script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/tiny-slider.js') }}"></script>
     <script src="{{ url_for('static', filename='js/glightbox.min.js+aos.js.pagespeed.jc.gNemz1ctce.js') }}"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>

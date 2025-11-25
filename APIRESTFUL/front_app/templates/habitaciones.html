@@ -8,7 +8,6 @@
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('nosotros') }}">NOSOTROS</a></li>
                     <li class="nav-item"><a class="nav-link active" href="{{url_for('reserva')}}">RESERVA</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{url_for('formulario')}}">CONTACTO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{url_for('registro')}}">REGISTRARSE</a></li>
 {% endblock %}
 {%block body%}
   <section class="hero-wrap hero-wrap-2" style="background-image:url(../static/images/salon-1.jpg)">
@@ -67,18 +66,26 @@
         <div class="col-lg-4 sidebar ps-md-4">
           <div class="sidebar-box">
             <h3>Servicios de Habitación</h3>
-            <div class="d-md-flex">
-              <ul class="categories me-md-4">
-                <li><a href="#">Wifi</a></li>
-                <li><a href="#">Restaurante</a></li>
-                <li><a href="#">Aire Acondicionado</a></li>
-              </ul>
-              <ul class="categories ms-md-4">
-                <li><a href="#">SPA</a></li>
-                <li><a href="#">60" TV</a></li>
-                <li><a href="#">Pileta</a></li>
-              </ul>
-            </div>
+              {% set mitad = (habitacion.servicios|length // 2) %}
+
+              <div class="d-md-flex">
+
+                  <!-- Primera columna -->
+                  <ul class="categories me-md-4">
+                      {% for servicio in habitacion.servicios[:mitad] %}
+                          <li><a href="#">{{ servicio }}</a></li>
+                      {% endfor %}
+                  </ul>
+
+                  <!-- Segunda columna -->
+                  <ul class="categories ms-md-4">
+                      {% for servicio in habitacion.servicios[mitad:] %}
+                          <li><a href="#">{{ servicio }}</a></li>
+                      {% endfor %}
+                  </ul>
+
+              </div>
+
           </div>
           
           <div class="sidebar-box">
@@ -108,6 +115,7 @@
         <h2 class="mb-3">Nuestras Habitaciones</h2>
       </div>
     </div>
+
     <div id="habitacionesCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
 
@@ -161,13 +169,20 @@
 
       </div>
 
-      <button class="carousel-control-prev" type="button" data-bs-target="#habitacionesCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+    </div>
+      <div class="tns-nav" aria-label="Carousel Pagination">
+       <button class="carousel-control-prev" type="button" data-bs-target="#habitacionesCarousel" data-bs-slide="prev">
+        <span class="fa fa-arrow-left" aria-hidden="true"></span>
       </button>
       <button class="carousel-control-next" type="button" data-bs-target="#habitacionesCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="fa fa-arrow-right" aria-hidden="true"></span>
       </button>
-    </div>
+  </div>
+
+   
+
   </div>
 </section>
+
 {%endblock%}

@@ -3260,8 +3260,9 @@ textarea.form-control {
     color: #212529; }
    .btn:focus {
     outline: 0;
-    -webkit-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
+    -webkit-box-shadow: 0 0 0 0.25rem rgba(105, 13, 253, 0.25);
+    box-shadow: 0 0 0 0.25rem rgba(207, 244, 76, 0.2);
+    color: white;}
   .btn:disabled, .btn.disabled {
     pointer-events: none;
     opacity: 0.65; }
@@ -5139,7 +5140,8 @@ textarea.form-control {
 
 .testimony-section {
   position: relative;
-  z-index: 0; }
+  z-index: 0; 
+  padding-bottom: 534px;}
   .testimony-section .tns-outer {
     position: relative;
     padding-bottom: 3em !important; }
@@ -5535,7 +5537,10 @@ reserva*/
   text-align: center;
 }
 
-
+#contenedor_de_metodo_de_pago img {
+    width: 20%;
+    margin: 15px;
+}
 
 .reserva_de_usuario li {
   display: flex;
@@ -5550,13 +5555,14 @@ reserva*/
 
 .opciones_de_metodo_de_pago {
   background-color: #C5A880 !important;
-  width: 30% !important;
+  width: 30%;
 
 }
 
 .opciones_de_metodo_de_pago_2 {
   background-color: #222222 !important;
-  width: 30% !important;
+  color:#C5A880 ;
+  width: 30% ;
 }
 
 #boton_de_confirmar_reserva {
@@ -5572,7 +5578,13 @@ reserva*/
 
 
 .opciones_de_metodo_de_pago_2:hover {
-  color: #C5A880 !important;
+  color:  #f8f8f8 !important;
+
+}
+
+.opciones_de_metodo_de_pago:hover {
+  color: white !important;
+
 }
 
 /* MODAL */
@@ -6006,3 +6018,29 @@ reserva*/
     background-color: #f1f5f9;
     color: #64748b;
 }
+#habitacionesCarousel{
+  padding-bottom:50px;
+}
+
+.carousel-control-next{
+  width: 50px;
+  height: 30px;
+}
+
+.carousel-control-prev{
+   width: 50px;
+  height: 30px;
+}
+
+/* Métodos de pago */
+
+    .detalles {
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .form-container {
+        padding: 20px;
+        width: 260px;
+        display: inline-table;
+    }
