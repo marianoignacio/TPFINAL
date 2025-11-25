@@ -76,16 +76,63 @@
         </div>
 
         <div id="contenedor_de_metodo_de_pago">
-            METODOS DE PAGO
+            MÉTODOS DE PAGO
             <div class="d-flex justify-content-center align-items-center p-4 border-top border-2 border-secondary m-3 text-white">
-                <button class="opciones_de_metodo_de_pago btn p-3 mx-2">PAGAR MAS TARDE</button>
-                <button class="opciones_de_metodo_de_pago_2 btn p-3 mx-2 text-white">MERCADO PAGO</button>
-                <button class="opciones_de_metodo_de_pago btn p-3 mx-2">TARJETA DE CREDITO</button>
+                <button onclick="mostrarPago('transferencia')" class="opciones_de_metodo_de_pago btn p-3 mx-2">Transferencia bancaria</button>
+                <button onclick="mostrarPago('mp')" class="opciones_de_metodo_de_pago_2 btn p-3 mx-2">MERCADO PAGO </button>
+                <button onclick="mostrarPago('tarjeta')" class="opciones_de_metodo_de_pago btn p-3 mx-2">TARJETA DE CREDITO</button>
                 <!-- se deve de poder agregar el metodo de pagoa una base de datos -->
             </div>
-            <div>
+
+            <div id="zonaPago"><p>seleccione el método de pago</p></div>
+
+            <div id="pago-transferencia" style="display:none">
+                <h3>Pago con Transferencia Bancaria</h3>
+                
+                <div class="detalles">
+                    <p><strong>Banco:</strong> Facultad de ingenieria uba.</p>
+                    <p><strong>Cuenta:</strong> 123456789</p>
+                    <p><strong>CBU:</strong> 0000000000000000000000</p>
+                    <p><strong>Alias:</strong> ids.hotel.uba</p>
+                    <p><strong>Titular:</strong> Facultad de ingenieria.</p>
+                    <p><strong>Monto:</strong> {##}</p>
+                </div>
+            </div>
+
+            <div id="pago-mp" style="display:none">
+                <h3> Escaneá el QR</h3>
                 <img src="{{ url_for('static', filename='images/qr_rick.jpg') }}" class="w-25 h-25 justify-content-end" >
             </div>
+
+            <div id="pago-tarjeta" style="display:none">
+                <h3>Tarjetas</h3>
+                <div>
+                <form class="form-container">
+                    <label for="tipo">Tipo de tarjeta</label>
+                    <select id="tipo" name="tipo" required>
+                        <option value="">Seleccione tipo de tarjeta</option>
+                        <option value="credito">Crédito</option>
+                        <option value="debito">Débito</option>
+                    </select>
+
+                    <label for="nombre">Nombre que figura en la tarjeta</label>
+                    <input type="text" id="nombre" name="nombre" required>
+
+                    <label for="numero">Número de tarjeta</label>
+                    <input type="text" id="numero" name="numero" maxlength="16" required>
+
+                    <label for="fecha">Fecha de vencimiento</label>
+                    <input type="month" id="fecha" name="fecha" required>
+
+                    <label for="cvv">CVV</label>
+                    <input type="password" id="cvv" name="cvv" maxlength="4" required>
+
+                </form>
+            </div>
+        </div>
+
+
+
             <div>
                 <a href="{{ url_for('confirmacion') }}" class="btn text-white m-5 p-3" id="boton_de_confirmar_reserva">CONFIRMAR RESERVA</a>
             </div>
