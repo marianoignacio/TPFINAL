@@ -2,6 +2,40 @@
 
 {% block head %}
 <title>Reservar | Confirmación</title>
+
+<!-- Este código hace que la fecha del check out siempre sea mayor o igual a la del check in -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const checkin = document.getElementById('checkin');
+  const checkout = document.getElementById('checkout');
+  if (!checkin || !checkout) return;
+
+  const hoy = new Date().toISOString().split('T')[0];
+
+  checkin.min = hoy;
+  checkout.min = hoy;
+
+  checkin.addEventListener('change', () => {
+    if (checkin.value) {
+      checkout.min = checkin.value;
+      
+      if (!checkout.value || checkout.value < checkin.value) {
+        checkout.value = checkin.value;
+      }
+    } else {
+      
+      checkout.min = hoy;
+    }
+  });
+
+  checkout.addEventListener('change', () => {
+    if (checkout.value && checkout.value < checkout.min) {
+      checkout.value = checkout.min;
+    }
+  });
+});
+</script>
+
 {% endblock %}
    {% block navbar %}
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">INICIO</a></li>
@@ -100,5 +134,14 @@
             <button class="button-reserva" type="submit"><a >CONTINUAR</a></button>
         </form>
     </div>
+
+    <script>
+    // Obtener fecha actual en formato YYYY-MM-DD
+    const hoy = new Date().toISOString().split("T")[0];
+
+    // Asignar como mínimo al check-in y check-out
+    document.getElementById("checkin").setAttribute("min", hoy);
+    document.getElementById("checkout").setAttribute("min", hoy);
+</script>
 
 {%endblock%}
