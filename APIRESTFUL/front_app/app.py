@@ -298,21 +298,66 @@ def pago (id_reserva):
         info_usuario=informacion
     )
 
+
+
 # *10
-@app.route('/confirmacion')
-def confirmacion ():
-    if not "id_reserva" in session:
-        flash("No podes acceder a esta pagina")
+@app.route('/confirmacion', methods=["GET", "POST"])
+def confirmacion():
+
+    if request.method == "POST":
+        datos_reserva = session.get("datos_reserva")
+
+        if not datos_reserva:
+            flash("No hay datos de reserva para enviar.")
+            return redirect(url_for("reserva"))
+
+        msg = Message(
+            subject=f"Inscripción de: {session.get('nombre')}",
+            recipients=[session.get("email")],
+            body=f"""
+            REALIZASTE UNA RESERVA CON LOS SIGUIENTES DATOS:
+            DATOS DE RESERVACIÓN #{datos_reserva["id"]}
+            Nombre: {session.get('nombre', 'usuario_invalido')}
+            Monto:{datos_reserva["monto_total"]}
+            Fecha de Check in:{datos_reserva["check_in"]}
+            Fecha de Check out:{datos_reserva["check_out"]}
+
+            CONFIRMAR RECEPCIÓN Y CORROBORAR DATOS
+            """
+        )
+
+        try:
+            mail.send(msg)
+            flash("Correo enviado correctamente.")
+        except Exception as e:
+            print("=== ERROR SMTP REAL ===")
+            print(type(e), e)
+
         return redirect(url_for("reserva"))
+
+
+    if "id_reserva" not in session:
+        flash("No podes acceder a esta página")
+        return redirect(url_for("reserva"))
+
     id_reserva = session["id_reserva"]
-    confirmado=modificar_reserva(id_reserva)
+
+    confirmado = modificar_reserva(id_reserva)
     session.pop("id_reserva", None)
+
     if not confirmado:
         flash("No se pudo confirmar la reserva")
         return redirect(url_for("reserva"))
-    if "nombre" in session:
-        informacion=inicializar_sesion()
-        return render_template('confirmacion.html', info_hotel=hotel, info_usuario=informacion)
-    return render_template('confirmacion.html', info_hotel=hotel, info_usuario=None)
+    datos_reserva = obtener_reserva(id_reserva)
+    session["datos_reserva"] = datos_reserva
+
+    informacion = inicializar_sesion() if "nombre" in session else None
+
+    return render_template(
+        'confirmacion.html',
+        info_hotel=hotel,
+        info_usuario=informacion
+    )
+      
 if __name__== '__main__':
         app.run("localhost", port=8080, debug=True)
