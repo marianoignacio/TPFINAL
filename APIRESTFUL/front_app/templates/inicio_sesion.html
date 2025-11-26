@@ -7,9 +7,9 @@
 {% block body %}
 {% with messages = get_flashed_messages() %}
     {% if messages %}
-        <div class="alert alert-info">
+        <div class="alerta-inicio-sesion">
             {% for msg in messages %}
-                <p>{{ msg }}</p>
+                <p class="texto">{{ msg }}</p>
             {% endfor %}
         </div>
     {% endif %}
