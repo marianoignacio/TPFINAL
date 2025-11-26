@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, flash, url_for, jsonify, session
-
+from datetime import datetime
 import json
 import requests
 import os
@@ -20,12 +20,13 @@ def obtener_usuario(email):
     if response.status_code == 200:
         return response.json()
     return None
+
 def modificar_reserva(id_reserva):
     response = requests.put(f"{API_BASE}/reservas/{id_reserva}")
     if response.status_code == 200:
         return True
     return False
-    
+
 def obtener_reserva (id_reserva):
     response = requests.get(f"{API_BASE}/reservas/{id_reserva}")
     if response.status_code == 200:
@@ -114,14 +115,10 @@ if _mail_server:
 
     mail = Mail(app)
 else:
-
     mail = None
- 
-
 
 @app.route('/contacto', methods =['GET', 'POST'])
 def formulario():
-
     if request.method == 'POST':
         nombre = request.form['nombre']
         email_usuario = request.form['mail']
@@ -141,9 +138,7 @@ def formulario():
             COFIRMAR RECEPCIÓN Y CORROBORAR DATOS, GRACIAS!"""
         )
         try:
-                mail.send(msg)
-
-
+            mail.send(msg)
         except Exception as e:
                 print(f"Error enviando mail: {e}")
                 flash("Hubo un error al enviar tu mensaje, intenta más tarde")
@@ -160,9 +155,6 @@ def page_not_found(e):
        return render_template('error.html',info_hotel=hotel, msj=mensaje,info_usuario=None),404
 
  # *4
-
-
-
 @app.route('/habitaciones/<id>')
 def detalles_habitacion(id):
     response = requests.get(f"{API_BASE}/habitaciones/{id}")
@@ -262,6 +254,21 @@ def reserva ():
             huespedes = request.form["huespedes"]
             id_habitacion = request.form["habitacion"]
             id_usuario = session["id_usuario"]
+
+            response = requests.get(
+                f"{API_BASE}/reservas/disponibilidad",
+                params={"id_habitacion": id_habitacion, "check_in": check_in, "check_out": check_out}
+            )
+
+            if response.status_code != 200:
+                flash("Error al verificar disponibilidad. Intenta más tarde.")
+                return redirect(url_for("reserva"))
+
+            data = response.json()
+            if not data.get("disponibilidad", False):
+                flash("La habitación no está disponible en el rango de fechas seleccionado.")
+                return redirect(url_for("reserva"))
+
             id_reserva = agregar_reserva(id_usuario, id_habitacion, check_in, check_out, huespedes)
             if not id_reserva:
                 flash("Error al crear la reserva", "error")
@@ -270,10 +277,18 @@ def reserva ():
             return redirect(url_for("pago", id_reserva=id_reserva))
         flash("Necesitas iniciar sesion para reservar una habitacion")
         return redirect(url_for("login"))
+
+    pre_reserva = {
+        "habitacion": request.args.get("habitacion"),
+        "check_in": request.args.get("checkin"),
+        "check_out": request.args.get("checkout"),
+        "huespedes": request.args.get("huespedes")
+    }
+
     if "nombre" in session:
         informacion=inicializar_sesion()
-        return render_template('reserva.html', info_hotel=hotel,info_usuario=informacion)       
-    return render_template('reserva.html', info_hotel=hotel, info_usuario=None)
+        return render_template('reserva.html', info_hotel=hotel, info_usuario=informacion, pre_reserva=pre_reserva)
+    return render_template('reserva.html', info_hotel=hotel, info_usuario=None, pre_reserva=pre_reserva)
 
 # *9
 @app.route('/pago/<int:id_reserva>')
@@ -301,8 +316,6 @@ def pago (id_reserva):
         info_hotel=hotel,
         info_usuario=informacion
     )
-
-
 
 # *10
 @app.route('/confirmacion', methods=["GET", "POST"])
@@ -362,6 +375,35 @@ def confirmacion():
         info_hotel=hotel,
         info_usuario=informacion
     )
+
+# *11
+@app.route("/disponibilidad", methods=["POST"])
+def disponibilidad():
+    id_habitacion = request.form.get("habitacion")
+    check_in = request.form.get("checkin")
+    check_out = request.form.get("checkout")
+    huespedes = request.form.get("huespedes")
+
+    response = requests.get(
+        f"{API_BASE}/reservas/disponibilidad",
+        params={
+            "id_habitacion": id_habitacion,
+            "check_in": check_in,
+            "check_out": check_out,
+            "huespedes": huespedes
+        }
+    )
+
+    data = response.json()
+    if not data.get("disponibilidad", False):
+        flash("La habitación no está disponible en el rango de fechas seleccionado.")
+        return redirect(url_for("home"))
+
+    return redirect(url_for("reserva",
+                            habitacion=id_habitacion,
+                            checkin=check_in,
+                            checkout=check_out,
+                            huespedes=huespedes))
       
 if __name__== '__main__':
         app.run("localhost", port=8080, debug=True)

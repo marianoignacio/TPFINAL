@@ -6034,13 +6034,21 @@ reserva*/
 
 /* Métodos de pago */
 
-    .detalles {
-      padding: 15px;
-      margin-bottom: 20px;
-    }
+.detalles {
+  padding: 15px;
+  margin-bottom: 20px;
+}
 
-    .form-container {
-        padding: 20px;
-        width: 260px;
-        display: inline-table;
-    }
+.form-container {
+    padding: 20px;
+    width: 260px;
+    display: inline-table;
+}
+
+/* FORMULARIO DE DISPONIBILIDAD DE INDEX.HTML */
+
+.input-disponibilidad, .select-disponibilidad {
+    color: white;
+    background-color: #222222;
+    border: 1px solid #222222;
+}
