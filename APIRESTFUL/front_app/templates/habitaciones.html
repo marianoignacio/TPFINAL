@@ -108,11 +108,11 @@
       {% if h.id_habitacion != habitacion.id_habitacion %}
         <div class="carousel-item {% if loop.first %}active{% endif %}">
           <div class="room-wrap text-center">
-            <a href="room-single.html" class="img img-room d-block mx-auto"
+            <a href="{{ url_for('detalles_habitacion', id=h.id_habitacion) }}" class="img img-room d-block mx-auto"
               style="background-image:url('{{ url_for('static', filename='images/habitacion-1.jpg') }}'); height:350px; background-size:cover; background-position:center;">
             </a>
             <div class="text p-4">
-              <h3><a href="room-single.html">{{ h.nombre }}</a></h3>
+              <h3><a href="{{ url_for('detalles_habitacion', id=h.id_habitacion) }}">{{ h.nombre }}</a></h3>
               <p>{{ h.descripcion }}</p>
               <p class="mb-0 mt-2">
                 <span class="me-3 price">${{ h.precio_noche }} <small>/ noche</small></span>
