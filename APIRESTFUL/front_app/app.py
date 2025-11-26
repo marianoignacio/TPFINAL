@@ -20,6 +20,11 @@ def obtener_usuario(email):
     if response.status_code == 200:
         return response.json()
     return None
+def modificar_reserva(id_reserva):
+    response = requests.put(f"{API_BASE}/reservas/{id_reserva}")
+    if response.status_code == 200:
+        return True
+    return False
     
 def obtener_reserva (id_reserva):
     response = requests.get(f"{API_BASE}/reservas/{id_reserva}")
@@ -270,13 +275,15 @@ def reserva ():
 @app.route('/pago/<int:id_reserva>')
 def pago (id_reserva):
     reserva = obtener_reserva(id_reserva)
+    session["id_reserva"]=reserva["id"]
+    
+
     detalles_reserva={"numero_de_reserva": reserva["id"],
         "fecha_checkin": reserva["check_in"],
         "fecha_checkout": reserva["check_out"],
         "cantidad_huespedes": reserva["huespedes"],
         "total_pagado": reserva["monto_total"]}
     permitido = session.get("permitir_pago")
-    session["id_reserva"]=reserva["id"],
     if permitido != id_reserva:
         flash("No tenés permiso para acceder a este pago.")
         return redirect(url_for("reserva"))
@@ -294,10 +301,18 @@ def pago (id_reserva):
 # *10
 @app.route('/confirmacion')
 def confirmacion ():
+    if not "id_reserva" in session:
+        flash("No podes acceder a esta pagina")
+        return redirect(url_for("reserva"))
+    id_reserva = session["id_reserva"]
+    confirmado=modificar_reserva(id_reserva)
+    session.pop("id_reserva", None)
+    if not confirmado:
+        flash("No se pudo confirmar la reserva")
+        return redirect(url_for("reserva"))
     if "nombre" in session:
         informacion=inicializar_sesion()
         return render_template('confirmacion.html', info_hotel=hotel, info_usuario=informacion)
     return render_template('confirmacion.html', info_hotel=hotel, info_usuario=None)
-
 if __name__== '__main__':
         app.run("localhost", port=8080, debug=True)

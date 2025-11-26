@@ -30,20 +30,11 @@ def traer_reserva(id_reserva):
 def actualizar_reserva(id_reserva):
     conn = conectarse_db()
     cursor = conn.cursor(dictionary=True)
-    data = request.json
-    
-    id_usuario = data.get("id_usuario")
-    id_habitacion = data.get("id_habitacion")
-    check_in = data.get("check_in")
-    check_out = data.get("check_out")
-    huespedes = data.get("cant_huespedes")
-    monto_total = data.get("monto_total")
     cursor.execute("""
         UPDATE reservas 
-        SET id_usuario = %s, id_habitacion = %s, check_in = %s, 
-            check_out = %s, huespedes = %s, monto_total = %s
+        SET confirmado = 1
         WHERE id = %s
-    """, (id_usuario, id_habitacion, check_in, check_out, huespedes, monto_total, id_reserva))
+    """, (id_reserva,))
     conn.commit()
     cursor.close()
     conn.close()
