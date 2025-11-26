@@ -10,20 +10,19 @@
 <li class="nav-item"><a class="nav-link" href="{{url_for('formulario')}}">CONTACTO</a></li>
 {% endblock %}
 
-{% block body %}
-<section class="hero-wrap" style="background-image: url({{ url_for('static', filename='images/salon-1.jpg') }})">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-            <div class="col-lg-10 text-center">
-                    <span class="subheading">¡Disfrute de unas maravillosas vacaciones con una gran experiencia de
-                        lujo!</span>
-                <h1 class="mb-4">El lugar mas relajante</h1>
-                <p><a href="#habitaciones" class="btn btn-primary p-4 py-3">Ver habitaciones <span
-                        class="ion-ios-arrow-round-forward"></span></a> <a href="#reseñas"
-                                                                           class="btn btn-white btn-outline-white p-4 py-3">Reseñas
-                    <span
-                            class="ion-ios-arrow-round-forward"></span></a></p>
+    {% block body %}
+    <section class="hero-wrap" style="background-image: url({{ url_for('static', filename='images/salon-1.jpg') }})">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <span class="subheading">¡Disfrutá de unas maravillosas vacaciones con una gran experiencia de lujo!</span>
+                    <h1 class="mb-4">El Lugar Más Relajante</h1>
+                    <p><a href="#habitaciones" class="btn btn-primary p-4 py-3">Ver habitaciones <span
+                                class="ion-ios-arrow-round-forward"></span></a> <a href="#reseñas"
+                            class="btn btn-white btn-outline-white p-4 py-3">Reseñas <span
+                                class="ion-ios-arrow-round-forward"></span></a></p>
+                </div>
             </div>
         </div>
     </div>
@@ -94,95 +93,90 @@
                 </form>
             </div>
         </div>
-    </div>
-</section>
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-<div class="alert alert-info">
-    {% for msg in messages %}
-    <p>{{ msg }}</p>
-    {% endfor %}
-</div>
-{% endif %}
-{% endwith %}
-<section class="ftco-section" id="servicios">
-    <div class="container-xl">
-        <div class="row justify-content-center">
-            <div class="col-md-8 heading-section text-center mb-5" data-aos="fade-up" data-aos-duration="1000">
-                <span class="subheading">IDS Servicios</span>
-                <h2 class="mb-4">Nuestros servicios:</h2>
+    </section>
+    <section class="ftco-section" id="servicios">
+        <div class="container-xl">
+            <div class="row justify-content-center">
+                <div class="col-md-8 heading-section text-center mb-5" data-aos="fade-up" data-aos-duration="1000">
+                    <span class="subheading">IDS Servicios</span>
+                    <h2 class="mb-4">Nuestros Servicios:</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
+                    data-aos-delay="100" data-aos-duration="1000">
+                    <a href="#" class="services">
+                        <div class="icon"><span class="flaticon-wifi-signal"></span></div>
+                        <div class="text">
+                            <h2>Wifi gratis</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
+                    data-aos-delay="200" data-aos-duration="1000">
+                    <a href="#" class="services">
+                        <div class="icon"><span class="flaticon-online-booking"></span></div>
+                        <div class="text">
+                            <h2>Fácil reserva</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
+                    data-aos-delay="300" data-aos-duration="1000">
+                    <a href="#" class="services">
+                        <div class="icon"><span class="flaticon-cooking"></span></div>
+                        <div class="text">
+                            <h2>Restaurante</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
+                    data-aos-delay="400" data-aos-duration="1000">
+                    <a href="#" class="services">
+                        <div class="icon"><span class="flaticon-swimming-pool"></span></div>
+                        <div class="text">
+                            <h2>Pileta</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
+                    data-aos-delay="400" data-aos-duration="1000">
+                    <a href="#" class="services">
+                        <div class="icon"><span class="flaticon-cosmetics"></span></div>
+                        <div class="text">
+                            <h2>Salón de spa</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
+                    data-aos-delay="400" data-aos-duration="1000">
+                    <a href="#" class="services">
+                        <div class="icon"><span class="flaticon-reception"></span></div>
+                        <div class="text">
+                            <h2>Mesa de atención</h2>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
-                 data-aos-delay="100" data-aos-duration="1000">
-                <a href="#" class="services">
-                    <div class="icon"><span class="flaticon-wifi-signal"></span></div>
-                    <div class="text">
-                        <h2>Wifi gratis</h2>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
-                 data-aos-delay="200" data-aos-duration="1000">
-                <a href="#" class="services">
-                    <div class="icon"><span class="flaticon-online-booking"></span></div>
-                    <div class="text">
-                        <h2>Facil reserva</h2>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
-                 data-aos-delay="300" data-aos-duration="1000">
-                <a href="#" class="services">
-                    <div class="icon"><span class="flaticon-cooking"></span></div>
-                    <div class="text">
-                        <h2>Restaurante</h2>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
-                 data-aos-delay="400" data-aos-duration="1000">
-                <a href="#" class="services">
-                    <div class="icon"><span class="flaticon-swimming-pool"></span></div>
-                    <div class="text">
-                        <h2>Pileta</h2>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
-                 data-aos-delay="400" data-aos-duration="1000">
-                <a href="#" class="services">
-                    <div class="icon"><span class="flaticon-cosmetics"></span></div>
-                    <div class="text">
-                        <h2>Salon de spa</h2>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
-                 data-aos-delay="400" data-aos-duration="1000">
-                <a href="#" class="services">
-                    <div class="icon"><span class="flaticon-reception"></span></div>
-                    <div class="text">
-                        <h2>Mesa de atencion</h2>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="ftco-intro ftco-no-pt ftco-no-pb img"
-         style="background-image: url({{ url_for('static', filename='images/vistas-1.jpg') }})">
-    <div class="overlay"></div>
-    <div class="container-xl py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-10 col-xl-8">
-                <div class="row" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="col-md-8 d-flex align-items-center">
-                        <div>
-                            <span class="subheading">Reserva tu habitacion ideal</span>
-                            <h1 class="mb-md-0 mb-4">Encontra la habitacion perfecta para tus proximas vacaciones
-                            </h1>
+    </section>
+    <section class="ftco-intro ftco-no-pt ftco-no-pb img"
+        style="background-image: url({{ url_for('static', filename='images/vistas-1.jpg') }})">
+        <div class="overlay"></div>
+        <div class="container-xl py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-xl-8">
+                    <div class="row" data-aos="fade-up" data-aos-duration="1000">
+                        <div class="col-md-8 d-flex align-items-center">
+                            <div>
+                                <span class="subheading">Reserva tu habitacion ideal</span>
+                                <h1 class="mb-md-0 mb-4">Encontrá La Habitación Perfecta Para Tus Próximas Vacaciones.
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-center">
+                            <p class="mb-0"><a href="{{url_for('reserva')}}"
+                                    class="btn btn-primary py-md-4 py-3 px-md-5 px-4">RESERVAR</a></p>
                         </div>
                     </div>
                     <div class="col-md-4 d-flex align-items-center">
@@ -226,22 +220,16 @@
             {% endfor %}
 
         </div>
-    </div>
-</section>
-<section class="img vid-section"
-         style="background-image:url({{ url_for('static', filename='images/vistas-2.jpg') }})">
-    <div class="overlay"></div>
-    <div class="container-xl">
-        <div class="row justify-content-center">
-            <div class="col-md-10 vid-height d-flex align-items-center justify-content-center text-center">
-                <div class="video-wrap" data-aos="fade-up">
-                    <span class="subheading">Mirar nuestro lujurioso hotel</span>
-                    <h3>Dar un paseo</h3>
-
-                    <a href="https://vimeo.com/685995963"
-                       class="video-icon glightbox d-flex align-items-center justify-content-center">
-                        <span class="ion-ios-play"></span>
-                    </a>
+    </section>
+    <section class="img vid-section"
+        style="background-image:url({{ url_for('static', filename='images/vistas-2.jpg') }})">
+        <div class="overlay"></div>
+        <div class="container-xl">
+            <div class="row justify-content-center">
+                <div class="col-md-10 vid-height d-flex align-items-center justify-content-center text-center">
+                    <div class="video-wrap" data-aos="fade-up">
+                        <span class="subheading">Mirá nuestro lujoso hotel</span>
+                        <h3>Vamos A Dar Un Paseo</h3>
 
                 </div>
             </div>
@@ -255,78 +243,81 @@
                 <span class="subheading">Reseñas</span>
                 <h2 class="mb-3">Clientes felices</h2>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                <div class="carousel-testimony">
-                    <div class="item">
-                        <div class="testimony-wrap">
-                            <div class="text">
-                                <div class="d-flex align-items-center mb-4">
-                                    <div class="user-img"
-                                         style="background-image:url({{ url_for('static', filename='images/xperson_1.jpg.pagespeed.ic.P4pHl6glbj.jpg') }})">
-                                        <div class="icon d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-quote-left"></div>
+            <div class="row">
+                <div class="col-md-12" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                    <div class="carousel-testimony">
+                        <div class="item">
+                            <div class="testimony-wrap">
+                                <div class="text">
+                                    <div class="d-flex align-items-center mb-4">
+                                        <div class="user-img"
+                                            style="background-image:url({{ url_for('static', filename='images/foto_dylan.png') }})">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                                    class="fa fa-quote-left"></div>
+                                        </div>
+                                        <div class="ps-3 tx">
+                                            <p class="name">Dylan Ruiz</p>
+                                            <span class="position">Estudiante de ingeniería</span>
+                                        </div>
                                     </div>
-                                    <div class="ps-3 tx">
-                                        <p class="name">Dylan Ruiz</p>
-                                        <span class="position">Estudiante de ingenieria</span>
-                                    </div>
+                                    <p class="mb-4 msg">Muy buen hotel. Lo visité las vacaciones pasadas, muy buena atención al cliente y excelente experiencia.</p>
                                 </div>
                                 <p class="mb-4 msg">Muy buen hotel lo visite las vaciones pasadas, muy buena
                                     atencion al cliente y excelente experiencia</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap">
-                            <div class="text">
-                                <div class="d-flex align-items-center mb-4">
-                                    <div class="user-img"
-                                         style="background-image:url({{ url_for('static', filename='images/xperson_2.jpg.pagespeed.ic.yyrmjBH91b.jpg') }})">
-                                        <div class="icon d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-quote-left"></div>
+                        <div class="item">
+                            <div class="testimony-wrap">
+                                <div class="text">
+                                    <div class="d-flex align-items-center mb-4">
+                                        <div class="user-img"
+                                            style="background-image:url({{ url_for('static', filename='images/foto_mariano.png') }})">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                                    class="fa fa-quote-left"></div>
+                                        </div>
+                                        <div class="ps-3 tx">
+                                            <p class="name">Mariano Pinto</p>
+                                            <span class="position">Pesquero de navíos</span>
+                                        </div>
                                     </div>
-                                    <div class="ps-3 tx">
-                                        <p class="name">Mariano Pinto</p>
-                                        <span class="position">Pesquero de navios</span>
-                                    </div>
+                                    <p class="mb-4 msg">Buen hotel, recomendado para alojamiento y con comodidad asegurada.
+                                        ¡Saludos desde el barco!</p>
                                 </div>
                                 <p class="mb-4 msg">Buen hotel, recomendado para alojamiento y comodidad asegurada.
                                     Saludos desde el barco.</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap">
-                            <div class="text">
-                                <div class="d-flex align-items-center mb-4">
-                                    <div class="user-img"
-                                         style="background-image:url({{ url_for('static', filename='images/person_3.jpg') }})">
-                                        <div class="icon d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-quote-left"></div>
-                                    </div>
-                                    <div class="ps-3 tx">
-                                        <p class="name">Cerbero Diaz</p>
-                                        <span class="position">Estudiante de IDS</span>
+                        <div class="item">
+                            <div class="testimony-wrap">
+                                <div class="text">
+                                    <div class="d-flex align-items-center mb-4">
+                                        <div class="user-img"
+                                            style="background-image:url({{ url_for('static', filename='images/foto_cerve.png') }})">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                                    class="fa fa-quote-left"></div>
+                                        </div>
+                                        <div class="ps-3 tx">
+                                            <p class="name">Cerbero Diaz</p>
+                                            <span class="position">Estudiante de IDS</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <p class="mb-4 msg">https://www.youtube.com/watch?v=f8mL0_4GeV0</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap">
-                            <div class="text">
-                                <div class="d-flex align-items-center mb-4">
-                                    <div class="user-img"
-                                         style="background-image:url({{ url_for('static', filename='images/xperson_1.jpg.pagespeed.ic.P4pHl6glbj.jpg') }})">
-                                        <div class="icon d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-quote-left"></div>
-                                    </div>
-                                    <div class="ps-3 tx">
-                                        <p class="name">Alejandra Bejarano</p>
-                                        <span class="position">Abrazadora de osos pandas</span>
+                        <div class="item">
+                            <div class="testimony-wrap">
+                                <div class="text">
+                                    <div class="d-flex align-items-center mb-4">
+                                        <div class="user-img"
+                                            style="background-image:url({{ url_for('static', filename='images/foto_ale.jpg') }})">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                                    class="fa fa-quote-left"></div>
+                                        </div>
+                                        <div class="ps-3 tx">
+                                            <p class="name">Alejandra Muñoz</p>
+                                            <span class="position">Abrazadora de pandas</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <p class="mb-4 msg">Muy lindo todo lo del hotel, la habitación, los espacios y
@@ -334,39 +325,41 @@
                                     felices, espero volver pronto junto algún panda de acompañante!</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap">
-                            <div class="text">
-                                <div class="d-flex align-items-center mb-4">
-                                    <div class="user-img"
-                                         style="background-image:url({{ url_for('static', filename='images/xperson_2.jpg.pagespeed.ic.yyrmjBH91b.jpg') }})">
-                                        <div class="icon d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-quote-left"></div>
+                        <div class="item">
+                            <div class="testimony-wrap">
+                                <div class="text">
+                                    <div class="d-flex align-items-center mb-4">
+                                        <div class="user-img"
+                                            style="background-image:url({{ url_for('static', filename='images/foto_lucas.png') }})">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                                    class="fa fa-quote-left"></div>
+                                        </div>
+                                        <div class="ps-3 tx">
+                                            <p class="name">Lucas Roda</p>
+                                            <span class="position">Estudiante de intercambio</span>
+                                        </div>
                                     </div>
-                                    <div class="ps-3 tx">
-                                        <p class="name">Lucas Roda</p>
-                                        <span class="position">Estudiante de intercambio</span>
-                                    </div>
+                                    <p class="mb-4 msg">فندق ممتاز، مريح جدًا خلال فترة تبادلي الطلابي.(Excelente hotel, muy cómodo durante mi intercambio.)</p>
                                 </div>
                                 <p class="mb-4 msg">Far far away, behind the word mountains, far from the countries
                                     Vokalia and Consonantia, there live the blind texts.</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap">
-                            <div class="text">
-                                <div class="d-flex align-items-center mb-4">
-                                    <div class="user-img"
-                                         style="background-image:url({{ url_for('static', filename='images/xperson_1.jpg.pagespeed.ic.P4pHl6glbj.jpg') }})">
-                                        <div class="icon d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-quote-left"></div>
+                        <div class="item">
+                            <div class="testimony-wrap">
+                                <div class="text">
+                                    <div class="d-flex align-items-center mb-4">
+                                        <div class="user-img"
+                                            style="background-image:url({{ url_for('static', filename='images/foto_cami.png') }})">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                                    class="fa fa-quote-left"></div>
+                                        </div>
+                                        <div class="ps-3 tx">
+                                            <p class="name">Camila Berrocal</p>
+                                            <span class="position">Astronauta</span>
+                                        </div>
                                     </div>
-                                    <div class="ps-3 tx">
-                                        <p class="name">Camila Berrocal</p>
-                                        <span class="position">Astronauta</span>
-                                    </div>
+                                    <p class="mb-4 msg">Me encantó la habitación, mejor que cualquier nave espacial en la que haya estado. ¡Súper recomendado!</p>
                                 </div>
                                 <p class="mb-4 msg">Me encanto la habitación, mejor que cualquier nave espacial en
                                     la que haya estado, súper recomendado.</p>
