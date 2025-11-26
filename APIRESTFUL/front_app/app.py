@@ -146,7 +146,7 @@ def formulario():
 
         except Exception as e:
                 print(f"Error enviando mail: {e}")
-                flash("Hubo un error al enviar tu mensaje, intenta más tarde")
+                flash("Hubo un error al enviar tu mensaje; intentá más tarde.")
                 return redirect(url_for("formulario"))
     if "nombre" in session:
         informacion=inicializar_sesion()
@@ -206,10 +206,10 @@ def login():
             session["id_usuario"] = usuario.get("id_usuario")
             return redirect(url_for("home"))
         elif response.status_code == 404:
-            flash("No se encontró el usuario especificado")
+            flash("No se encontró el usuario especificado.")
             return redirect(url_for("registro"))
         else:
-            flash("La contraseña ingresada es incorrecta")
+            flash("Su correo electrónico y contraseña no coinciden. Inténtelo de nuevo.")
             return redirect(url_for("login"))
 
     if "nombre" in session:
@@ -239,11 +239,11 @@ def registro ():
             flash("Las contraseñas deben ser iguales", "error")
             return redirect(url_for("registro"))
         if usuario:
-            flash("Ya existe una cuenta con ese mail")
+            flash("Ya existe una cuenta con ese mail.")
             return redirect(url_for("login"))
         cuenta = crear_cuenta(email, nombre, apellido, contrasena)
         if not cuenta:
-            flash("Error al crear la cuenta", "error")
+            flash("Error al crear la cuenta.", "error")
             return redirect(url_for("registro"))
         else:
             return redirect(url_for("login"))
@@ -264,11 +264,11 @@ def reserva ():
             id_usuario = session["id_usuario"]
             id_reserva = agregar_reserva(id_usuario, id_habitacion, check_in, check_out, huespedes)
             if not id_reserva:
-                flash("Error al crear la reserva", "error")
+                flash("Error al crear la reserva.", "error")
                 return redirect(url_for("reserva"))
             session["permitir_pago"] = id_reserva
             return redirect(url_for("pago", id_reserva=id_reserva))
-        flash("Necesitas iniciar sesion para reservar una habitacion")
+        flash("Necesitas iniciar sesión para reservar una habitación.")
         return redirect(url_for("login"))
     if "nombre" in session:
         informacion=inicializar_sesion()
@@ -341,7 +341,7 @@ def confirmacion():
 
 
     if "id_reserva" not in session:
-        flash("No podes acceder a esta página")
+        flash("No podes acceder a esta página.")
         return redirect(url_for("reserva"))
 
     id_reserva = session["id_reserva"]
@@ -350,7 +350,7 @@ def confirmacion():
     session.pop("id_reserva", None)
 
     if not confirmado:
-        flash("No se pudo confirmar la reserva")
+        flash("No se pudo confirmar la reserva.")
         return redirect(url_for("reserva"))
     datos_reserva = obtener_reserva(id_reserva)
     session["datos_reserva"] = datos_reserva

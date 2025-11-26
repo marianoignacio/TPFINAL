@@ -6076,3 +6076,27 @@ reserva*/
 
 }
 
+.alerta-confirmacion{
+  color:#53a942;
+  background-color:#f2dede;
+  border-color:#ebccd1;
+  font-size: 20px;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 15px;
+}
+
+.alerta-registro{
+  border-color:#ebccd1;
+  font-size: 20px;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 15px;
+}
+
