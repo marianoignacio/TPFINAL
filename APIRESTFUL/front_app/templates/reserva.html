@@ -3,48 +3,16 @@
 {% block head %}
 <title>Reservar | Confirmación</title>
 
-<!-- Este código hace que la fecha del check out siempre sea mayor o igual a la del check in -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const checkin = document.getElementById('checkin');
-  const checkout = document.getElementById('checkout');
-  if (!checkin || !checkout) return;
-
-  const hoy = new Date().toISOString().split('T')[0];
-
-  checkin.min = hoy;
-  checkout.min = hoy;
-
-  checkin.addEventListener('change', () => {
-    if (checkin.value) {
-      checkout.min = checkin.value;
-      
-      if (!checkout.value || checkout.value < checkin.value) {
-        checkout.value = checkin.value;
-      }
-    } else {
-      
-      checkout.min = hoy;
-    }
-  });
-
-  checkout.addEventListener('change', () => {
-    if (checkout.value && checkout.value < checkout.min) {
-      checkout.value = checkout.min;
-    }
-  });
-});
-</script>
-
 {% endblock %}
-   {% block navbar %}
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('nosotros') }}">NOSOTROS</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="{{url_for('reserva')}}">RESERVA</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{url_for('formulario')}}">CONTACTO</a></li>
+{% block navbar %}
+<li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">INICIO</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ url_for('nosotros') }}">NOSOTROS</a></li>
+<li class="nav-item"><a class="nav-link active" href="{{url_for('reserva')}}">RESERVA</a></li>
+<li class="nav-item"><a class="nav-link" href="{{url_for('formulario')}}">CONTACTO</a></li>
 {% endblock %}
 {% block body %}
-<section class="hero-wrap hero-wrap-2" style="background-image:url({{ url_for('static', filename='images/salon-1.jpg') }})">
+<section class="hero-wrap hero-wrap-2"
+         style="background-image:url({{ url_for('static', filename='images/salon-1.jpg') }})">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -63,85 +31,78 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     {% endif %}
 {% endwith %}
-    <div class="progreso-reserva">
-        <div class="stepper-box">
-            <div class="stepper-step stepper-active">
-                <div class="stepper-circle">1</div>
-                <div class="stepper-line"></div>
-                <div class="stepper-content">
-                    <div class="stepper-title">Reserva</div>
-                    <div class="stepper-status">En proceso</div>
-                </div>
+<div class="progreso-reserva">
+    <div class="stepper-box">
+        <div class="stepper-step stepper-active">
+            <div class="stepper-circle">1</div>
+            <div class="stepper-line"></div>
+            <div class="stepper-content">
+                <div class="stepper-title">Reserva</div>
+                <div class="stepper-status">En proceso</div>
             </div>
+        </div>
 
-            <div class="stepper-step stepper-pending">
-                <div class="stepper-circle">2</div>
-                <div class="stepper-line"></div>
-                <div class="stepper-content">
-                    <div class="stepper-title">Pago</div>
-                    <div class="stepper-status">Pendiente</div>
-                </div>
+        <div class="stepper-step stepper-pending">
+            <div class="stepper-circle">2</div>
+            <div class="stepper-line"></div>
+            <div class="stepper-content">
+                <div class="stepper-title">Pago</div>
+                <div class="stepper-status">Pendiente</div>
             </div>
+        </div>
 
-            <div class="stepper-step stepper-pending">
-                <div class="stepper-circle">3</div>
-                <div class="stepper-content">
-                    <div class="stepper-title">Confirmación</div>
-                    <div class="stepper-status">Pendiente</div>
-                </div>
+        <div class="stepper-step stepper-pending">
+            <div class="stepper-circle">3</div>
+            <div class="stepper-content">
+                <div class="stepper-title">Confirmación</div>
+                <div class="stepper-status">Pendiente</div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- FORMULARIO -->
-    <div class="form-container-reserva">
-        <h3>LOS DATOS DE TU RESERVA</h3>
-        <form class="form-reserva" action="{{url_for('reserva')}}" method="POST">
-            <div class="form-row-reserva">
-                <label class="label-reserva" for="checkin">Check-in:</label>
-                <input class="input-reserva" type="date" id="checkin" name="checkin" placeholder="DD/MM/YYYY">
-            </div>
+<!-- FORMULARIO -->
+<div class="form-container-reserva">
+    <h3>LOS DATOS DE TU RESERVA</h3>
+    <form class="form-reserva" action="{{url_for('reserva')}}" method="POST">
+        <div class="form-row-reserva">
+            <label class="label-reserva" for="checkin">Check-in:</label>
+            <input class="input-reserva" type="date" id="checkin" name="checkin" value="{{pre_reserva.check_in or ''}}">
+        </div>
 
-            <div class="form-row-reserva">
-                <label class="label-reserva" for="checkout">Check-out:</label>
-                <input class="input-reserva" type="date" id="checkout" name="checkout" placeholder="DD/MM/YYYY">
-            </div>
+        <div class="form-row-reserva">
+            <label class="label-reserva" for="checkout">Check-out:</label>
+            <input class="input-reserva" type="date" id="checkout" name="checkout" value="{{pre_reserva.check_out or ''}}">
+        </div>
 
-            <div class="form-row-reserva">
-                <label class="label-reserva" for="habitacion">Habitación:</label>
-                <select class="select-reserva" id="habitacion" name="habitacion">
-                    <option value=4>Habitación clasica</option>
-                    <option value=1>Habitación Suite</option>
-                    <option value=2>Habitación familiar</option>
-                    <option value=6>Habitación de lujo</option>
-                    <option value=3>Habitación super de lujo</option>
-                    <option value=5>Habitación superior</option>
-                </select>
-            </div>
+        <div class="form-row-reserva">
+            <label class="label-reserva" for="habitacion">Habitación:</label>
+            <select class="select-reserva" id="habitacion" name="habitacion" required>
+                <option value="4" {% if pre_reserva.habitacion == "4" %}selected{% endif %}>Habitación clásica</option>
+                <option value="1" {% if pre_reserva.habitacion == '1' %}selected{% endif %}>Habitación Suite</option>
+                <option value="2" {% if pre_reserva.habitacion == '2' %}selected{% endif %}>Habitación familiar</option>
+                <option value="6" {% if pre_reserva.habitacion == '6' %}selected{% endif %}>Habitación de lujo</option>
+                <option value="3" {% if pre_reserva.habitacion == '3' %}selected{% endif %}>Habitación super de lujo</option>
+                <option value="5" {% if pre_reserva.habitacion == '5' %}selected{% endif %}>Habitación superior</option>
+            </select>
+        </div>
 
-            <div class="form-row-reserva">
-                <label class="label-reserva" for="huespedes">Cantidad de Huéspedes:</label>
-                <select class="select-reserva" id="huespedes" name="huespedes">
-                    <option>1</option>
-                    <option selected>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                </select>
-            </div>
+        <div class="form-row-reserva">
+            <label class="label-reserva" for="huespedes">Cantidad de Huéspedes:</label>
+            <select class="select-reserva" id="huespedes" name="huespedes" required>
+                <option value="1" {% if pre_reserva.huespedes == '1' %}selected{% endif %}>1</option>
+                <option value="2" {% if pre_reserva.huespedes == '2' %}selected{% endif %}>2</option>
+                <option value="3" {% if pre_reserva.huespedes == '3' %}selected{% endif %}>3</option>
+                <option value="4" {% if pre_reserva.huespedes == '4' %}selected{% endif %}>4</option>
+                <option value="5" {% if pre_reserva.huespedes == '5' %}selected{% endif %}>5</option>
+                <option value="6" {% if pre_reserva.huespedes == '6' %}selected{% endif %}>6</option>
+            </select>
+        </div>
 
-            <button class="button-reserva" type="submit"><a >CONTINUAR</a></button>
-        </form>
-    </div>
+        <button class="button-reserva" type="submit"><a>CONTINUAR</a></button>
+    </form>
+</div>
 
-    <script>
-    // Obtener fecha actual en formato YYYY-MM-DD
-    const hoy = new Date().toISOString().split("T")[0];
-
-    // Asignar como mínimo al check-in y check-out
-    document.getElementById("checkin").setAttribute("min", hoy);
-    document.getElementById("checkout").setAttribute("min", hoy);
-</script>
+<script src="{{ url_for('static', filename='js/fechas-reserva.js') }}"></script>
 
 {%endblock%}
