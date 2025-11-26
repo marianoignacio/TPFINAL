@@ -6052,3 +6052,69 @@ reserva*/
     background-color: #222222;
     border: 1px solid #222222;
 }
+    .detalles {
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .form-container {
+        padding: 20px;
+        width: 260px;
+        display: inline-table;
+    }
+
+.alerta-reserva {
+  color:#a94442;
+  background-color:#f2dede;
+  border-color:#ebccd1;
+  font-size: 20px;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 15px;
+}
+
+.alerta-inicio-sesion {
+  color:#a94442;
+  background-color:#f2dede;
+  border-color:#ebccd1;
+  font-size: 20px;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 15px;
+}
+
+.texto {
+  margin-bottom: 0px;
+
+}
+
+.alerta-confirmacion{
+  color:#53a942;
+  background-color:#f2dede;
+  border-color:#ebccd1;
+  font-size: 20px;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 15px;
+}
+
+.alerta-registro{
+  border-color:#ebccd1;
+  font-size: 20px;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 15px;
+}
+

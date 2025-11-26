@@ -23,13 +23,13 @@
     </div>
 </section>
 {% with messages = get_flashed_messages() %}
-{% if messages %}
-<div class="alert alert-info">
-    {% for msg in messages %}
-    <p>{{ msg }}</p>
-    {% endfor %}
-</div>
-{% endif %}
+    {% if messages %}
+        <div class="alerta-reserva" >
+            {% for msg in messages %}
+                <p class="texto"> {{ msg }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endwith %}
 <div class="progreso-reserva">
     <div class="stepper-box">
