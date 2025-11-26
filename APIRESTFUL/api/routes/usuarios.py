@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from werkzeug.security import generate_password_hash, check_password_hash
 from db import conectarse_db
 
 usuarios_bp = Blueprint("usuarios", __name__)
@@ -67,7 +68,7 @@ def crear_usuario(email):
     data = request.json
     nombre = data.get("nombre")
     apellido = data.get("apellido")
-    contrasena=data.get("contrasena")
+    contrasena = generate_password_hash(data.get("contrasena"))
    
     cursor.execute("""
     INSERT INTO usuarios (nombre, apellido, contrasena, email, fecha_creacion)
@@ -88,7 +89,7 @@ def actualizar_usuario(id_usuario):
 
     nombre = data.get("nombre")
     apellido = data.get("apellido")
-    contrasenia = data.get("contraseña")
+    contrasenia = generate_password_hash(data.get("contraseña"))
     email = data.get("email")
     fecha_creacion = data.get("fecha_creacion")
 
@@ -148,3 +149,30 @@ def eliminar_reservas_usuario(id_usuario):
     cursor.close()
     conn.close()
     return ("Reservas del usuario eliminadas correctamente", 200)
+
+#POST --> /usuarios/<email>/login --> Verifica las credenciales para el inicio de sesión del usuario.
+@usuarios_bp.route("/<email>/login", methods=["POST"])
+def login_usuario(email):
+    conn = conectarse_db()
+    cursor = conn.cursor(dictionary=True)
+
+    cursor.execute("SELECT id_usuario, nombre, apellido, email, fecha_creacion, contrasena FROM usuarios WHERE email = %s", (email,))
+    usuario = cursor.fetchone()
+    data = request.json or {}
+    contrasena_cargada = data.get("contrasena")
+
+    if not usuario:
+        cursor.close()
+        conn.close()
+        return ("No se encontró el usuario especificado", 404)
+
+    contrasena_hasheada = usuario.get("contrasena", "")
+    if not check_password_hash(contrasena_hasheada, contrasena_cargada):
+        cursor.close()
+        conn.close()
+        return ("La contraseña ingresada es incorrecta", 401)
+
+    usuario.pop("contrasena", None)
+    cursor.close()
+    conn.close()
+    return jsonify(usuario), 200

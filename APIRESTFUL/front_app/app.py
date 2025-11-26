@@ -20,6 +20,12 @@ def obtener_usuario(email):
     if response.status_code == 200:
         return response.json()
     return None
+    
+def obtener_reserva (id_reserva):
+    response = requests.get(f"{API_BASE}/reservas/{id_reserva}")
+    if response.status_code == 200:
+        return response.json()
+    return None
 
 def obtener_reservas_usuario(id_usuario):
     response = requests.get(f"{API_BASE}/usuarios/{id_usuario}/reservas")
@@ -147,6 +153,7 @@ def formulario():
 def page_not_found(e):
        mensaje="Error de página"
        return render_template('error.html',info_hotel=hotel, msj=mensaje,info_usuario=None),404
+
  # *4
 
 
@@ -175,28 +182,36 @@ def detalles_habitacion(id):
 
 # *5
 @app.route('/login', methods=["GET", "POST"])
-def login ():
+def login():
     if request.method == "POST":
         contrasena = request.form["inputContrasenia"]
-        email=request.form["inputEmail"]
-        usuario = obtener_usuario(email)
-        if not usuario:
-            flash("No existe un usuario con ese mail")
+        email = request.form["inputEmail"]
+
+        response = requests.post(
+            f"{API_BASE}/usuarios/{email}/login",
+            json={"contrasena": contrasena}
+        )
+
+        if response.status_code == 200:
+            usuario = response.json()
+            session["nombre"] = usuario.get("nombre")
+            session["email"] = usuario.get("email")
+            session["apellido"] = usuario.get("apellido")
+            session["fecha_creacion"] = usuario.get("fecha_creacion")
+            session["id_usuario"] = usuario.get("id_usuario")
+            return redirect(url_for("home"))
+        elif response.status_code == 404:
+            flash("No se encontró el usuario especificado")
             return redirect(url_for("registro"))
         else:
-             if contrasena != usuario["contrasena"]:
-                flash("No existe un usuario con esa contraseña")
-                return redirect(url_for("login"))
-             session["nombre"] = usuario["nombre"]
-             session["email"] = usuario["email"]
-             session["apellido"] = usuario["apellido"]
-             session["fecha_creacion"] = usuario["fecha_creacion"]
-             session["id_usuario"] = usuario["id_usuario"]
-             return redirect(url_for("home"))
+            flash("La contraseña ingresada es incorrecta")
+            return redirect(url_for("login"))
+
     if "nombre" in session:
-        informacion=inicializar_sesion()
-        return render_template('inicio_sesion.html', info_hotel=hotel,info_usuario=informacion)
-    return render_template('inicio_sesion.html', info_hotel=hotel,info_usuario=None)
+        informacion = inicializar_sesion()
+        return render_template('inicio_sesion.html', info_hotel=hotel, info_usuario=informacion)
+    return render_template('inicio_sesion.html', info_hotel=hotel, info_usuario=None)
+
 # *6
 @app.route('/nosotros')
 def nosotros ():
@@ -204,6 +219,7 @@ def nosotros ():
         informacion=inicializar_sesion()
         return render_template('nosotros.html', info_hotel=hotel, info_usuario=informacion)
     return render_template('nosotros.html', info_hotel=hotel, info_usuario=None)
+
 # *7
 @app.route('/registro', methods=["GET", "POST"])
 def registro ():
@@ -226,6 +242,7 @@ def registro ():
         informacion=inicializar_sesion()
         return render_template('registro.html', info_hotel=hotel,info_usuario=informacion)       
     return render_template('registro.html', info_hotel=hotel,info_usuario=None)
+
 # *8
 @app.route('/reserva', methods=["GET", "POST"])
 def reserva ():
@@ -249,19 +266,17 @@ def reserva ():
         return render_template('reserva.html', info_hotel=hotel,info_usuario=informacion)       
     return render_template('reserva.html', info_hotel=hotel, info_usuario=None)
 
-    # *9
+# *9
 @app.route('/pago/<int:id_reserva>')
 def pago (id_reserva):
-    detalles_de_reversa = {
-        "numero_de_reserva": "123456",
-        "fecha_checkin": "01/07/2026",
-        "fecha_checkout": "05/07/2026",
-        "tipo_habitacion": "Suite Deluxe",
-        "cantidad_huespedes": 2,
-        "total_pagado": "$500.00"
-    }
+    reserva = obtener_reserva(id_reserva)
+    detalles_reserva={"numero_de_reserva": reserva["id"],
+        "fecha_checkin": reserva["check_in"],
+        "fecha_checkout": reserva["check_out"],
+        "cantidad_huespedes": reserva["huespedes"],
+        "total_pagado": reserva["monto_total"]}
     permitido = session.get("permitir_pago")
-
+    session["id_reserva"]=reserva["id"],
     if permitido != id_reserva:
         flash("No tenés permiso para acceder a este pago.")
         return redirect(url_for("reserva"))
@@ -271,14 +286,12 @@ def pago (id_reserva):
 
     return render_template(
         "pago.html",
-        info_reserva=detalles_de_reversa,
+        info_reserva=detalles_reserva,
         info_hotel=hotel,
         info_usuario=informacion
     )
 
-    
-
-    # *10
+# *10
 @app.route('/confirmacion')
 def confirmacion ():
     if "nombre" in session:
