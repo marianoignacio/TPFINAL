@@ -83,8 +83,7 @@ def home ():
     todas = resp_todas.json()
     otras_habitaciones = []
     for h in todas:
-        if str(h["id_habitacion"]) != str(id):
-            otras_habitaciones.append(h)
+        otras_habitaciones.append(h)
 
     if "nombre" in session:
         informacion=inicializar_sesion()
@@ -179,6 +178,7 @@ def detalles_habitacion(id):
         informacion=inicializar_sesion()
         return render_template("habitaciones.html", habitacion=habitacion, info_hotel=hotel,info_usuario=informacion, otras_habitaciones=otras_habitaciones)
     return render_template("habitaciones.html", habitacion=habitacion,info_hotel=hotel,info_usuario=None, otras_habitaciones=otras_habitaciones)
+
 
 # *5
 @app.route('/login', methods=["GET", "POST"])
