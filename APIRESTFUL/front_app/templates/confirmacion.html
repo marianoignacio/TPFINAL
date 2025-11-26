@@ -3,8 +3,14 @@
 {% block head %}
 <title>Reservar | Confirmación</title>
 {% endblock %}
-    
+{% block navbar %}
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">INICIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('nosotros') }}">NOSOTROS</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{url_for('reserva')}}">RESERVA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('formulario')}}">CONTACTO</a></li>
+{% endblock %}
 {% block body %}
+
     <section class="hero-wrap hero-wrap-2" style="background-image:url({{ url_for('static', filename='images/salon-1.jpg') }})">
         <div class="overlay"></div>
         <div class="container">
@@ -15,7 +21,15 @@
             </div>
         </div>
     </section>
-
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="alert alert-info">
+            {% for msg in messages %}
+                <p>{{ msg }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
     <div class="progreso-reserva">
         <div class="stepper-box">
             <div class="stepper-step stepper-completed">

@@ -265,7 +265,7 @@ def reserva ():
             session["permitir_pago"] = id_reserva
             return redirect(url_for("pago", id_reserva=id_reserva))
         flash("Necesitas iniciar sesion para reservar una habitacion")
-        return redirect(url_for("reserva"))
+        return redirect(url_for("login"))
     if "nombre" in session:
         informacion=inicializar_sesion()
         return render_template('reserva.html', info_hotel=hotel,info_usuario=informacion)       

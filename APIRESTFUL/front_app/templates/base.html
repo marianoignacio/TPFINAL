@@ -37,10 +37,10 @@
                     {% endblock %}
                     {% if info_usuario %}
                     <li class="nav-item"><a class="nav-link" href="{{url_for('cerrar_sesion')}}">CERRAR</a></li>
+                     <li class="nav-item"><img class="nav-perfil" src="{{url_for('static', filename='images/perfil.jpg')}}" onclick="abrirVistaPerfil()" ></img></li>
                     {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{{url_for('registro')}}">REGISTRARSE</a></li>                  
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('login')}}">INICIAR SESION</a></li>                  
                     {% endif %}
-                    <li class="nav-item"><img class="nav-perfil" src="{{url_for('static', filename='images/perfil.jpg')}}" onclick="abrirVistaPerfil()" ></img></li>
                 
                 </ul>
 
