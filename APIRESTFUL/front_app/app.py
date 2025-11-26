@@ -20,6 +20,12 @@ def obtener_usuario(email):
     if response.status_code == 200:
         return response.json()
     return None
+    
+def obtener_reserva (id_reserva):
+    response = requests.get(f"{API_BASE}/reservas/{id_reserva}")
+    if response.status_code == 200:
+        return response.json()
+    return None
 
 def obtener_reservas_usuario(id_usuario):
     response = requests.get(f"{API_BASE}/usuarios/{id_usuario}/reservas")
@@ -263,16 +269,14 @@ def reserva ():
 # *9
 @app.route('/pago/<int:id_reserva>')
 def pago (id_reserva):
-    detalles_de_reversa = {
-        "numero_de_reserva": "123456",
-        "fecha_checkin": "01/07/2026",
-        "fecha_checkout": "05/07/2026",
-        "tipo_habitacion": "Suite Deluxe",
-        "cantidad_huespedes": 2,
-        "total_pagado": "$500.00"
-    }
+    reserva = obtener_reserva(id_reserva)
+    detalles_reserva={"numero_de_reserva": reserva["id"],
+        "fecha_checkin": reserva["check_in"],
+        "fecha_checkout": reserva["check_out"],
+        "cantidad_huespedes": reserva["huespedes"],
+        "total_pagado": reserva["monto_total"]}
     permitido = session.get("permitir_pago")
-
+    session["id_reserva"]=reserva["id"],
     if permitido != id_reserva:
         flash("No tenés permiso para acceder a este pago.")
         return redirect(url_for("reserva"))
@@ -282,7 +286,7 @@ def pago (id_reserva):
 
     return render_template(
         "pago.html",
-        info_reserva=detalles_de_reversa,
+        info_reserva=detalles_reserva,
         info_hotel=hotel,
         info_usuario=informacion
     )
