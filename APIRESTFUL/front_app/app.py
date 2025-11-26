@@ -232,8 +232,12 @@ def registro ():
         nombre = request.form["inputNombre"]
         apellido = request.form["inputApellido"]
         contrasena = request.form["inputContrasenia"]
+        confirmar_contrasena = request.form["inputConfirmarContrasenia"]
         email=request.form["inputEmail"]
         usuario = obtener_usuario(email)
+        if confirmar_contrasena != contrasena:
+            flash("Las contraseñas deben ser iguales", "error")
+            return redirect(url_for("registro"))
         if usuario:
             flash("Ya existe una cuenta con ese mail")
             return redirect(url_for("login"))
