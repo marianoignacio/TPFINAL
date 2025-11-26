@@ -128,21 +128,44 @@ def formulario():
         mensajes= request.form['message']
         asunto=request.form['asunto']
 
-        msg = Message(
-            subject=f"Inscripcion de: {nombre}",
-            recipients=[email_usuario],
-            body=f"""
-            REALIZASTE UNA RESERVA CON LOS DATOS:\n
-            Nombre: {nombre}\n
-            Motivo: {asunto}\n
-            Mensaje:\n
-            {mensajes}
+        msg = Message(subject=f"Inscripción de: {nombre}", recipients=[email_usuario])
+        msg.html = f"""
+        <div style="font-family: Arial, sans-serif; background:#f6f6f6; padding:20px;">
+        <div style="max-width:600px; margin:0 auto; background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+            <div style="background:#0f172a; padding:18px 24px; color:#fff;">
+            <h1 style="margin:0; font-size:20px; font-weight:600;">Confirmación de Consulta</h1>
+            </div>
 
-            COFIRMAR RECEPCIÓN Y CORROBORAR DATOS, GRACIAS!"""
-        )
+            <div style="padding:20px 24px; color:#222;">
+            <p style="margin:0 0 12px 0;">Hola <strong>{nombre}</strong>,</p>
+
+            <p style="margin:0 0 16px 0;">Hemos recibido tu consulta con los siguientes datos:</p>
+
+            <div style="background:#fff; padding:14px; border-radius:6px; border-left:4px solid #2b7cff; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+                <p style="margin:6px 0;"><strong>Nombre:</strong> {nombre}</p>
+                <p style="margin:6px 0;"><strong>Motivo:</strong> {asunto}</p>
+                <p style="margin:6px 0;"><strong>Mensaje:</strong></p>
+                <p style="margin:6px 0; white-space:pre-wrap;">{mensajes}</p>
+            </div>
+
+            <p style="margin:18px 0 8px 0;"><strong>Por favor confirmar recepción y corroborar datos.</strong></p>
+
+            <div style="text-align:center; margin-top:16px;">
+                <a href="https://tu-sitio.com/mi-reserva" style="display:inline-block; padding:10px 16px; background:#2b7cff; color:#fff; text-decoration:none; border-radius:6px;">Ver comprobante</a>
+            </div>
+
+            <p style="color:#777; font-size:12px; margin-top:18px;">Gracias por comunicarte con nosotros.</p>
+            </div>
+
+            <div style="background:#fafafa; padding:12px 18px; font-size:12px; color:#666; text-align:center;">
+            Hotel Ejemplo — Dirección · Tel: 1234-5678
+            </div>
+        </div>
+        </div>
+        """
         try:
                 mail.send(msg)
-
+                flash("Se envío el mail correctamente")
 
         except Exception as e:
                 print(f"Error enviando mail: {e}")
