@@ -68,7 +68,7 @@ A continuación se listan específicamente los avances realizados en cada sprint
   * Pendientes: `sobre_nosotros.html`, `habitacion.html`, `reserva.html`.
 * Definición final de las tablas para la base de datos, diagrama de entidad-relación y reglas de negocio.
 
-![](db_diagrama_er.jpeg)
+![](db_diagrama_er.png)
 
 * Se desarrolló el script de creación (con datos dummy para pruebas).
 * Reglas de negocio resumidas:
