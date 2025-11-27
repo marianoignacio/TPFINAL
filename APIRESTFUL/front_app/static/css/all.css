@@ -1,12 +1,5 @@
 @charset "UTF-8";
 
-/*!
-Animate.css - http://daneden.me/animate
-Licensed under the MIT license - http://opensource.org/licenses/MIT
-
-Copyright (c) 2015 Daniel Eden
-*/
-
 @-webkit-keyframes bounce {
   from, to {
     -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
@@ -6034,6 +6027,231 @@ reserva*/
 
 /* Métodos de pago */
 
+.detalles {
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.form-container {
+    padding: 20px;
+    width: 260px;
+    display: inline-table;
+}
+
+/* PAGO - CONTENEDORES */
+.contenedor-detalle-metodos-pago {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 40px;
+}
+
+#contenerdor_de_reserva_usuario, #contenedor_de_metodo_de_pago {
+    height: auto;
+}
+
+.contenedor-metodo-pago {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.contenedor-metodo-pago .metodos-pago {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.contenedor-metodo-pago .boton-confirmar-pago {
+    margin-top: 12px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* MÉTODO DE PAGO - BILLETERA */
+.walletBalanceCard {
+    width: fit-content;
+    height: 55px;
+    background-color: #222222;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 0px 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.svgwrapper {
+    width: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.svgwrapper svg {
+    width: 100%;
+}
+.balancewrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 120px;
+    gap: 0px;
+}
+.balanceHeading {
+    margin-top: 3px;
+    font-size: 14px;
+    color: rgb(214, 214, 214);
+    font-weight: 100;
+    letter-spacing: 0.6px;
+}
+.balance {
+    font-size: 13.5px;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.addmoney {
+    padding: 1px 15px;
+    border-radius: 20px;
+    background-color: #C5A880;
+    color: white;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+.addmoney:hover {
+    background-color: whitesmoke;
+    color: #C5A880;
+}
+.plussign {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* MÉTODO DE PAGO - TARJETA */
+.visa-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: 300px;
+    height: 180px;
+    background-image: radial-gradient(
+            circle 897px at 9% 80.3%,
+            rgba(34, 34, 34, 1) 0%,
+            rgba(197, 168, 128, 0.9) 100.2%
+    );
+    border-radius: 10px;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    gap: 15px;
+}
+
+.logoContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: fit-content;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 18px;
+}
+
+.svgLogo {
+    height: 40px;
+    width: auto;
+}
+
+.inputstyle::placeholder {
+    color: #ffffff;
+}
+
+.inputstyle {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    caret-color: red;
+    font-size: 13px;
+    height: 25px;
+    letter-spacing: 1.5px;
+}
+
+.number-container {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+#cardNumber {
+    width: 100%;
+    height: 25px;
+}
+
+.name-date-cvv-container {
+    width: 100%;
+    height: 25px;
+    display: flex;
+    gap: 10px;
+}
+
+.name-wrapper {
+    width: 60%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.expiry-wrapper,
+.cvv-wrapper {
+    width: 30%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+.cvv-wrapper {
+    width: 10%;
+}
+#expiry,
+#cvv {
+    width: 100%;
+}
+
+.input-label {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    color: #e2e2e2;
+    width: 100%;
+}
+
+/* FORMULARIO DE DISPONIBILIDAD DE INDEX.HTML */
+
+.input-disponibilidad, .select-disponibilidad {
+    color: white;
+    background-color: #222222;
+    border: 1px solid #222222;
+}
     .detalles {
       padding: 15px;
       margin-bottom: 20px;
@@ -6076,3 +6294,26 @@ reserva*/
 
 }
 
+.alerta-confirmacion{
+  color:#53a942;
+  background-color:#f2dede;
+  border-color:#ebccd1;
+  font-size: 20px;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 15px;
+}
+
+.alerta-registro{
+  border-color:#ebccd1;
+  font-size: 20px;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 15px;
+}

@@ -9,15 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" hreSS="https://fonts.gstatic.com/">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3/dist/css/glightbox.min.css">
-
+    <link rel="icon" sizes="32x32" href="{{ url_for('static', filename='images/favicon.ico') }}">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&amp;family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/all.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/A.animate.css+flaticon.css+tiny-slider.css+glightbox.min.css+aos.css+datepicker.min.css+style.css,Mcc.nCQXu6LVyk.css.pagespeed.cf.rg4CHwA3tS.css') }}" />
 </head>
-
-
 
 <body>
     <nav class="navbar navbar-expand-lg  ftco-navbar-light">
@@ -60,7 +58,7 @@
                 <div class="col-md-6 col-lg">
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2 logo d-flex">
-                            <a class="navbar-brand align-items-center" href="#">
+                            <a class="navbar-brand align-items-center" href="{{url_for('home')}}">
                                 <span class="">IDS <small>Hotel</small></span>
                             </a>
                         </h2>

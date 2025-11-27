@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, flash, url_for, jsonify, session
-
+from datetime import datetime
 import json
 import requests
 import os
@@ -20,12 +20,13 @@ def obtener_usuario(email):
     if response.status_code == 200:
         return response.json()
     return None
+
 def modificar_reserva(id_reserva):
     response = requests.put(f"{API_BASE}/reservas/{id_reserva}")
     if response.status_code == 200:
         return True
     return False
-    
+
 def obtener_reserva (id_reserva):
     response = requests.get(f"{API_BASE}/reservas/{id_reserva}")
     if response.status_code == 200:
@@ -114,14 +115,10 @@ if _mail_server:
 
     mail = Mail(app)
 else:
-
     mail = None
- 
-
 
 @app.route('/contacto', methods =['GET', 'POST'])
 def formulario():
-
     if request.method == 'POST':
         nombre = request.form['nombre']
         email_usuario = request.form['mail']
@@ -130,46 +127,35 @@ def formulario():
 
         msg = Message(subject=f"Inscripción de: {nombre}", recipients=[email_usuario])
         msg.html = f"""
-        <div style="font-family: Arial, sans-serif; background:#f6f6f6; padding:20px;">
-        <div style="max-width:600px; margin:0 auto; background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-            <div style="background:#0f172a; padding:18px 24px; color:#fff;">
-            <h1 style="margin:0; font-size:20px; font-weight:600;">Confirmación de Consulta</h1>
+             <div style="font-family: Arial, sans-serif; background:#c5a88022; padding:20px;">
+            <div style="max-width:600px; margin:0 auto; background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+            <div style="background:#b68d58; padding:18px 24px; color:#fff;">
+            <h1 style="margin:0; font-size:20px; font-weight:600;">Apertura de consulta</h1>
             </div>
 
             <div style="padding:20px 24px; color:#222;">
-            <p style="margin:0 0 12px 0;">Hola <strong>{nombre}</strong>,</p>
-
-            <p style="margin:0 0 16px 0;">Hemos recibido tu consulta con los siguientes datos:</p>
-
-            <div style="background:#fff; padding:14px; border-radius:6px; border-left:4px solid #2b7cff; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
-                <p style="margin:6px 0;"><strong>Nombre:</strong> {nombre}</p>
+            <p style="margin:0 0 12px 0;">Acabas de recibir un comunicado de <strong>{nombre}</strong></p>
+            <div style="background:#fff; padding:14px; border-radius:6px; border-left:4px solid #b68d58; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
                 <p style="margin:6px 0;"><strong>Motivo:</strong> {asunto}</p>
-                <p style="margin:6px 0;"><strong>Mensaje:</strong></p>
-                <p style="margin:6px 0; white-space:pre-wrap;">{mensajes}</p>
+                <p style="margin:6px 0;"><strong>Mensaje:</strong>{mensajes}</p>
             </div>
 
-            <p style="margin:18px 0 8px 0;"><strong>Por favor confirmar recepción y corroborar datos.</strong></p>
-
-            <div style="text-align:center; margin-top:16px;">
-                <a href="https://tu-sitio.com/mi-reserva" style="display:inline-block; padding:10px 16px; background:#2b7cff; color:#fff; text-decoration:none; border-radius:6px;">Ver comprobante</a>
-            </div>
-
-            <p style="color:#777; font-size:12px; margin-top:18px;">Gracias por comunicarte con nosotros.</p>
+            <p style="margin:18px 0 8px 0;"><strong>Gestione la consulta inmediatamente.</strong></p>
             </div>
 
             <div style="background:#fafafa; padding:12px 18px; font-size:12px; color:#666; text-align:center;">
-            Hotel Ejemplo — Dirección · Tel: 1234-5678
+            IDS HOTEL — Av. Paseo Colon 850 · Tel: + (54-11) 528 - 50559
             </div>
-        </div>
-        </div>
-        """
+            </div>
+            </div>
+            """
         try:
-                mail.send(msg)
-                flash("Se envío el mail correctamente")
-
+            mail.send(msg)
+            flash("Se envío el mail correctamente",200)
+            return redirect(url_for("formulario"))
         except Exception as e:
                 print(f"Error enviando mail: {e}")
-                flash("Hubo un error al enviar tu mensaje, intenta más tarde")
+                flash("Hubo un error al enviar tu mensaje; intentá más tarde.",)
                 return redirect(url_for("formulario"))
     if "nombre" in session:
         informacion=inicializar_sesion()
@@ -183,17 +169,14 @@ def page_not_found(e):
        return render_template('error.html',info_hotel=hotel, msj=mensaje,info_usuario=None),404
 
  # *4
-
-
-
 @app.route('/habitaciones/<id>')
 def detalles_habitacion(id):
     response = requests.get(f"{API_BASE}/habitaciones/{id}")
-    print(response.status_code)
-    print(response.text)
-    if response.status_code == 404:
-        return render_template("habitaciones.html", error="Habitación no encontrada")
+    
+    if response.status_code == 404 or not response:
+        return render_template("error.html", error="Habitación no encontrada")
     habitacion = response.json()
+
 
     resp_todas = requests.get(f"{API_BASE}/habitaciones/")
     todas = resp_todas.json()
@@ -206,6 +189,7 @@ def detalles_habitacion(id):
         informacion=inicializar_sesion()
         return render_template("habitaciones.html", habitacion=habitacion, info_hotel=hotel,info_usuario=informacion, otras_habitaciones=otras_habitaciones)
     return render_template("habitaciones.html", habitacion=habitacion,info_hotel=hotel,info_usuario=None, otras_habitaciones=otras_habitaciones)
+
 
 
 # *5
@@ -229,10 +213,10 @@ def login():
             session["id_usuario"] = usuario.get("id_usuario")
             return redirect(url_for("home"))
         elif response.status_code == 404:
-            flash("No se encontró el usuario especificado")
+            flash("No se encontró el usuario especificado.")
             return redirect(url_for("registro"))
         else:
-            flash("La contraseña ingresada es incorrecta")
+            flash("Su correo electrónico y contraseña no coinciden. Inténtelo de nuevo.")
             return redirect(url_for("login"))
 
     if "nombre" in session:
@@ -262,11 +246,11 @@ def registro ():
             flash("Las contraseñas deben ser iguales", "error")
             return redirect(url_for("registro"))
         if usuario:
-            flash("Ya existe una cuenta con ese mail")
+            flash("Ya existe una cuenta con ese mail.")
             return redirect(url_for("login"))
         cuenta = crear_cuenta(email, nombre, apellido, contrasena)
         if not cuenta:
-            flash("Error al crear la cuenta", "error")
+            flash("Error al crear la cuenta.", "error")
             return redirect(url_for("registro"))
         else:
             return redirect(url_for("login"))
@@ -285,18 +269,41 @@ def reserva ():
             huespedes = request.form["huespedes"]
             id_habitacion = request.form["habitacion"]
             id_usuario = session["id_usuario"]
+
+            response = requests.get(
+                f"{API_BASE}/reservas/disponibilidad",
+                params={"id_habitacion": id_habitacion, "check_in": check_in, "check_out": check_out}
+            )
+
+            if response.status_code != 200:
+                flash("Error al verificar disponibilidad. Intenta más tarde.")
+                return redirect(url_for("reserva"))
+
+            data = response.json()
+            if not data.get("disponibilidad", False):
+                flash("La habitación no está disponible en el rango de fechas seleccionado.")
+                return redirect(url_for("reserva"))
+
             id_reserva = agregar_reserva(id_usuario, id_habitacion, check_in, check_out, huespedes)
             if not id_reserva:
-                flash("Error al crear la reserva", "error")
+                flash("Error al crear la reserva.", "error")
                 return redirect(url_for("reserva"))
             session["permitir_pago"] = id_reserva
             return redirect(url_for("pago", id_reserva=id_reserva))
-        flash("Necesitas iniciar sesion para reservar una habitacion")
+        flash("Necesitas iniciar sesión para reservar una habitación.")
         return redirect(url_for("login"))
+
+    pre_reserva = {
+        "habitacion": request.args.get("habitacion"),
+        "check_in": request.args.get("checkin"),
+        "check_out": request.args.get("checkout"),
+        "huespedes": request.args.get("huespedes")
+    }
+
     if "nombre" in session:
         informacion=inicializar_sesion()
-        return render_template('reserva.html', info_hotel=hotel,info_usuario=informacion)       
-    return render_template('reserva.html', info_hotel=hotel, info_usuario=None)
+        return render_template('reserva.html', info_hotel=hotel, info_usuario=informacion, pre_reserva=pre_reserva)
+    return render_template('reserva.html', info_hotel=hotel, info_usuario=None, pre_reserva=pre_reserva)
 
 # *9
 @app.route('/pago/<int:id_reserva>')
@@ -325,8 +332,6 @@ def pago (id_reserva):
         info_usuario=informacion
     )
 
-
-
 # *10
 @app.route('/confirmacion', methods=["GET", "POST"])
 def confirmacion():
@@ -340,19 +345,37 @@ def confirmacion():
 
         msg = Message(
             subject=f"Inscripción de: {session.get('nombre')}",
-            recipients=[session.get("email")],
-            body=f"""
-            REALIZASTE UNA RESERVA CON LOS SIGUIENTES DATOS:
-            DATOS DE RESERVACIÓN #{datos_reserva["id"]}
-            Nombre: {session.get('nombre', 'usuario_invalido')}
-            Monto:{datos_reserva["monto_total"]}
-            Fecha de Check in:{datos_reserva["check_in"]}
-            Fecha de Check out:{datos_reserva["check_out"]}
+            recipients=[session.get("email")])
+        msg.html=f"""
+                <div style="font-family: Arial, sans-serif; background:#c5a88022; padding:20px;">
+                <div style="max-width:600px; margin:0 auto; background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                <div style="background:#b68d58; padding:18px 24px; color:#fff;">
+                <h1 style="margin:0; font-size:20px; font-weight:600;">Confirmación de Reserva # {datos_reserva["id"]}</h1>
+                </div>
 
-            CONFIRMAR RECEPCIÓN Y CORROBORAR DATOS
-            """
-        )
+                <div style="padding:20px 24px; color:#222;">
+                <p style="margin:0 0 12px 0;">Hola <strong>{session.get('nombre')}</strong>,</p>
 
+                <p style="margin:0 0 16px 0;">Hemos recibido tu consulta con los siguientes datos:</p>
+
+                <div style="background:#fff; padding:14px; border-radius:6px; border-left:4px solid #b68d58; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+                    <p style="margin:6px 0;"><strong>Nombre:</strong> {session.get('nombre')}</p>
+                    <p style="margin:6px 0;"><strong>Monto:</strong> {datos_reserva["monto_total"]}</p>
+                <p style="margin:6px 0;"><strong>Monto:</strong> {datos_reserva["check_in"]}</p>
+                            <p style="margin:6px 0;"><strong>Monto:</strong> {datos_reserva["check_out"]}</p>
+                </div>
+
+                <p style="margin:18px 0 8px 0;"><strong>Por favor corroborar datos, sino mandar una consulta <a style="text-decoration: none;" href="https://idshotel.pythonanywhere.com/contacto">Contactanos</a></strong></p>
+
+                <p style="color:#777; font-size:12px; margin-top:18px;">Gracias por confiar en nosotros.</p>
+                </div>
+
+                <div style="background:#fafafa; padding:12px 18px; font-size:12px; color:#666; text-align:center;">
+                IDS HOTEL — Av. Paseo Colon 850 · Tel: + (54-11) 528 - 50559
+                </div>
+                </div>
+                </div>
+                """
         try:
             mail.send(msg)
             flash("Correo enviado correctamente.")
@@ -364,7 +387,7 @@ def confirmacion():
 
 
     if "id_reserva" not in session:
-        flash("No podes acceder a esta página")
+        flash("No podes acceder a esta página.")
         return redirect(url_for("reserva"))
 
     id_reserva = session["id_reserva"]
@@ -373,7 +396,7 @@ def confirmacion():
     session.pop("id_reserva", None)
 
     if not confirmado:
-        flash("No se pudo confirmar la reserva")
+        flash("No se pudo confirmar la reserva.")
         return redirect(url_for("reserva"))
     datos_reserva = obtener_reserva(id_reserva)
     session["datos_reserva"] = datos_reserva
@@ -385,6 +408,39 @@ def confirmacion():
         info_hotel=hotel,
         info_usuario=informacion
     )
+
+# *11
+@app.route("/disponibilidad", methods=["POST"])
+def disponibilidad():
+    id_habitacion = request.form.get("habitacion")
+    check_in = request.form.get("checkin")
+    check_out = request.form.get("checkout")
+    huespedes = request.form.get("huespedes")
+
+    if not (check_in and check_out):
+        flash("Se requiere ingresar fecha de check-in y check-out para la consulta.")
+        return redirect(url_for("home"))
+
+    response = requests.get(
+        f"{API_BASE}/reservas/disponibilidad",
+        params={
+            "id_habitacion": id_habitacion,
+            "check_in": check_in,
+            "check_out": check_out,
+            "huespedes": huespedes
+        }
+    )
+
+    data = response.json()
+    if not data.get("disponibilidad", False):
+        flash("La habitación no está disponible en el rango de fechas seleccionado.")
+        return redirect(url_for("home"))
+
+    return redirect(url_for("reserva",
+                            habitacion=id_habitacion,
+                            checkin=check_in,
+                            checkout=check_out,
+                            huespedes=huespedes))
       
 if __name__== '__main__':
         app.run("localhost", port=8080, debug=True)
