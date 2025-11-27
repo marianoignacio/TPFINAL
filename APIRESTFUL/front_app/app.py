@@ -158,11 +158,11 @@ def page_not_found(e):
 @app.route('/habitaciones/<id>')
 def detalles_habitacion(id):
     response = requests.get(f"{API_BASE}/habitaciones/{id}")
-    print(response.status_code)
-    print(response.text)
-    if response.status_code == 404:
-        return render_template("habitaciones.html", error="Habitación no encontrada")
+    
+    if response.status_code == 404 or not response:
+        return render_template("error.html", error="Habitación no encontrada")
     habitacion = response.json()
+
 
     resp_todas = requests.get(f"{API_BASE}/habitaciones/")
     todas = resp_todas.json()
@@ -175,6 +175,7 @@ def detalles_habitacion(id):
         informacion=inicializar_sesion()
         return render_template("habitaciones.html", habitacion=habitacion, info_hotel=hotel,info_usuario=informacion, otras_habitaciones=otras_habitaciones)
     return render_template("habitaciones.html", habitacion=habitacion,info_hotel=hotel,info_usuario=None, otras_habitaciones=otras_habitaciones)
+
 
 
 # *5
