@@ -71,13 +71,13 @@
 
                   <ul class="categories me-md-4">
                       {% for servicio in habitacion.servicios[:mitad] %}
-                          <li><a href="#">{{ servicio }}</a></li>
+                          <li><a>{{ servicio }}</a></li>
                       {% endfor %}
                   </ul>
 
                   <ul class="categories ms-md-4">
                       {% for servicio in habitacion.servicios[mitad:] %}
-                          <li><a href="#">{{ servicio }}</a></li>
+                          <li><a>{{ servicio }}</a></li>
                       {% endfor %}
                   </ul>
 
