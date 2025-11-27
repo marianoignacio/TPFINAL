@@ -6090,6 +6090,8 @@ reserva*/
 }
 
 .alerta-registro{
+  color:#a94442;
+  background-color:#f2dede;
   border-color:#ebccd1;
   font-size: 20px;
   display: flex; 
