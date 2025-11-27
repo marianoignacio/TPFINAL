@@ -24,7 +24,7 @@ crear_entorno(){
   mkdir APIRESTFUL
    cd ./APIRESTFUL
 
-	#Parte del backend
+
      mkdir api
       cd api
 
@@ -32,7 +32,7 @@ crear_entorno(){
        mkdir static
        touch app.py
       cd ..
-	#Parte del Front End
+
 
      mkdir front_app
       cd front_app
@@ -49,10 +49,9 @@ crear_entorno(){
 	cd ./templates
 	touch index.html
 
-       cd .. #estoy en static y voy a front_app
-      cd .. #estoy en front_app y voy a APIRESTFUL
+       cd .. 
+      cd .. 
 
-#VUELVO AL INICIO PARA NO INSTALAR EL ENTRONO VIRTUAL ACÁ
 echo_color $VERDE "Entorno creado correctamente"
 }
 
@@ -82,19 +81,14 @@ echo_color $AZUL "Se instalará PYTHON"
 echo_color $VERDE "Se instaló PYTHON correctamente"
 }
 
-comprobacion(){
-pwd #Compruebo
-}
-
 instala_venv(){
-
-#Crea entorno virtual en la carpeta .venv
 sudo apt install python3-venv
 python3 -m venv .venv
 echo_color $VERDE "Se creó el entorno virtual"
 }
 
 instala_flask(){
+source .venv/bin/activate
 pip install Flask
 pip install requests
 echo_color $VERDE "Se intalo Flask"
@@ -102,23 +96,37 @@ echo_color $VERDE "Se intalo Flask"
 
 
 instala_flaskcors(){
+source .venv/bin/activate
 pip install flask_cors
-
 echo_color $VERDE "Se intalo Flask cors"
 }
 
-
-
 instala_flaskMail(){
+source .venv/bin/activate
 pip install Flask-Mail
-
 echo_color $VERDE "Se intalo Flask MAIL"
 }
 
+instala_flaskMail(){
+source .venv/bin/activate
+pip install Flask-Session
+echo_color $VERDE "Se intalo Flask Session"
+}
+
+
 instala_dotenv(){
+source .venv/bin/activate
 pip3 install python-dotenv
 echo_color $VERDE "Se intalo dotenv"
 }
+
+
+instalar_mysqlconnector(){
+source .venv/bin/activate
+pip install mysql-connector-python 
+echo_color $VERDE "Se intalo mysql connector"
+}
+
 
 activar_entorno(){
 source .venv/bin/activate
@@ -183,7 +191,6 @@ case $opcion in
 
 1)
 	crear_entorno
-	comprobacion
 ;;
 
 2)
@@ -194,17 +201,16 @@ case $opcion in
 3)
 	instala_venv
 ;;
-
 4)
 
 	activar_entorno
 ;;
-
 5)
 	instala_flask
 	instala_flaskMail
 	instala_dotenv
 	instala_flaskcors
+	instalar_mysqlconnector
 ;;
 6)
 	crear_archivo_env

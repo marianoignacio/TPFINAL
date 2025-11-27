@@ -125,7 +125,7 @@ def formulario():
         mensajes= request.form['message']
         asunto=request.form['asunto']
 
-        msg = Message(subject=f"Inscripción de: {nombre}", recipients=[email_usuario])
+        msg = Message(subject=f"Inscripción de: {nombre}", recipients=[os.getenv('MAIL_USERNAME')])
         msg.html = f"""
              <div style="font-family: Arial, sans-serif; background:#c5a88022; padding:20px;">
             <div style="max-width:600px; margin:0 auto; background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
@@ -134,10 +134,12 @@ def formulario():
             </div>
 
             <div style="padding:20px 24px; color:#222;">
+                      <p style="margin:0 0 12px 0;">Acabas de recibir un comunicado de <strong>{email_usuario}/strong></p> 
             <p style="margin:0 0 12px 0;">Acabas de recibir un comunicado de <strong>{nombre}</strong></p>
             <div style="background:#fff; padding:14px; border-radius:6px; border-left:4px solid #b68d58; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
                 <p style="margin:6px 0;"><strong>Motivo:</strong> {asunto}</p>
                 <p style="margin:6px 0;"><strong>Mensaje:</strong>{mensajes}</p>
+
             </div>
 
             <p style="margin:18px 0 8px 0;"><strong>Gestione la consulta inmediatamente.</strong></p>
