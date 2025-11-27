@@ -28,72 +28,84 @@
     </div>
 </section>
 
-<section class="ftco-section ftco-no-pb ftco-no-pt ftco-booking">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <form action="{{url_for('disponibilidad')}}" method="POST" class="booking-form">
-                    <div class="row g-0">
-                        <div class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4">
-                            <div class="form-group ps-4 border-0">
-                                <div class="form-field">
-                                    <label class="label-disponibilidad" for="checkin">CHECK-IN</label>
-                                    <input class="input-disponibilidad" type="date" id="checkin" name="checkin">
+    <section class="ftco-section ftco-no-pb ftco-no-pt ftco-booking">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="{{url_for('disponibilidad')}}" method="POST" class="booking-form">
+                        <div class="row g-0">
+                            <div class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4">
+                                <div class="form-group ps-4 border-0">
+                                    <div class="form-field">
+                                        <label class="label-disponibilidad" for="checkin">CHECK-IN</label>
+                                        <input class="input-disponibilidad" type="date" id="checkin" name="checkin">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4">
-                            <div class="form-group ps-4">
-                                <div class="form-field">
-                                    <label class="label-disponibilidad" for="checkout">CHECK-OUT</label>
-                                    <input class="input-disponibilidad" type="date" id="checkout" name="checkout">
+                            <div class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4">
+                                <div class="form-group ps-4">
+                                    <div class="form-field">
+                                        <label class="label-disponibilidad" for="checkout">CHECK-OUT</label>
+                                        <input class="input-disponibilidad" type="date" id="checkout" name="checkout">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4">
-                            <div class="form-group ps-4">
-                                <div class="form-field">
-                                    <label class="label-disponibilidad" for="habitacion">HABITACIONES</label>
-                                    <select class="select-disponibilidad" id="habitacion" name="habitacion">
-                                        <option value=4>Habitación clasica</option>
-                                        <option value=1>Habitación Suite</option>
-                                        <option value=2>Habitación familiar</option>
-                                        <option value=6>Habitación de lujo</option>
-                                        <option value=3>Habitación super de lujo</option>
-                                        <option value=5>Habitación superior</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4">
-                            <div class="form-group ps-4">
-                                <div class="form-field">
-                                    <label class="label-disponibilidad" for="huespedes">HUÉSPEDES</label>
-                                    <div>
-                                        <select class="select-disponibilidad" id="huespedes" name="huespedes">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
+                            <div class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4">
+                                <div class="form-group ps-4">
+                                    <div class="form-field">
+                                        <label class="label-disponibilidad" for="habitacion">HABITACIONES</label>
+                                        <select class="select-disponibilidad" id="habitacion" name="habitacion">
+                                            <option value=4>Habitación clasica</option>
+                                            <option value=1>Habitación Suite</option>
+                                            <option value=2>Habitación familiar</option>
+                                            <option value=6>Habitación de lujo</option>
+                                            <option value=3>Habitación super de lujo</option>
+                                            <option value=5>Habitación superior</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-12 col-lg d-flex">
-                            <div class="form-group d-flex border-0">
-                                <div class="form-field w-100 align-items-center d-flex">
-                                    <button type="submit" class="d-flex justify-content-center align-items-center align-self-stretch form-control btn btn-primary py-lg-4 py-xl-0">Chequear disponibilidad</button>
+                            <div class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4">
+                                <div class="form-group ps-4">
+                                    <div class="form-field">
+                                        <label class="label-disponibilidad" for="huespedes">HUÉSPEDES</label>
+                                        <div>
+                                            <select class="select-disponibilidad" id="huespedes" name="huespedes">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg d-flex">
+                                <div class="form-group d-flex border-0">
+                                    <div class="form-field w-100 align-items-center d-flex">
+                                        <button type="submit" class="d-flex justify-content-center align-items-center align-self-stretch form-control btn btn-primary py-lg-4 py-xl-0">Chequear disponibilidad</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alerta-reserva" >
+        {% for msg in messages %}
+        <p class="texto"> {{ msg }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
     <section class="ftco-section" id="servicios">
         <div class="container-xl">
             <div class="row justify-content-center">
