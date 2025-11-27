@@ -15,6 +15,13 @@
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
                 <div class="col-md-9 pt-5 text-center">
+                    <p class="breadcrumbs">
+              <span class="me-2"
+              ><a href="{{url_for('home')}}"
+              >Inicio<i class="fa fa-chevron-right"></i></a
+              ></span>
+                        <span>Reserva <i class="fa fa-chevron-right"></i></span>
+                    </p>
                     <h1 class="mb-0 bread">Reservar</h1>
                 </div>
             </div>
@@ -64,34 +71,35 @@
         </div>
     </div>
 
-    <div class="d-flex w-100 px-5 pt-5" style="min-height: 600px;">
-        <div id="contenerdor_de_reserva_usuario">
-            TU REVERSA
-            <div class="p-1 m-2">
-                Reserva {{ info_reserva.numero_de_reserva }}
+        <div class="contenedor-detalle-metodos-pago">
+            <div id="contenerdor_de_reserva_usuario">
+                DETALLES DE TU REVERSA
+                <div class="p-1 m-2">
+                    #{{ info_reserva.numero_de_reserva }}
 
-                <div class="reserva_de_usuario w-100 list-unstyled px-2 pb-5">
-                    <li><span>Check-in:</span><span>{{ info_reserva.fecha_checkin }}</span></li>
-                    <li><span>Check-out:</span><span>{{ info_reserva.fecha_checkout }}</span></li>
-                    <li><span>Cantidad de huespedes:</span><span>{{ info_reserva.cantidad_huespedes }}</span></li>
-                    <li><span>Monto Total:</span><span>{{ info_reserva.total_pagado }}</span></li>
+                    <div class="reserva_de_usuario w-100 list-unstyled px-2 pb-5">
+                        <li><span>Check-in:</span><span>{{ info_reserva.fecha_checkin }}</span></li>
+                        <li><span>Check-out:</span><span>{{ info_reserva.fecha_checkout }}</span></li>
+                        <li><span>Cantidad de huéspedes:</span><span>{{ info_reserva.cantidad_huespedes }}</span></li>
+                        <li><span>Monto Total:</span><span>{{ info_reserva.total_pagado }}</span></li>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="contenedor_de_metodo_de_pago">
+                MÉTODOS DE PAGO
+                <div class="d-flex justify-content-center align-items-center p-4 border-top border-2 border-secondary m-3 text-white">
+                    <button onclick="mostrarPago('transferencia')" class="opciones_de_metodo_de_pago btn p-3 mx-2">TRANSFERENCIA</button>
+                    <button onclick="mostrarPago('mp')" class="opciones_de_metodo_de_pago_2 btn p-3 mx-2">MERCADO PAGO</button>
+                    <button onclick="mostrarPago('tarjeta')" class="opciones_de_metodo_de_pago btn p-3 mx-2">TARJETA DE CREDITO</button>
                 </div>
 
-            </div>
-        </div>
+                <div class="contenedor-metodo-pago">
+                    <div class="metodos-pago">
+                        <div  id="zonaPago"><p>Seleccione un método de pago</p></div>
 
-        <div id="contenedor_de_metodo_de_pago">
-            MÉTODOS DE PAGO
-            <div class="d-flex justify-content-center align-items-center p-4 border-top border-2 border-secondary m-3 text-white">
-                <button onclick="mostrarPago('transferencia')" class="opciones_de_metodo_de_pago btn p-3 mx-2">Transferencia bancaria</button>
-                <button onclick="mostrarPago('mp')" class="opciones_de_metodo_de_pago_2 btn p-3 mx-2">MERCADO PAGO </button>
-                <button onclick="mostrarPago('tarjeta')" class="opciones_de_metodo_de_pago btn p-3 mx-2">TARJETA DE CREDITO</button>
-                <!-- se deve de poder agregar el metodo de pagoa una base de datos -->
-            </div>
-
-            <div id="zonaPago"><p>seleccione el método de pago</p></div>
-
-            <div id="pago-transferencia" style="display:none">
+                       <div id="pago-transferencia" style="display:none">
                 <h3>Pago con Transferencia Bancaria</h3>
                 
                 <div class="detalles">
@@ -100,47 +108,86 @@
                     <p><strong>CBU:</strong> 0000000000000000000000</p>
                     <p><strong>Alias:</strong> ids.hotel.uba</p>
                     <p><strong>Titular:</strong> Facultad de ingenieria.</p>
-                    <p><strong>Monto:</strong> {##}</p>
+                    <p><strong>Monto:</strong> {{info_reserva.total_pagado}}</p>
                 </div>
             </div>
 
-            <div id="pago-mp" style="display:none">
-                <h3> Escaneá el QR</h3>
-                <img src="{{ url_for('static', filename='images/qr_rick.jpg') }}" class="w-25 h-25 justify-content-end" >
+                        <div id="pago-mp" style="display:none">
+                            <img src="{{ url_for('static', filename='images/qr_rick.jpg') }}">
+                        </div>
+
+                        <div id="pago-tarjeta" style="display:none">
+                            <div class="visa-card">
+                                <div class="logoContainer">
+                                    <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            x="0px"
+                                            y="0px"
+                                            width="23"
+                                            height="23"
+                                            viewBox="0 0 48 48"
+                                            class="svgLogo"
+                                    >
+                                        <path
+                                                fill="#ff9800"
+                                                d="M32 10A14 14 0 1 0 32 38A14 14 0 1 0 32 10Z"
+                                        ></path>
+                                        <path
+                                                fill="#d50000"
+                                                d="M16 10A14 14 0 1 0 16 38A14 14 0 1 0 16 10Z"
+                                        ></path>
+                                        <path
+                                                fill="#ff3d00"
+                                                d="M18,24c0,4.755,2.376,8.95,6,11.48c3.624-2.53,6-6.725,6-11.48s-2.376-8.95-6-11.48 C20.376,15.05,18,19.245,18,24z"
+                                        ></path>
+                                    </svg>
+                                </div>
+                                <div class="number-container">
+                                    <label class="input-label" for="cardNumber">NÚMERO DE TARJETA</label>
+                                    <input
+                                            class="inputstyle"
+                                            id="cardNumber"
+                                            placeholder="XXXX XXXX XXXX XXXX"
+                                            name="cardNumber"
+                                            type="text"
+                                    />
+                                </div>
+
+                                <div class="name-date-cvv-container">
+                                    <div class="name-wrapper">
+                                        <label class="input-label" for="holderName">TITULAR</label>
+                                        <input
+                                                class="inputstyle"
+                                                id="holderName"
+                                                placeholder="NAME"
+                                                type="text"
+                                        />
+                                    </div>
+
+                                    <div class="expiry-wrapper">
+                                        <label class="input-label" for="expiry">HASTA</label>
+                                        <input class="inputstyle" id="expiry" placeholder="MM/YY" type="text" />
+                                    </div>
+                                    <div class="cvv-wrapper">
+                                        <label class="input-label" for="cvv">CVV</label>
+                                        <input
+                                                class="inputstyle"
+                                                placeholder="***"
+                                                maxlength="3"
+                                                id="cvv"
+                                                type="password"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="boton-confirmar-pago">
+                        <a href="{{ url_for('confirmacion') }}" class="btn text-white m-5 p-3" id="boton_de_confirmar_reserva">CONFIRMAR RESERVA</a>
+                    </div>
+                </div>
             </div>
-
-            <div id="pago-tarjeta" style="display:none">
-                <h3>Tarjetas</h3>
-                <form class="form-container">
-                    <label for="tipo">Tipo de tarjeta</label>
-                    <select id="tipo" name="tipo" required>
-                        <option value="">Seleccione tipo de tarjeta</option>
-                        <option value="credito">Crédito</option>
-                        <option value="debito">Débito</option>
-                    </select>
-
-                    <label for="nombre">Nombre que figura en la tarjeta</label>
-                    <input type="text" id="nombre" name="nombre" required>
-
-                    <label for="numero">Número de tarjeta</label>
-                    <input type="text" id="numero" name="numero" maxlength="16" required>
-
-                    <label for="fecha">Fecha de vencimiento</label>
-                    <input type="month" id="fecha" name="fecha" required>
-
-                    <label for="cvv">CVV</label>
-                    <input type="password" id="cvv" name="cvv" maxlength="4" required>
-
-                </form>
-            </div>
-
-
-
-            <div>
-                <a href="{{ url_for('confirmacion') }}" class="btn text-white m-5 p-3" id="boton_de_confirmar_reserva">CONFIRMAR RESERVA</a>
-            </div>
-
         </div>
-    </div>
 
 {%endblock%}

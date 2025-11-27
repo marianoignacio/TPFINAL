@@ -28,72 +28,84 @@
     </div>
 </section>
 
-<section class="ftco-section ftco-no-pb ftco-no-pt ftco-booking">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <form action="{{url_for('disponibilidad')}}" method="POST" class="booking-form">
-                    <div class="row g-0">
-                        <div class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4">
-                            <div class="form-group ps-4 border-0">
-                                <div class="form-field">
-                                    <label class="label-disponibilidad" for="checkin">CHECK-IN</label>
-                                    <input class="input-disponibilidad" type="date" id="checkin" name="checkin">
+    <section class="ftco-section ftco-no-pb ftco-no-pt ftco-booking">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="{{url_for('disponibilidad')}}" method="POST" class="booking-form">
+                        <div class="row g-0">
+                            <div class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4">
+                                <div class="form-group ps-4 border-0">
+                                    <div class="form-field">
+                                        <label class="label-disponibilidad" for="checkin">CHECK-IN</label>
+                                        <input class="input-disponibilidad" type="date" id="checkin" name="checkin">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4">
-                            <div class="form-group ps-4">
-                                <div class="form-field">
-                                    <label class="label-disponibilidad" for="checkout">CHECK-OUT</label>
-                                    <input class="input-disponibilidad" type="date" id="checkout" name="checkout">
+                            <div class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4">
+                                <div class="form-group ps-4">
+                                    <div class="form-field">
+                                        <label class="label-disponibilidad" for="checkout">CHECK-OUT</label>
+                                        <input class="input-disponibilidad" type="date" id="checkout" name="checkout">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4">
-                            <div class="form-group ps-4">
-                                <div class="form-field">
-                                    <label class="label-disponibilidad" for="habitacion">HABITACIONES</label>
-                                    <select class="select-disponibilidad" id="habitacion" name="habitacion">
-                                        <option value=4>Habitación clasica</option>
-                                        <option value=1>Habitación Suite</option>
-                                        <option value=2>Habitación familiar</option>
-                                        <option value=6>Habitación de lujo</option>
-                                        <option value=3>Habitación super de lujo</option>
-                                        <option value=5>Habitación superior</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4">
-                            <div class="form-group ps-4">
-                                <div class="form-field">
-                                    <label class="label-disponibilidad" for="huespedes">HUÉSPEDES</label>
-                                    <div>
-                                        <select class="select-disponibilidad" id="huespedes" name="huespedes">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
+                            <div class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4">
+                                <div class="form-group ps-4">
+                                    <div class="form-field">
+                                        <label class="label-disponibilidad" for="habitacion">HABITACIONES</label>
+                                        <select class="select-disponibilidad" id="habitacion" name="habitacion">
+                                            <option value=4>Habitación clasica</option>
+                                            <option value=1>Habitación Suite</option>
+                                            <option value=2>Habitación familiar</option>
+                                            <option value=6>Habitación de lujo</option>
+                                            <option value=3>Habitación super de lujo</option>
+                                            <option value=5>Habitación superior</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-12 col-lg d-flex">
-                            <div class="form-group d-flex border-0">
-                                <div class="form-field w-100 align-items-center d-flex">
-                                    <button type="submit" class="d-flex justify-content-center align-items-center align-self-stretch form-control btn btn-primary py-lg-4 py-xl-0">Chequear disponibilidad</button>
+                            <div class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4">
+                                <div class="form-group ps-4">
+                                    <div class="form-field">
+                                        <label class="label-disponibilidad" for="huespedes">HUÉSPEDES</label>
+                                        <div>
+                                            <select class="select-disponibilidad" id="huespedes" name="huespedes">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg d-flex">
+                                <div class="form-group d-flex border-0">
+                                    <div class="form-field w-100 align-items-center d-flex">
+                                        <button type="submit" class="d-flex justify-content-center align-items-center align-self-stretch form-control btn btn-primary py-lg-4 py-xl-0">Chequear disponibilidad</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alerta-reserva" >
+        {% for msg in messages %}
+        <p class="texto"> {{ msg }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
     <section class="ftco-section" id="servicios">
         <div class="container-xl">
             <div class="row justify-content-center">
@@ -105,7 +117,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
                     data-aos-delay="100" data-aos-duration="1000">
-                    <a href="#" class="services">
+                    <a class="services">
                         <div class="icon"><span class="flaticon-wifi-signal"></span></div>
                         <div class="text">
                             <h2>Wifi gratis</h2>
@@ -114,7 +126,7 @@
                 </div>
                 <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
                     data-aos-delay="200" data-aos-duration="1000">
-                    <a href="#" class="services">
+                    <a class="services">
                         <div class="icon"><span class="flaticon-online-booking"></span></div>
                         <div class="text">
                             <h2>Fácil reserva</h2>
@@ -123,7 +135,7 @@
                 </div>
                 <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
                     data-aos-delay="300" data-aos-duration="1000">
-                    <a href="#" class="services">
+                    <a class="services">
                         <div class="icon"><span class="flaticon-cooking"></span></div>
                         <div class="text">
                             <h2>Restaurante</h2>
@@ -132,7 +144,7 @@
                 </div>
                 <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
                     data-aos-delay="400" data-aos-duration="1000">
-                    <a href="#" class="services">
+                    <a class="services">
                         <div class="icon"><span class="flaticon-swimming-pool"></span></div>
                         <div class="text">
                             <h2>Pileta</h2>
@@ -141,7 +153,7 @@
                 </div>
                 <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
                     data-aos-delay="400" data-aos-duration="1000">
-                    <a href="#" class="services">
+                    <a class="services">
                         <div class="icon"><span class="flaticon-cosmetics"></span></div>
                         <div class="text">
                             <h2>Salón de spa</h2>
@@ -150,7 +162,7 @@
                 </div>
                 <div class="col-md-3 col-xl-2 text-center d-flex align-items-stretch" data-aos="fade-up"
                     data-aos-delay="400" data-aos-duration="1000">
-                    <a href="#" class="services">
+                    <a class="services">
                         <div class="icon"><span class="flaticon-reception"></span></div>
                         <div class="text">
                             <h2>Mesa de atención</h2>
@@ -174,10 +186,7 @@
                                 </h1>
                             </div>
                         </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                            <p class="mb-0"><a href="{{url_for('reserva')}}"
-                                    class="btn btn-primary py-md-4 py-3 px-md-5 px-4">RESERVAR</a></p>
-                        </div>
+                        
                     </div>
                     <div class="col-md-4 d-flex align-items-center">
                         <p class="mb-0"><a href="{{url_for('reserva')}}"
@@ -230,8 +239,11 @@
                     <div class="video-wrap" data-aos="fade-up">
                         <span class="subheading">Mirá nuestro lujoso hotel</span>
                         <h3>Vamos A Dar Un Paseo</h3>
-
-                </div>
+                         <a href="https://vimeo.com/685995963"
+                            class="video-icon glightbox d-flex align-items-center justify-content-center">
+                            <span class="ion-ios-play"></span>
+                        </a>
+                    </div>
             </div>
         </div>
     </div>
@@ -241,7 +253,7 @@
         <div class="row justify-content-center pb-4">
             <div class="col-md-7 text-center heading-section" data-aos="fade-up" data-aos-duration="1000">
                 <span class="subheading">Reseñas</span>
-                <h2 class="mb-3">Clientes felices</h2>
+                <h2 class="mb-3">Clientes Felices</h2>
             </div>
             <div class="row">
                 <div class="col-md-12" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
@@ -262,8 +274,6 @@
                                     </div>
                                     <p class="mb-4 msg">Muy buen hotel. Lo visité las vacaciones pasadas, muy buena atención al cliente y excelente experiencia.</p>
                                 </div>
-                                <p class="mb-4 msg">Muy buen hotel lo visite las vaciones pasadas, muy buena
-                                    atencion al cliente y excelente experiencia</p>
                             </div>
                         </div>
                         <div class="item">
@@ -283,8 +293,7 @@
                                     <p class="mb-4 msg">Buen hotel, recomendado para alojamiento y con comodidad asegurada.
                                         ¡Saludos desde el barco!</p>
                                 </div>
-                                <p class="mb-4 msg">Buen hotel, recomendado para alojamiento y comodidad asegurada.
-                                    Saludos desde el barco.</p>
+                            
                             </div>
                         </div>
                         <div class="item">
@@ -341,8 +350,7 @@
                                     </div>
                                     <p class="mb-4 msg">فندق ممتاز، مريح جدًا خلال فترة تبادلي الطلابي.(Excelente hotel, muy cómodo durante mi intercambio.)</p>
                                 </div>
-                                <p class="mb-4 msg">Far far away, behind the word mountains, far from the countries
-                                    Vokalia and Consonantia, there live the blind texts.</p>
+            
                             </div>
                         </div>
                         <div class="item">
@@ -361,8 +369,6 @@
                                     </div>
                                     <p class="mb-4 msg">Me encantó la habitación, mejor que cualquier nave espacial en la que haya estado. ¡Súper recomendado!</p>
                                 </div>
-                                <p class="mb-4 msg">Me encanto la habitación, mejor que cualquier nave espacial en
-                                    la que haya estado, súper recomendado.</p>
                             </div>
                         </div>
                     </div>

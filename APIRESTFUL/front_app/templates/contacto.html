@@ -34,7 +34,15 @@
         </div>
       </div>
     </section>
-
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="alerta-confirmacion">
+            {% for msg in messages %}
+                <p class="texto"> {{ msg }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
     <section class="ftco-section bg-light">
       <div class="container">
         <div class="row no-gutters justify-content-center">

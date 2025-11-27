@@ -28,6 +28,7 @@ El proyecto consistió en el desarrollo de una plataforma web destinada a la ges
 * En el Sprint 2 se creó el repositorio y se avanzó con el desarrollo de las vistas HTML y la definición del flujo de las mismas.
 * En el Sprint 3 se consolidó el diseño del frontend, se definieron las tablas de la base de datos y se estableció el conjunto de endpoints necesarios para cumplir con los requerimientos solicitados.
 * En el Sprint 4 se desarrolló la integración entre el frontend y el backend, el uso de sesiones con Flask-Session y la preparación de los endpoint en Python de la API.
+* En el Sprint 5 se encaró la organización del equipo para una finalización del proyecto e investigamos la manera de hostear nuestro proyecto con Pythonanywhere 
 
 ___
 
@@ -68,7 +69,7 @@ A continuación se listan específicamente los avances realizados en cada sprint
   * Pendientes: `sobre_nosotros.html`, `habitacion.html`, `reserva.html`.
 * Definición final de las tablas para la base de datos, diagrama de entidad-relación y reglas de negocio.
 
-![](db_diagrama_er.jpeg)
+![](db_diagrama_er.png)
 
 * Se desarrolló el script de creación (con datos dummy para pruebas).
 * Reglas de negocio resumidas:
@@ -150,6 +151,14 @@ Tabla: **habitaciones**
   * Revisión de enlaces y rutas en las vistas. 
   * Finalizar endpoints en Python y pruebas de integración. 
   * Reparar carousel en `habitacion.html`, indicadores de vista activa en navbar, y dinamización de elementos.
+ 
+    
+###### Sprint 5 — Finalización del proyecto
+* Reasignamiento de tareas para cada integrante
+* Organización de tareas de estética en la página y corrección de errores
+* Comprobación de errores de la página en general
+* Avance para hostear el proyecto con Pythonanywere
+* Comprobamos que cada una de las páginas con las que estuvimos trabajando y agregamos url_for en cada uno de los href y src
 
 ___
 

@@ -125,23 +125,37 @@ def formulario():
         mensajes= request.form['message']
         asunto=request.form['asunto']
 
-        msg = Message(
-            subject=f"Inscripcion de: {nombre}",
-            recipients=[email_usuario],
-            body=f"""
-            REALIZASTE UNA RESERVA CON LOS DATOS:\n
-            Nombre: {nombre}\n
-            Motivo: {asunto}\n
-            Mensaje:\n
-            {mensajes}
+        msg = Message(subject=f"Inscripción de: {nombre}", recipients=[email_usuario])
+        msg.html = f"""
+             <div style="font-family: Arial, sans-serif; background:#c5a88022; padding:20px;">
+            <div style="max-width:600px; margin:0 auto; background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+            <div style="background:#b68d58; padding:18px 24px; color:#fff;">
+            <h1 style="margin:0; font-size:20px; font-weight:600;">Apertura de consulta</h1>
+            </div>
 
-            COFIRMAR RECEPCIÓN Y CORROBORAR DATOS, GRACIAS!"""
-        )
+            <div style="padding:20px 24px; color:#222;">
+            <p style="margin:0 0 12px 0;">Acabas de recibir un comunicado de <strong>{nombre}</strong></p>
+            <div style="background:#fff; padding:14px; border-radius:6px; border-left:4px solid #b68d58; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+                <p style="margin:6px 0;"><strong>Motivo:</strong> {asunto}</p>
+                <p style="margin:6px 0;"><strong>Mensaje:</strong>{mensajes}</p>
+            </div>
+
+            <p style="margin:18px 0 8px 0;"><strong>Gestione la consulta inmediatamente.</strong></p>
+            </div>
+
+            <div style="background:#fafafa; padding:12px 18px; font-size:12px; color:#666; text-align:center;">
+            IDS HOTEL — Av. Paseo Colon 850 · Tel: + (54-11) 528 - 50559
+            </div>
+            </div>
+            </div>
+            """
         try:
             mail.send(msg)
+            flash("Se envío el mail correctamente",200)
+            return redirect(url_for("formulario"))
         except Exception as e:
                 print(f"Error enviando mail: {e}")
-                flash("Hubo un error al enviar tu mensaje; intentá más tarde.")
+                flash("Hubo un error al enviar tu mensaje; intentá más tarde.",)
                 return redirect(url_for("formulario"))
     if "nombre" in session:
         informacion=inicializar_sesion()
@@ -158,11 +172,11 @@ def page_not_found(e):
 @app.route('/habitaciones/<id>')
 def detalles_habitacion(id):
     response = requests.get(f"{API_BASE}/habitaciones/{id}")
-    print(response.status_code)
-    print(response.text)
-    if response.status_code == 404:
-        return render_template("habitaciones.html", error="Habitación no encontrada")
+    
+    if response.status_code == 404 or not response:
+        return render_template("error.html", error="Habitación no encontrada")
     habitacion = response.json()
+
 
     resp_todas = requests.get(f"{API_BASE}/habitaciones/")
     todas = resp_todas.json()
@@ -175,6 +189,7 @@ def detalles_habitacion(id):
         informacion=inicializar_sesion()
         return render_template("habitaciones.html", habitacion=habitacion, info_hotel=hotel,info_usuario=informacion, otras_habitaciones=otras_habitaciones)
     return render_template("habitaciones.html", habitacion=habitacion,info_hotel=hotel,info_usuario=None, otras_habitaciones=otras_habitaciones)
+
 
 
 # *5
@@ -330,19 +345,37 @@ def confirmacion():
 
         msg = Message(
             subject=f"Inscripción de: {session.get('nombre')}",
-            recipients=[session.get("email")],
-            body=f"""
-            REALIZASTE UNA RESERVA CON LOS SIGUIENTES DATOS:
-            DATOS DE RESERVACIÓN #{datos_reserva["id"]}
-            Nombre: {session.get('nombre', 'usuario_invalido')}
-            Monto:{datos_reserva["monto_total"]}
-            Fecha de Check in:{datos_reserva["check_in"]}
-            Fecha de Check out:{datos_reserva["check_out"]}
+            recipients=[session.get("email")])
+        msg.html=f"""
+                <div style="font-family: Arial, sans-serif; background:#c5a88022; padding:20px;">
+                <div style="max-width:600px; margin:0 auto; background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                <div style="background:#b68d58; padding:18px 24px; color:#fff;">
+                <h1 style="margin:0; font-size:20px; font-weight:600;">Confirmación de Reserva # {datos_reserva["id"]}</h1>
+                </div>
 
-            CONFIRMAR RECEPCIÓN Y CORROBORAR DATOS
-            """
-        )
+                <div style="padding:20px 24px; color:#222;">
+                <p style="margin:0 0 12px 0;">Hola <strong>{session.get('nombre')}</strong>,</p>
 
+                <p style="margin:0 0 16px 0;">Hemos recibido tu consulta con los siguientes datos:</p>
+
+                <div style="background:#fff; padding:14px; border-radius:6px; border-left:4px solid #b68d58; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+                    <p style="margin:6px 0;"><strong>Nombre:</strong> {session.get('nombre')}</p>
+                    <p style="margin:6px 0;"><strong>Monto:</strong> {datos_reserva["monto_total"]}</p>
+                <p style="margin:6px 0;"><strong>Monto:</strong> {datos_reserva["check_in"]}</p>
+                            <p style="margin:6px 0;"><strong>Monto:</strong> {datos_reserva["check_out"]}</p>
+                </div>
+
+                <p style="margin:18px 0 8px 0;"><strong>Por favor corroborar datos, sino mandar una consulta <a style="text-decoration: none;" href="https://idshotel.pythonanywhere.com/contacto">Contactanos</a></strong></p>
+
+                <p style="color:#777; font-size:12px; margin-top:18px;">Gracias por confiar en nosotros.</p>
+                </div>
+
+                <div style="background:#fafafa; padding:12px 18px; font-size:12px; color:#666; text-align:center;">
+                IDS HOTEL — Av. Paseo Colon 850 · Tel: + (54-11) 528 - 50559
+                </div>
+                </div>
+                </div>
+                """
         try:
             mail.send(msg)
             flash("Correo enviado correctamente.")
@@ -383,6 +416,10 @@ def disponibilidad():
     check_in = request.form.get("checkin")
     check_out = request.form.get("checkout")
     huespedes = request.form.get("huespedes")
+
+    if not (check_in and check_out):
+        flash("Se requiere ingresar fecha de check-in y check-out para la consulta.")
+        return redirect(url_for("home"))
 
     response = requests.get(
         f"{API_BASE}/reservas/disponibilidad",
