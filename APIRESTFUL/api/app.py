@@ -9,7 +9,6 @@ CORS(app)
 
 app.register_blueprint(usuarios_bp, url_prefix="/usuarios")
 app.register_blueprint(habitaciones_bp, url_prefix="/habitaciones")
-
 app.register_blueprint(reservas_bp, url_prefix="/reservas")
 
 if __name__ == "__main__":

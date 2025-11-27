@@ -6055,7 +6055,6 @@ reserva*/
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    height: 300px;
     padding: 20px;
     box-sizing: border-box;
 }
