@@ -385,6 +385,10 @@ def disponibilidad():
     check_out = request.form.get("checkout")
     huespedes = request.form.get("huespedes")
 
+    if not (check_in and check_out):
+        flash("Se requiere ingresar fecha de check-in y check-out para la consulta.")
+        return redirect(url_for("home"))
+
     response = requests.get(
         f"{API_BASE}/reservas/disponibilidad",
         params={
